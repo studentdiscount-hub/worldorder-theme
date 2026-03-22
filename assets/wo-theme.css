@@ -1,0 +1,351 @@
+/*
+  WORLD ORDER — wo-theme.css
+  Master stylesheet for WO custom sections
+  Old Money · 1950s Hollywood · Black & White without the pretension
+*/
+
+/* ─── FONTS ─────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap');
+
+/* ─── TOKENS ─────────────────────────────────────────────────────────────── */
+:root {
+  --wo-black:       #090909;
+  --wo-off-white:   #f2f3ee;
+  --wo-muted:       rgba(242, 243, 238, 0.5);
+  --wo-border:      rgba(242, 243, 238, 0.1);
+  --wo-serif:       'DM Serif Display', Georgia, serif;
+  --wo-sans:        'Inter', -apple-system, sans-serif;
+  --wo-space-sm:    clamp(1.5rem, 3vw, 2.5rem);
+  --wo-space-md:    clamp(3rem, 6vw, 5rem);
+  --wo-space-lg:    clamp(5rem, 10vw, 9rem);
+}
+
+/* ─── BASE SECTION ──────────────────────────────────────────────────────── */
+.wo-section {
+  font-family: var(--wo-sans);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+/* ─── GRAIN TEXTURE ─────────────────────────────────────────────────────── */
+.wo-grain {
+  position: relative;
+}
+.wo-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.35;
+}
+
+/* ─── HERO ──────────────────────────────────────────────────────────────── */
+.wo-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--wo-black);
+  overflow: hidden;
+}
+
+.wo-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.wo-hero__bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: grayscale(100%) contrast(1.05);
+  opacity: 0.55;
+}
+
+/* dark gradient over photo */
+.wo-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 9, 9, 0.15) 0%,
+    rgba(9, 9, 9, 0.1) 40%,
+    rgba(9, 9, 9, 0.75) 80%,
+    rgba(9, 9, 9, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.wo-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: var(--wo-space-lg) clamp(1.5rem, 5vw, 6rem) var(--wo-space-md);
+  max-width: 900px;
+}
+
+.wo-hero__drop-tag {
+  font-family: var(--wo-sans);
+  font-size: clamp(0.65rem, 1.1vw, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  margin-bottom: 1.5rem;
+}
+
+.wo-hero__headline {
+  font-family: var(--wo-serif);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--wo-off-white);
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.wo-hero__headline em {
+  font-style: italic;
+  color: var(--wo-off-white);
+}
+
+.wo-hero__subline {
+  font-family: var(--wo-sans);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--wo-muted);
+  margin: 0 0 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.wo-hero__cta {
+  display: inline-block;
+  font-family: var(--wo-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 243, 238, 0.4);
+  padding-bottom: 3px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.wo-hero__cta:hover {
+  color: #fff;
+  border-color: rgba(242, 243, 238, 0.9);
+}
+
+/* ─── EDITORIAL STRIP ───────────────────────────────────────────────────── */
+.wo-editorial {
+  background-color: var(--wo-black);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--wo-border);
+}
+
+.wo-editorial__cell {
+  padding: var(--wo-space-md) clamp(1.5rem, 4vw, 3.5rem);
+  border-right: 1px solid var(--wo-border);
+}
+
+.wo-editorial__cell:last-child {
+  border-right: none;
+}
+
+.wo-label {
+  display: block;
+  font-family: var(--wo-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  margin-bottom: 0.75rem;
+}
+
+.wo-editorial__title {
+  font-family: var(--wo-serif);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: var(--wo-off-white);
+  margin-bottom: 0.85rem;
+  line-height: 1.2;
+}
+
+.wo-editorial__copy {
+  font-family: var(--wo-sans);
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--wo-muted);
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .wo-editorial {
+    grid-template-columns: 1fr;
+  }
+  .wo-editorial__cell {
+    border-right: none;
+    border-bottom: 1px solid var(--wo-border);
+  }
+  .wo-editorial__cell:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ─── MANIFESTO BAND ────────────────────────────────────────────────────── */
+.wo-manifesto {
+  background-color: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  padding: var(--wo-space-lg) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.wo-manifesto__text {
+  font-family: var(--wo-serif);
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--wo-off-white);
+  max-width: 680px;
+}
+
+.wo-manifesto__text strong {
+  font-weight: 400;
+}
+
+.wo-manifesto__text em {
+  font-style: italic;
+}
+
+.wo-manifesto__brand {
+  font-family: var(--wo-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .wo-manifesto {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wo-manifesto__brand {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+}
+
+/* ─── RADIO TEASER ──────────────────────────────────────────────────────── */
+.wo-radio-teaser {
+  background-color: #111;
+  border-top: 1px solid var(--wo-border);
+  padding: var(--wo-space-sm) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  flex-wrap: wrap;
+}
+
+.wo-radio-teaser__left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.wo-disc {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--wo-muted);
+  background: radial-gradient(circle at center, var(--wo-black) 35%, transparent 35%);
+  position: relative;
+  flex-shrink: 0;
+  animation: wo-spin 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.wo-radio-teaser:hover .wo-disc {
+  animation-play-state: running;
+}
+
+@keyframes wo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.wo-radio-teaser__label {
+  font-family: var(--wo-sans);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  margin-bottom: 0.25rem;
+}
+
+.wo-radio-teaser__title {
+  font-family: var(--wo-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--wo-off-white);
+}
+
+.wo-radio-teaser__tracks {
+  font-family: var(--wo-sans);
+  font-size: 0.75rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--wo-muted);
+  flex: 1;
+}
+
+.wo-radio-teaser__link {
+  font-family: var(--wo-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 243, 238, 0.3);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: border-color 0.2s ease;
+  margin-left: auto;
+}
+
+.wo-radio-teaser__link:hover {
+  border-color: var(--wo-off-white);
+}
+
+@media screen and (max-width: 600px) {
+  .wo-radio-teaser {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wo-radio-teaser__link {
+    margin-left: 0;
+  }
+}

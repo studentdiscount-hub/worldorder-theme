@@ -1,0 +1,75 @@
+{% comment %}
+  WORLD ORDER — page.about.liquid
+  Template: About page
+  Assign in Shopify: Pages > About > Template > page.about
+{% endcomment %}
+
+{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
+
+<div class="wo-section wo-about-hero">
+
+  <div class="wo-about-hero__coords">
+    <span>38.9764° N</span>
+    <span>76.4896° W</span>
+    <span>Est. 2024</span>
+  </div>
+
+  <h1 class="wo-about-hero__headline">
+    Pain.<br>Power.<br><span>Peace.</span>
+  </h1>
+
+  <ul class="wo-manifesto-lines">
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">I.</span>
+      <span>World Order began as a question no one else was asking — <em>what do you wear when the world stops making sense?</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">II.</span>
+      <span>Not armor. Not costume. A uniform. Something you reach for when the noise gets loud and you still have to show up.</span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">III.</span>
+      <span>We come from Annapolis — 1649 on the bay, old money and new wounds, sail cloth and street corners. <em>Both things are true.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">IV.</span>
+      <span>Every piece in the catalog sits somewhere between chaos and order. That gap between the two — that's the VOID. That's where we work.</span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">V.</span>
+      <span>We are not trying to numb anything. The pain is the proof. <em>Only the numb mistake comfort for meaning.</em></span>
+    </li>
+  </ul>
+
+</div>
+
+<div class="wo-section wo-framework">
+  <div class="wo-framework__cell">
+    <div class="wo-framework__num">I</div>
+    <div class="wo-framework__word">Chaos</div>
+    <p class="wo-framework__desc">The raw material. Every origin story starts in disorder. We don't run from it — we dress for it.</p>
+  </div>
+  <div class="wo-framework__cell">
+    <div class="wo-framework__num">II</div>
+    <div class="wo-framework__word wo-framework__word--void">VOID</div>
+    <p class="wo-framework__desc">Where chaos meets order. Where truth hides. Where every collection is made. The gap no one wants to name.</p>
+  </div>
+  <div class="wo-framework__cell">
+    <div class="wo-framework__num">III</div>
+    <div class="wo-framework__word">Order</div>
+    <p class="wo-framework__desc">Not peace through ignorance. Order earned through the VOID. Each order breaks. Every break creates order.</p>
+  </div>
+</div>
+
+<div class="wo-section wo-about-close">
+  <blockquote class="wo-about-close__line">
+    "Every face was part of a dream,<br>so nothing here is accidental."
+  </blockquote>
+  <div class="wo-never-numb">
+    never.<br>numb.<br>again.
+  </div>
+</div>
+
+{% if page.content != blank %}
+  <div style="display:none">{{ page.content }}</div>
+{% endif %}

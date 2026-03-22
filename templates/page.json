@@ -1,0 +1,72 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "image_with_text_QQz3E4": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_qGEqhf": {
+          "type": "heading",
+          "settings": {
+            "heading": "about.",
+            "heading_size": "h1"
+          }
+        },
+        "text_3QwGTN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>world order is a philosophy-driven clothing brand rooted in <br/>subversive expression. we create wearable statements for artists, <br/>outsiders, and thinkers alike. </p><p>each piece balances simplicity and rebellion, influenced by the pursuit of inner peace.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_8jUfcL": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qGEqhf",
+        "text_3QwGTN",
+        "button_8jUfcL"
+      ],
+      "name": "avout.",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_QQz3E4"
+  ]
+}

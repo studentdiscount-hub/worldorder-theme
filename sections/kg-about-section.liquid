@@ -1,0 +1,118 @@
+<section class="kg-about-section">
+  <div class="page-width">
+    <div class="kg-about-wrapper">
+
+      {% if section.settings.main_title != blank %}
+        <h3 class="kg-about-main-title">{{ section.settings.main_title }}</h3>
+      {% endif %}
+
+      <div class="kg-about-card-container">
+        <!-- Left column -->
+        <div class="kg-about-card-box">
+          {% if section.settings.left_title != blank %}
+            <h3 class="kg-about-card-title">{{ section.settings.left_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.left_content != blank %}
+            <div class="kg-about-card-description">
+              {{ section.settings.left_content }}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Right column -->
+        <div class="kg-about-card-box">
+          {% if section.settings.right_title != blank %}
+            <h3 class="kg-about-card-title">{{ section.settings.right_title }}</h3>
+          {% endif %}
+
+          {% if section.settings.right_image != blank %}
+            <div class="kg-about-card-image">
+              <img src="{{ section.settings.right_image | image_url }}" alt="">
+            </div>
+          {% endif %}
+
+          {% if section.settings.button_label != blank %}
+            <div class="kg-about-card-btn">
+              <a href="{{ section.settings.kg_button_url }}">{{ section.settings.button_label }}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{%- style -%}
+/* --- Scoped "About" styling and layout improvements --- */
+.kg-about-section {
+  padding: 3rem 1rem;
+}
+
+.kg-about-main-title {
+  text-align: center;
+  font-size: 1.25rem;     /* small heading size */
+  font-weight: 500;       /* medium weight for balance */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.kg-about-card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .kg-about-card-container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .kg-about-main-title {
+    font-size: 1.35rem;
+  }
+}
+
+.kg-about-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.kg-about-card-btn a {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.kg-about-card-btn a:hover {
+  background-color: currentColor;
+  color: var(--color-background, #fff);
+}
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "About us",
+  "settings": [
+    { "type": "text", "id": "main_title", "label": "Main Title" },
+    { "type": "text", "id": "left_title", "label": "Left Title" },
+    { "type": "richtext", "id": "left_content", "label": "Left Content" },
+    { "type": "text", "id": "right_title", "label": "Right Title" },
+    { "type": "image_picker", "id": "right_image", "label": "Right Image" },
+    { "type": "text", "id": "button_label", "label": "Button Label" },
+    { "type": "url", "id": "kg_button_url", "label": "Button URL" }
+  ],
+  "presets": [
+    { "name": "About us" }
+  ]
+}
+{% endschema %}

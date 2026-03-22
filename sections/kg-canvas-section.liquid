@@ -1,0 +1,42 @@
+   <section class="kg-canvas-fleeting-section">
+        <div class="page-width">
+            <div class="kg-canvas-fleeting-wrapper">
+                {% if section.settings.kg_title != blank %}
+                <div class="kg-canvas-fleeting-title">
+                    <h3>{{ section.settings.kg_title }}</h3>
+                </div>
+                {% endif %}
+                <div class="kg-canvas-fleeting-card-row">
+                    {% for block in section.blocks %}  
+                        <div class="kg-canvas-fleeting-card-box"></div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    {% schema %}
+{
+  "name": "canvas block",
+  "settings": [
+    {
+        "type": "text",
+        "id": "kg_title",
+        "label": "Title"
+    }
+  ],
+ "blocks": [
+    {
+        "type": "box",
+        "name" : "box"
+       
+    }
+ ],
+  "presets": [
+    {
+      "name": "canvas block",
+      
+    }
+  ]
+}
+{% endschema %}

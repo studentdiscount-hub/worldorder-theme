@@ -1,0 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "wo-hero": {
+      "type": "wo-hero",
+      "settings": {
+        "background_image": "shopify://shop_images/wo_hero_bg.jpg",
+        "drop_tag": "Drop 001 · Standard Issue · SS // 26",
+        "headline": "there's a shape forming in the <em>dark.</em>",
+        "subline": "uniforms for the individual,<br>engineered with intention.",
+        "cta_label": "Enter the catalog",
+        "cta_url": "/collections/frontpage"
+      }
+    },
+    "wo-editorial": {
+      "type": "wo-editorial-strip",
+      "blocks": {
+        "pillar-1": {
+          "type": "pillar",
+          "settings": {
+            "label": "I. Origin",
+            "title": "Annapolis, 1649",
+            "copy": "Where the bay meets the breakdown. Every piece starts there."
+          }
+        },
+        "pillar-2": {
+          "type": "pillar",
+          "settings": {
+            "label": "II. Framework",
+            "title": "Chaos / Order / VOID",
+            "copy": "Truth hides in the gap. We make clothes for that gap."
+          }
+        },
+        "pillar-3": {
+          "type": "pillar",
+          "settings": {
+            "label": "III. Radio",
+            "title": "World Order Radio",
+            "copy": "Each drop ships with a tracklist. The music is the context."
+          }
+        }
+      },
+      "block_order": [
+        "pillar-1",
+        "pillar-2",
+        "pillar-3"
+      ],
+      "settings": {}
+    },
+    "wo-manifesto": {
+      "type": "wo-manifesto-band",
+      "settings": {
+        "manifesto_text": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.<br><em style=\"color:rgba(242,243,238,0.35)\">— never. numb. again.</em>",
+        "show_radio_teaser": true,
+        "radio_title": "World Order Radio — EP #001",
+        "radio_tracks": "DHL · Frank Ocean\nDiving board · redveil\nFruits of the Spirit · Jay Electronica",
+        "radio_url": "/pages/canvas"
+      }
+    }
+  },
+  "order": [
+    "wo-hero",
+    "wo-editorial",
+    "wo-manifesto"
+  ]
+}

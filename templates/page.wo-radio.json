@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "wo-radio-content": {
+      "type": "wo-radio-content",
+      "settings": {}
+    }
+  },
+  "order": ["wo-radio-content"]
+}
