@@ -3,11 +3,10 @@
   Section: Manifesto band + Radio teaser (dark strip)
 {% endcomment %}
 
-{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
-
 <div class="wo-section wo-manifesto">
   <div class="wo-manifesto__text">
-    {{ section.settings.manifesto_text | default: '<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.<br><em style="color:rgba(242,243,238,0.35)">— never. numb. again.</em>' }}
+    {{ section.settings.manifesto_text | default: '<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.' }}<br>
+    <span class="wo-manifesto__tag">— never. numb. again.</span>
   </div>
   <div class="wo-manifesto__brand">World Order</div>
 </div>
@@ -26,16 +25,9 @@
   <div class="wo-radio-teaser__tracks">
     {{ section.settings.radio_tracks | newline_to_br }}
   </div>
-  <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/wo-radio' }}">
-    Full tracklist →
-  </a>
+  <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/radio' }}">Full tracklist →</a>
 </div>
 {% endif %}
-
-<div class="wo-section wo-footer-strip">
-  <span class="wo-footer-strip__brand">World Order® &nbsp;·&nbsp; Annapolis, MD</span>
-  <span class="wo-footer-strip__url">worldorderhq.com</span>
-</div>
 
 {% schema %}
 {
@@ -46,12 +38,12 @@
       "type": "html",
       "id": "manifesto_text",
       "label": "Manifesto text (HTML allowed)",
-      "default": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.<br><em style=\"color:rgba(242,243,238,0.35)\">— never. numb. again.</em>"
+      "default": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth."
     },
     {
       "type": "checkbox",
       "id": "show_radio_teaser",
-      "label": "Show Radio teaser strip",
+      "label": "Show radio teaser strip",
       "default": true
     },
     {
@@ -64,7 +56,7 @@
       "type": "textarea",
       "id": "radio_tracks",
       "label": "Track listing (one per line)",
-      "default": "DHL · Frank Ocean\nDiving board · redveil\nFruits of the Spirit · Jay Electronica"
+      "default": "DHL · Frank Ocean\nDiving Board · redveil\nFruits of the Spirit · Jay Electronica"
     },
     {
       "type": "url",
