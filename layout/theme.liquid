@@ -303,6 +303,7 @@
   <link rel="preload" as="image" href="{{ 'website_image_new-pfti.png' | image_url: width: 1100 }}" imagesrcset="{{ 'website_image_new-pfti.png' | image_url: width: 375 }} 375w, {{ 'website_image_new-pfti.png' | image_url: width: 750 }} 750w, {{ 'website_image_new-pfti.png' | image_url: width: 1100 }} 1100w, {{ 'website_image_new-pfti.png' | image_url: width: 1500 }} 1500w, {{ 'website_image_new-pfti.png' | image_url: width: 1800 }} 1800w" imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
+  {{ 'wo-theme.css' | asset_url | stylesheet_tag }}
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
