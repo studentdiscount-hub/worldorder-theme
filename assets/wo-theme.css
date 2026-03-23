@@ -642,3 +642,481 @@
   letter-spacing: 0.05em;
   color: rgba(242, 243, 238, 0.22);
 }
+
+
+/* ═══════════════════════════════════════════════════════
+   WO HERO — homepage dark hero
+   ═══════════════════════════════════════════════════════ */
+
+.wo-hero {
+  position: relative;
+  background: #0d0d0d;
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.wo-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(95,24,4,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(230,208,172,0.06) 0%, transparent 50%),
+    linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 100%);
+  z-index: 0;
+}
+
+.wo-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.wo-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 60px 48px 64px;
+}
+
+.wo-hero__drop-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--wo-burgundy);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wo-hero__drop-tag::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--wo-burgundy);
+}
+
+.wo-hero__headline {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(64px, 10vw, 120px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  margin-bottom: 32px;
+}
+
+.wo-hero__headline em {
+  font-style: normal;
+  color: var(--wo-burgundy);
+}
+
+.wo-hero__subline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(242,243,238,0.55);
+  letter-spacing: 0.02em;
+  margin-bottom: 48px;
+  max-width: 420px;
+}
+
+.wo-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242,243,238,0.3);
+  padding-bottom: 6px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.wo-hero__cta:hover {
+  border-color: var(--wo-burgundy);
+  color: #E6D0AC;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WO EDITORIAL STRIP — 3-column pillars
+   ═══════════════════════════════════════════════════════ */
+
+.wo-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-top: 1px solid rgba(38,38,38,0.12);
+  background: var(--wo-off-white);
+}
+
+.wo-editorial__cell {
+  padding: 40px 36px;
+  border-right: 1px solid rgba(38,38,38,0.12);
+}
+
+.wo-editorial__cell:last-child {
+  border-right: none;
+}
+
+.wo-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--wo-burgundy);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.wo-editorial__title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #262626;
+  margin-bottom: 10px;
+}
+
+.wo-editorial__copy {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #837C6C;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WO MANIFESTO BAND — dark strip, 2-col layout
+   ═══════════════════════════════════════════════════════ */
+
+.wo-manifesto {
+  background: var(--wo-black);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.wo-manifesto__text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(242,243,238,0.8);
+}
+
+.wo-manifesto__text strong {
+  font-weight: 700;
+  font-style: normal;
+  color: var(--wo-off-white);
+}
+
+.wo-manifesto__tag {
+  color: rgba(242,243,238,0.4);
+  font-style: italic;
+}
+
+.wo-manifesto__brand {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(242,243,238,0.25);
+  writing-mode: vertical-rl;
+}
+
+/* ═══════════════════════════════════════════════════════
+   WO RADIO PAGE — big disc hero, tracklist, note, tie-back
+   ═══════════════════════════════════════════════════════ */
+
+.wo-radio-hero {
+  background: var(--wo-black);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.wo-radio-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(95,24,4,0.25) 0%, transparent 65%);
+}
+
+.wo-radio-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 48px;
+  gap: 0;
+}
+
+.wo-big-disc {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: var(--wo-off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 0 80px rgba(95,24,4,0.3);
+  position: relative;
+}
+
+.wo-big-disc::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--wo-black);
+}
+
+.wo-big-disc__title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #262626;
+  text-decoration: underline;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+}
+
+.wo-big-disc__ep {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #837C6C;
+  position: relative;
+  z-index: 1;
+}
+
+.wo-radio-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: rgba(242,243,238,0.6);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.wo-radio-powered {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(242,243,238,0.2);
+  text-align: center;
+}
+
+/* Tracklist grid */
+.wo-tracklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(38,38,38,0.12);
+}
+
+.wo-track-row {
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-right: 1px solid rgba(38,38,38,0.08);
+  border-bottom: 1px solid rgba(38,38,38,0.08);
+  background: var(--wo-off-white);
+  transition: background 0.15s;
+}
+
+.wo-track-row:hover {
+  background: rgba(38,38,38,0.03);
+}
+
+.wo-track-row--full {
+  grid-column: 1 / -1;
+  max-width: 50%;
+}
+
+.wo-track-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 300;
+  color: rgba(38,38,38,0.12);
+  width: 32px;
+  flex-shrink: 0;
+}
+
+.wo-track-info {
+  flex: 1;
+}
+
+.wo-track-song {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #262626;
+  margin-bottom: 3px;
+}
+
+.wo-track-artist {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: #837C6C;
+}
+
+.wo-track-badge {
+  margin-left: auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--wo-burgundy);
+  background: rgba(95,24,4,0.07);
+  padding: 4px 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Radio context note */
+.wo-radio-note {
+  background: var(--wo-black);
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.wo-radio-note__copy {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(242,243,238,0.5);
+  max-width: 440px;
+  line-height: 1.6;
+}
+
+.wo-radio-note__copy em {
+  color: var(--wo-off-white);
+  font-style: normal;
+}
+
+.wo-radio-note__meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: rgba(242,243,238,0.2);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.8;
+}
+
+/* Radio tie-back */
+.wo-radio-tieback {
+  background: var(--wo-off-white);
+  padding: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(38,38,38,0.1);
+}
+
+.wo-radio-tieback__label {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: var(--wo-burgundy);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.wo-radio-tieback__title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #262626;
+}
+
+.wo-radio-tieback__link {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #262626;
+  text-decoration: none;
+  border-bottom: 1px solid #262626;
+  padding-bottom: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .wo-hero__content {
+    padding: 40px 24px 48px;
+  }
+  .wo-editorial {
+    grid-template-columns: 1fr;
+  }
+  .wo-editorial__cell {
+    border-right: none;
+  }
+  .wo-manifesto {
+    padding: 40px 24px;
+    grid-template-columns: 1fr;
+  }
+  .wo-manifesto__brand {
+    writing-mode: horizontal-tb;
+  }
+  .wo-tracklist {
+    grid-template-columns: 1fr;
+  }
+  .wo-track-row--full {
+    max-width: 100%;
+  }
+  .wo-track-row {
+    padding: 20px 24px;
+  }
+  .wo-radio-note {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+  .wo-radio-tieback {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+}
