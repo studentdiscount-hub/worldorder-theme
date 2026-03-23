@@ -1,89 +1,32 @@
 {% comment %}
   WORLD ORDER — wo-hero.liquid
-  Section: Homepage Hero
-  Add to: Online Store > Themes > Customize > Add section
+  Section: Homepage hero — dark gradient, Big Shoulders Display headline
 {% endcomment %}
 
-{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
-
-<section class="wo-section wo-hero wo-grain">
-
-  <div class="wo-hero__bg">
-    {% if section.settings.background_image != blank %}
-      <div class="wo-hero__bg-image"
-        style="background-image: url('{{ section.settings.background_image | img_url: '2000x' }}')">
-      </div>
-    {% endif %}
-  </div>
-
+<div class="wo-section wo-hero">
+  <div class="wo-hero__bg"></div>
   <div class="wo-hero__content">
-
-    <div class="wo-hero__drop-tag">
-      {{ section.settings.drop_tag | default: 'Drop 001 · Standard Issue · SS // 26' }}
-    </div>
-
-    <h1 class="wo-hero__headline">
-      {{ section.settings.headline | default: "there's a shape forming in the <em>dark.</em>" }}
-    </h1>
-
-    <p class="wo-hero__subline">
-      {{ section.settings.subline | default: 'uniforms for the individual,<br>engineered with intention.' }}
-    </p>
-
-    {% if section.settings.cta_label != blank and section.settings.cta_url != blank %}
-      <a class="wo-hero__cta" href="{{ section.settings.cta_url }}">
-        {{ section.settings.cta_label }} &nbsp;→
-      </a>
-    {% endif %}
-
+    <div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>
+    <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+    <p class="wo-hero__subline">{{ section.settings.subline }}</p>
+    <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
+      {{ section.settings.cta_label | default: 'Enter the catalog' }} &nbsp;&#8594;
+    </a>
   </div>
-
-</section>
+</div>
 
 {% schema %}
 {
-  "name": "WO — Hero",
-  "tag": "section",
+  "name": "WO Hero",
+  "tag": "div",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image (B&W, cinematic)"
-    },
-    {
-      "type": "text",
-      "id": "drop_tag",
-      "label": "Drop tag",
-      "default": "Drop 001 · Standard Issue · SS // 26"
-    },
-    {
-      "type": "html",
-      "id": "headline",
-      "label": "Headline (HTML allowed for emphasis)",
-      "default": "there's a shape forming in the <em>dark.</em>"
-    },
-    {
-      "type": "html",
-      "id": "subline",
-      "label": "Subline",
-      "default": "uniforms for the individual,<br>engineered with intention."
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "CTA label",
-      "default": "Enter the catalog"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "CTA URL"
-    }
+    { "type": "image_picker", "id": "background_image", "label": "Background image" },
+    { "type": "text", "id": "drop_tag", "label": "Drop tag line", "default": "Drop 001 · Standard Issue · SS 26" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "THERE IS A SHAPE FORMING IN THE DARK." },
+    { "type": "text", "id": "subline", "label": "Subline", "default": "uniforms for the individual, engineered with intention." },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Enter the catalog" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
   ],
-  "presets": [
-    {
-      "name": "WO — Hero"
-    }
-  ]
+  "presets": [{ "name": "WO Hero" }]
 }
 {% endschema %}
