@@ -1,75 +1,145 @@
-{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
+{% comment %}
+  WORLD ORDER — wo-radio-content.liquid
+  Section: Canvas / Radio page — big disc hero, tracklist, context note, tie-back
+{% endcomment %}
 
-<div class="wo-section wo-radio-hero">
+{% assign ep_label = section.settings.ep_label | default: 'EP #001' %}
+{% assign ep_title = section.settings.ep_title | default: 'WORLD ORDER RADIO' %}
+{% assign tagline  = section.settings.tagline  | default: 'The clothes arrived first. The music explains why.' %}
+
+<div class="wo-radio-hero">
   <div class="wo-radio-hero__inner">
     <div class="wo-big-disc">
-      <div class="wo-big-disc__title">WORLD<br>ORDER<br>RADIO</div>
-      <div class="wo-big-disc__ep">EP #001</div>
+      <div class="wo-big-disc__title">{{ ep_title | split: ' ' | join: '<br>' }}</div>
+      <div class="wo-big-disc__ep">{{ ep_label }}</div>
     </div>
-    <p class="wo-radio-hero__tagline">"The clothes arrived first.<br>The music explains why."</p>
-    <p class="wo-radio-hero__powered">Powered by Student Discount</p>
+    <div class="wo-radio-tagline">{{ tagline }}</div>
+    <div class="wo-radio-powered">Powered by Student Discount</div>
   </div>
 </div>
 
-<div class="wo-section wo-tracklist">
-  <div class="wo-track">
-    <div class="wo-track__num">I</div>
-    <div>
-      <div class="wo-track__song">Call Me</div>
-      <div class="wo-track__artist">Blood Orange, 박혜진 Park Hye Jin</div>
-    </div>
-    <span class="wo-track__badge">EP 001</span>
+<div class="wo-tracklist">
+  {% for block in section.blocks %}
+    {% if block.type == 'track' %}
+      <div class="wo-track-row{% if forloop.last and forloop.length == 5 %} wo-track-row--full{% endif %}" {{ block.shopify_attributes }}>
+        <div class="wo-track-num">{{ block.settings.numeral }}</div>
+        <div class="wo-track-info">
+          <div class="wo-track-song">{{ block.settings.song }}</div>
+          <div class="wo-track-artist">{{ block.settings.artist }}</div>
+        </div>
+        <span class="wo-track-badge">{{ ep_label }}</span>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="wo-radio-note">
+  <div class="wo-radio-note__copy">
+    {{ section.settings.context_note }}
   </div>
-  <div class="wo-track">
-    <div class="wo-track__num">II</div>
-    <div>
-      <div class="wo-track__song">Diving Board</div>
-      <div class="wo-track__artist">redveil</div>
-    </div>
-    <span class="wo-track__badge">EP 001</span>
-  </div>
-  <div class="wo-track">
-    <div class="wo-track__num">III</div>
-    <div>
-      <div class="wo-track__song">DHL</div>
-      <div class="wo-track__artist">Frank Ocean</div>
-    </div>
-    <span class="wo-track__badge">EP 001</span>
-  </div>
-  <div class="wo-track">
-    <div class="wo-track__num">IV</div>
-    <div>
-      <div class="wo-track__song">Alesis</div>
-      <div class="wo-track__artist">Mk.gee</div>
-    </div>
-    <span class="wo-track__badge">EP 001</span>
-  </div>
-  <div class="wo-track" style="grid-column:1/-1;max-width:50%">
-    <div class="wo-track__num">V</div>
-    <div>
-      <div class="wo-track__song">Fruits of the Spirit</div>
-      <div class="wo-track__artist">Jay Electronica</div>
-    </div>
-    <span class="wo-track__badge">EP 001</span>
+  <div class="wo-radio-note__meta">
+    {{ section.settings.next_ep }}
   </div>
 </div>
 
-<div class="wo-section wo-radio-note">
-  <p class="wo-radio-note__copy">Every World Order drop ships with a Radio EP. <em>The music is not a playlist — it's a context document.</em> Listen before you wear it. Or after. Either way, it changes what the clothes mean.</p>
-  <div class="wo-radio-note__meta">EP #002<br>arriving with<br>Drop 002</div>
-</div>
-
-<div class="wo-section wo-radio-drop">
+<div class="wo-radio-tieback">
   <div>
-    <div class="wo-radio-drop__label">This EP Ships With</div>
-    <div class="wo-radio-drop__title">Standard Issue #001</div>
+    <div class="wo-radio-tieback__label">{{ section.settings.tieback_label | default: 'This EP Ships With' }}</div>
+    <div class="wo-radio-tieback__title">{{ section.settings.tieback_drop | default: 'Standard Issue #001' }}</div>
   </div>
-  <a href="/collections/frontpage" class="wo-link">Shop the Drop →</a>
+  <a href="{{ section.settings.tieback_url | default: '/collections/frontpage' }}" class="wo-radio-tieback__link">Shop the Drop →</a>
 </div>
 
-<div class="wo-section wo-footer-strip">
-  <span class="wo-footer-strip__brand">World Order® &nbsp;·&nbsp; Annapolis, MD</span>
-  <span class="wo-footer-strip__url">worldorderhq.com</span>
-</div>
-
-{% schema %}{"name":"WO — Radio","tag":"div","settings":[],"presets":[{"name":"WO — Radio"}]}{% endschema %}
+{% schema %}
+{
+  "name": "WO — Radio Page",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ep_label",
+      "label": "EP label",
+      "default": "EP #001"
+    },
+    {
+      "type": "text",
+      "id": "ep_title",
+      "label": "Big disc title",
+      "default": "WORLD ORDER RADIO"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline (under disc)",
+      "default": "The clothes arrived first. The music explains why."
+    },
+    {
+      "type": "html",
+      "id": "context_note",
+      "label": "Context note copy",
+      "default": "Every World Order drop ships with a Radio EP. <em>The music is not a playlist — it's a context document.</em> Listen before you wear it. Or after. Either way, it changes what the clothes mean."
+    },
+    {
+      "type": "html",
+      "id": "next_ep",
+      "label": "Next EP note (right side)",
+      "default": "EP #002<br>arriving with<br>Drop 002"
+    },
+    {
+      "type": "text",
+      "id": "tieback_label",
+      "label": "Tie-back label",
+      "default": "This EP Ships With"
+    },
+    {
+      "type": "text",
+      "id": "tieback_drop",
+      "label": "Tie-back drop name",
+      "default": "Standard Issue #001"
+    },
+    {
+      "type": "url",
+      "id": "tieback_url",
+      "label": "Shop the drop URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "track",
+      "name": "Track",
+      "settings": [
+        {
+          "type": "text",
+          "id": "numeral",
+          "label": "Roman numeral",
+          "default": "I"
+        },
+        {
+          "type": "text",
+          "id": "song",
+          "label": "Song title",
+          "default": "Call Me"
+        },
+        {
+          "type": "text",
+          "id": "artist",
+          "label": "Artist",
+          "default": "Blood Orange"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WO — Radio Page",
+      "blocks": [
+        { "type": "track", "settings": { "numeral": "I",   "song": "Call Me",             "artist": "Blood Orange, Park Hye Jin" } },
+        { "type": "track", "settings": { "numeral": "II",  "song": "Diving Board",         "artist": "redveil" } },
+        { "type": "track", "settings": { "numeral": "III", "song": "DHL",                  "artist": "Frank Ocean" } },
+        { "type": "track", "settings": { "numeral": "IV",  "song": "Alesis",               "artist": "Mk.gee" } },
+        { "type": "track", "settings": { "numeral": "V",   "song": "Fruits of the Spirit", "artist": "Jay Electronica" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
