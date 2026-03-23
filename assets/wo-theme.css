@@ -1123,9 +1123,10 @@
 
 
 
+
 /* ══════════════════════════════════════════════════════
-   WORLD ORDER — HEADER BRAND OVERRIDES v2
-   Unifies Dawn header with WO editorial design system
+   WORLD ORDER — HEADER BRAND OVERRIDES v3
+   Verified selectors against live DOM structure
    ══════════════════════════════════════════════════════ */
 
 /* Section wrapper */
@@ -1134,20 +1135,20 @@
   border-bottom: 1px solid rgba(242, 243, 238, 0.08) !important;
 }
 
-/* Core header element — override Dawn color scheme vars */
 .header {
   background-color: #090909 !important;
   --color-background: 9, 9, 9;
   --color-foreground: 242, 243, 238;
 }
 
-/* ── DESKTOP NAV LINKS — high-specificity override ── */
-.header__inline-menu .list-menu__item--link,
-.header__inline-menu .header__menu-item {
+/* ── DESKTOP NAV — .header__inline-menu ── */
+/* Confirmed class: header__menu-item list-menu__item link link--text */
+.header__inline-menu .header__menu-item,
+.header__inline-menu .header__menu-item.list-menu__item {
   font-family: 'Inter', -apple-system, sans-serif !important;
-  font-size: 0.625rem !important;
+  font-size: 10px !important;
   font-weight: 400 !important;
-  letter-spacing: 0.15em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
   color: #f2f3ee !important;
   opacity: 0.72;
@@ -1155,26 +1156,60 @@
   text-decoration: none !important;
 }
 
-.header__inline-menu .list-menu__item--link:hover {
+.header__inline-menu .header__menu-item:hover {
+  opacity: 1 !important;
+  color: #f2f3ee !important;
+  text-decoration: none !important;
+}
+
+/* ── MOBILE DRAWER NAV ── */
+/* Confirmed class: menu-drawer__menu-item list-menu__item */
+.menu-drawer .menu-drawer__menu-item,
+.menu-drawer .list-menu__item {
+  font-family: 'Inter', -apple-system, sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: #f2f3ee !important;
+  border-bottom: 1px solid rgba(242, 243, 238, 0.07) !important;
+  padding: 1rem 0 !important;
+  opacity: 0.72;
+  transition: opacity 0.2s ease;
+}
+
+.menu-drawer .menu-drawer__menu-item:hover,
+.menu-drawer .list-menu__item:hover {
   opacity: 1 !important;
   color: #f2f3ee !important;
 }
 
-.header__inline-menu .list-menu__item--active > a {
-  opacity: 1 !important;
-  color: #f2f3ee !important;
+/* Drawer background */
+.menu-drawer,
+.menu-drawer__container,
+.menu-drawer__inner-container {
+  background-color: #090909 !important;
 }
 
-/* ── ALL HEADER ICONS ── */
-.header__icon,
-.header__icon svg {
+/* Drawer close button */
+.menu-drawer__close-button svg,
+.menu-drawer__close-button path,
+.menu-drawer__utility-links svg {
   color: #f2f3ee !important;
   fill: #f2f3ee !important;
 }
 
-.header__icon:hover { opacity: 0.75; }
+/* ── ALL HEADER ICONS ── */
+.header__icon {
+  color: #f2f3ee !important;
+}
+.header__icon svg,
+.header__icon path {
+  fill: #f2f3ee !important;
+  color: #f2f3ee !important;
+}
 
-/* Cart bubble — brand accent color */
+/* Cart count bubble */
 .cart-count-bubble {
   background-color: #5F1804 !important;
   color: #f2f3ee !important;
@@ -1182,67 +1217,37 @@
 }
 
 /* ── LOGO ── */
-.header__heading-logo {
-  width: 120px;
-  max-width: 120px;
+.header__heading-logo-wrapper {
+  max-width: 130px;
 }
 
-/* ── MOBILE DRAWER ── */
-.menu-drawer,
-.menu-drawer__container,
-.menu-drawer__inner-container {
-  background-color: #090909 !important;
-}
-
-.menu-drawer .list-menu__item--link {
-  font-family: 'Inter', -apple-system, sans-serif !important;
-  font-size: 0.8rem !important;
-  letter-spacing: 0.14em !important;
-  text-transform: uppercase !important;
-  color: #f2f3ee !important;
-  border-bottom: 1px solid rgba(242, 243, 238, 0.07) !important;
-  padding: 1rem 0 !important;
-  opacity: 0.72;
-}
-
-.menu-drawer .list-menu__item--link:hover {
-  color: #f2f3ee !important;
-  opacity: 1;
-}
-
-.menu-drawer__close-button svg,
-.menu-drawer__utility-links svg,
-.disclosure__button svg {
-  color: #f2f3ee !important;
-  fill: #f2f3ee !important;
-}
-
-/* ── STICKY HEADER ── */
-sticky-header .header,
+/* ── STICKY ── */
+sticky-header .section-header,
 .shopify-section-group-header-group .section-header {
   background-color: #090909 !important;
+  box-shadow: 0 1px 0 rgba(242, 243, 238, 0.06);
 }
 
 /* ── SEARCH MODAL ── */
-.search-modal,
-.search-modal .modal__toggle {
+.search-modal {
   background-color: #090909 !important;
   border-bottom: 1px solid rgba(242, 243, 238, 0.08);
 }
 
-.search-modal input[type="search"],
 .search-modal .field__input {
   background: transparent !important;
   color: #f2f3ee !important;
   border-color: rgba(242, 243, 238, 0.2) !important;
   font-family: 'Inter', -apple-system, sans-serif !important;
-  font-size: 0.7rem !important;
-  letter-spacing: 0.1em !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
 }
 
-.search-modal input::placeholder {
+.search-modal .field__input::placeholder {
   color: rgba(242, 243, 238, 0.4) !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .search-modal .field__button svg,
