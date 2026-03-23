@@ -1120,3 +1120,165 @@
     padding: 32px 24px;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════
+   WORLD ORDER — HEADER BRAND OVERRIDES
+   Unifies Dawn header with WO editorial design system
+   ══════════════════════════════════════════════════════ */
+
+/* Force brand color scheme on the header section */
+.section-header {
+  background-color: var(--wo-black) !important;
+  border-bottom: 1px solid rgba(242, 243, 238, 0.08);
+}
+
+/* Override Dawn's RGB-based color vars within the header */
+.header,
+sticky-header .header {
+  --color-background: 9, 9, 9;
+  --color-foreground: 242, 243, 238;
+  background-color: var(--wo-black);
+  color: var(--wo-off-white);
+  font-family: var(--wo-sans);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Header inner layout — tighten vertical rhythm */
+.header__heading {
+  color: var(--wo-off-white);
+}
+
+/* Script logo — ensure it renders crisp and white */
+.header__heading-logo {
+  max-width: 130px;
+  width: 130px;
+}
+
+/* Nav link base — uppercase, tracked-out Inter */
+.header .list-menu__item--link,
+.header .header__menu-item-link {
+  font-family: var(--wo-sans);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  opacity: 0.7;
+  transition: opacity 0.18s ease, color 0.18s ease;
+  text-decoration: none;
+}
+
+.header .list-menu__item--link:hover,
+.header .header__menu-item-link:hover {
+  opacity: 1;
+  color: var(--wo-off-white);
+  text-decoration: none;
+}
+
+/* Active page indicator */
+.header .list-menu__item--link.list-menu__item--active {
+  opacity: 1;
+  color: var(--wo-off-white);
+}
+
+/* All header icons (cart, search, account, social) */
+.header__icon,
+.header__icon svg,
+.header__icon path,
+.header__icon rect,
+.header__icon circle {
+  color: var(--wo-off-white);
+  fill: var(--wo-off-white);
+}
+
+.header__icon:hover svg,
+.header__icon:hover path {
+  color: var(--wo-off-white);
+  fill: var(--wo-off-white);
+  opacity: 1;
+}
+
+/* Cart bubble — brand accent */
+.cart-count-bubble {
+  background-color: #5F1804;
+  color: var(--wo-off-white);
+  font-family: var(--wo-sans);
+  font-size: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── MOBILE DRAWER ── */
+.menu-drawer,
+.menu-drawer__container {
+  background-color: var(--wo-black);
+}
+
+.menu-drawer__navigation {
+  background-color: var(--wo-black);
+}
+
+.menu-drawer__navigation .list-menu__item--link,
+.menu-drawer .list-menu__item--link {
+  font-family: var(--wo-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  border-bottom: 1px solid rgba(242, 243, 238, 0.08);
+  padding: 1rem 0;
+  opacity: 0.75;
+  transition: opacity 0.18s ease;
+}
+
+.menu-drawer .list-menu__item--link:hover {
+  opacity: 1;
+  color: var(--wo-off-white);
+}
+
+.menu-drawer__close-button svg,
+.menu-drawer__close-button path {
+  fill: var(--wo-off-white);
+  color: var(--wo-off-white);
+}
+
+/* Drawer overlay */
+.menu-opening .menu-drawer-overlay {
+  background-color: rgba(9, 9, 9, 0.8);
+}
+
+/* ── STICKY HEADER ── */
+sticky-header.scrolled-past-header .section-header,
+.header-wrapper .section-header {
+  background-color: var(--wo-black) !important;
+  box-shadow: 0 1px 0 rgba(242, 243, 238, 0.06);
+}
+
+/* ── SEARCH MODAL ── */
+.search-modal {
+  background-color: var(--wo-black);
+  border-bottom: 1px solid rgba(242, 243, 238, 0.08);
+}
+
+.search-modal__form {
+  font-family: var(--wo-sans);
+  color: var(--wo-off-white);
+}
+
+.search-modal__form input {
+  background-color: transparent;
+  color: var(--wo-off-white);
+  border-color: rgba(242, 243, 238, 0.2);
+  font-family: var(--wo-sans);
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.search-modal__form input::placeholder {
+  color: var(--wo-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
