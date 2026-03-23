@@ -15,7 +15,7 @@
   --wo-border:      rgba(242, 243, 238, 0.1);
   --wo-serif:       'DM Serif Display', Georgia, serif;
   --wo-sans:        'Inter', -apple-system, sans-serif;
-  --wo-space-sm:    clamp(1.5rem, 3vw, 2.5rem);
+  --wo-space-sm:    clamp(1.5rem, 3vw, 2.5rem)
   --wo-space-md:    clamp(3rem, 6vw, 5rem);
   --wo-space-lg:    clamp(5rem, 10vw, 9rem);
 }
@@ -47,7 +47,7 @@
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   background-color: var(--wo-black);
   overflow: hidden;
 }
