@@ -5,7 +5,8 @@
 */
 
 /* ─── FONTS ─────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap');
+/* DM Serif Display + Inter are loaded via <link> tags in theme.liquid <head>
+   to avoid the render-blocking @import chain. */
 
 /* ─── TOKENS ─────────────────────────────────────────────────────────────── */
 :root {
@@ -92,18 +93,12 @@
 }
 
 .wo-hero__drop-tag {
-  font-family: var(--wo-sans);
-  font-size: clamp(0.65rem, 1.1vw, 0.75rem);
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--wo-muted);
-  margin-bottom: 1.5rem;
+  display: none;
 }
 
 .wo-hero__headline {
   font-family: var(--wo-serif);
-  font-size: clamp(2.8rem, 7vw, 6.5rem);
+  font-size: clamp(1.9rem, 4.5vw, 4rem);
   font-weight: 400;
   line-height: 1.05;
   color: var(--wo-off-white);
@@ -154,7 +149,7 @@
 }
 
 .wo-editorial__cell {
-  padding: var(--wo-space-md) clamp(1.5rem, 4vw, 3.5rem);
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 4vw, 3.5rem);
   border-right: 1px solid var(--wo-border);
 }
 
@@ -183,12 +178,7 @@
 }
 
 .wo-editorial__copy {
-  font-family: var(--wo-sans);
-  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--wo-muted);
-  margin: 0;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -348,4 +338,297 @@
   .wo-radio-teaser__link {
     margin-left: 0;
   }
+}
+
+/* ─── WO LINK ───────────────────────────────────────────────────────────── */
+.wo-link {
+  font-family: var(--wo-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 243, 238, 0.4);
+  padding-bottom: 3px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.wo-link:hover {
+  color: #fff;
+  border-color: rgba(242, 243, 238, 0.9);
+}
+
+/* ─── RADIO HERO ────────────────────────────────────────────────────────── */
+.wo-radio-hero {
+  background: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  padding: var(--wo-space-lg) clamp(1.5rem, 5vw, 6rem) var(--wo-space-md);
+}
+
+.wo-radio-hero__inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--wo-space-sm);
+  text-align: center;
+}
+
+/* ─── BIG DISC ──────────────────────────────────────────────────────────── */
+.wo-big-disc {
+  width: clamp(160px, 24vw, 260px);
+  height: clamp(160px, 24vw, 260px);
+  border-radius: 50%;
+  border: 1px solid rgba(242, 243, 238, 0.2);
+  background:
+    radial-gradient(circle at center, var(--wo-black) 27%, transparent 27%),
+    radial-gradient(circle at center, #1c1c1c 27%, #141414 30%, #0d0d0d 32%);
+  box-shadow:
+    0 0 0 1px rgba(242, 243, 238, 0.06),
+    inset 0 0 40px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  animation: wo-spin 18s linear infinite;
+}
+
+.wo-big-disc__title {
+  font-family: var(--wo-sans);
+  font-size: clamp(0.48rem, 0.8vw, 0.62rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  text-align: center;
+  line-height: 2;
+}
+
+.wo-big-disc__ep {
+  font-family: var(--wo-serif);
+  font-size: clamp(0.62rem, 1vw, 0.78rem);
+  font-style: italic;
+  color: var(--wo-muted);
+  margin-top: 0.4rem;
+}
+
+.wo-radio-hero__tagline {
+  font-family: var(--wo-serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--wo-off-white);
+  line-height: 1.45;
+  text-align: center;
+  margin: 0;
+}
+
+.wo-radio-hero__powered {
+  font-family: var(--wo-sans);
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  margin: 0;
+}
+
+/* ─── TRACKLIST ─────────────────────────────────────────────────────────── */
+.wo-tracklist {
+  background: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 0 clamp(1.5rem, 5vw, 6rem);
+}
+
+.wo-track {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1.1rem, 2vw, 1.6rem) 0;
+  border-bottom: 1px solid var(--wo-border);
+}
+
+.wo-track:nth-last-child(-n+2):not([style]) {
+  border-bottom: none;
+}
+
+.wo-track:nth-child(odd) {
+  padding-right: clamp(1.5rem, 3vw, 3rem);
+  border-right: 1px solid var(--wo-border);
+}
+
+.wo-track:nth-child(even) {
+  padding-left: clamp(1.5rem, 3vw, 3rem);
+}
+
+.wo-track__num {
+  font-family: var(--wo-serif);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--wo-muted);
+  min-width: 1.25rem;
+  flex-shrink: 0;
+}
+
+.wo-track__song {
+  font-family: var(--wo-sans);
+  font-size: clamp(0.85rem, 1.3vw, 0.98rem);
+  font-weight: 400;
+  color: var(--wo-off-white);
+  margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+
+.wo-track__artist {
+  font-family: var(--wo-sans);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--wo-muted);
+  letter-spacing: 0.02em;
+}
+
+.wo-track__badge {
+  font-family: var(--wo-sans);
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242, 243, 238, 0.28);
+  border: 1px solid rgba(242, 243, 238, 0.12);
+  padding: 0.22rem 0.55rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .wo-tracklist {
+    grid-template-columns: 1fr;
+  }
+  .wo-track:nth-child(odd) {
+    padding-right: 0;
+    border-right: none;
+  }
+  .wo-track:nth-child(even) {
+    padding-left: 0;
+  }
+  .wo-track:last-child {
+    border-bottom: none;
+  }
+  .wo-track:nth-last-child(-n+2):not([style]) {
+    border-bottom: 1px solid var(--wo-border);
+  }
+}
+
+/* ─── RADIO NOTE ────────────────────────────────────────────────────────── */
+.wo-radio-note {
+  background: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  padding: var(--wo-space-md) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.wo-radio-note__copy {
+  font-family: var(--wo-serif);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--wo-off-white);
+  max-width: 620px;
+  margin: 0;
+}
+
+.wo-radio-note__copy em {
+  font-style: italic;
+  color: var(--wo-muted);
+}
+
+.wo-radio-note__meta {
+  font-family: var(--wo-sans);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  line-height: 2.2;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+@media screen and (max-width: 640px) {
+  .wo-radio-note {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .wo-radio-note__meta {
+    text-align: left;
+  }
+}
+
+/* ─── RADIO DROP ────────────────────────────────────────────────────────── */
+.wo-radio-drop {
+  background: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  padding: var(--wo-space-sm) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.wo-radio-drop__label {
+  font-family: var(--wo-sans);
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+  margin-bottom: 0.45rem;
+}
+
+.wo-radio-drop__title {
+  font-family: var(--wo-serif);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 400;
+  color: var(--wo-off-white);
+  line-height: 1.2;
+}
+
+/* ─── WO FOOTER STRIP ───────────────────────────────────────────────────── */
+.wo-footer-strip {
+  background: var(--wo-black);
+  border-top: 1px solid var(--wo-border);
+  padding: clamp(1.25rem, 2.5vw, 2rem) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wo-footer-strip__brand {
+  font-family: var(--wo-sans);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wo-muted);
+}
+
+.wo-footer-strip__url {
+  font-family: var(--wo-sans);
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: rgba(242, 243, 238, 0.22);
 }

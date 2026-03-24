@@ -3,8 +3,6 @@
   Section: Manifesto band + Radio teaser (dark strip)
 {% endcomment %}
 
-{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
-
 <div class="wo-section wo-manifesto">
   <div class="wo-manifesto__text">
     {{ section.settings.manifesto_text | default: '<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.<br><em style="color:rgba(242,243,238,0.35)">— never. numb. again.</em>' }}
@@ -26,11 +24,16 @@
   <div class="wo-radio-teaser__tracks">
     {{ section.settings.radio_tracks | newline_to_br }}
   </div>
-  <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/canvas' }}">
+  <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/wo-radio' }}">
     Full tracklist →
   </a>
 </div>
 {% endif %}
+
+<div class="wo-section wo-footer-strip">
+  <span class="wo-footer-strip__brand">World Order® &nbsp;·&nbsp; Annapolis, MD</span>
+  <span class="wo-footer-strip__url">worldorderhq.com</span>
+</div>
 
 {% schema %}
 {

@@ -4,14 +4,12 @@
   Add to: Online Store > Themes > Customize > Add section
 {% endcomment %}
 
-{{ 'wo-theme.css' | asset_url | stylesheet_tag }}
-
 <section class="wo-section wo-hero wo-grain">
 
   <div class="wo-hero__bg">
     {% if section.settings.background_image != blank %}
       <div class="wo-hero__bg-image"
-        style="background-image: url('{{ section.settings.background_image | img_url: '2000x' }}')">
+        style="background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}')">
       </div>
     {% endif %}
   </div>

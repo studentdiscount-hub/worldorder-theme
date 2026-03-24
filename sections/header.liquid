@@ -247,10 +247,12 @@
           </localization-form>
         {%- endif -%}
       </div>
-      <a href="https://instagram.com/worldorderhq" class="header__icon link focus-inset small-hide medium-hide" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-  <span class="svg-wrapper">{{ 'icon-instagram.svg' | inline_asset_content }}</span>
-  <span class="visually-hidden">Instagram</span>
-</a>
+      {%- if settings.social_instagram_link != blank -%}
+        <a href="{{ settings.social_instagram_link }}" class="header__icon link focus-inset small-hide medium-hide" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <span class="svg-wrapper">{{ 'icon-instagram.svg' | inline_asset_content }}</span>
+          <span class="visually-hidden">Instagram</span>
+        </a>
+      {%- endif -%}
 
       {%- if shop.customer_accounts_enabled -%}
         <a
