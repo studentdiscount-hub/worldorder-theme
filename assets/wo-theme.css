@@ -410,13 +410,15 @@ a { color: inherit; }
 
 .wo-about-hero__coords {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   font-family: var(--wo-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 13px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--wo-muted);
-  margin-bottom: 40px;
+  color: var(--wo-off-white);
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--wo-divider);
+  padding-bottom: 32px;
 }
 
 .wo-about-hero__headline {
