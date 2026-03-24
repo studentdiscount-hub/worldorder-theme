@@ -1529,3 +1529,18 @@ h1.title, .page-title, .main-404 h1, .page__title {
   .wo-track-row {
     padding: 20px 24px;
   }
+
+/* ── Collection page — override Dawn scheme-1 white backgrounds ─────── */
+[class*="__product-grid-padding"],
+[class*="__collection-banner"],
+.main-collection-product-grid,
+.main-collection-banner {
+  background-color: var(--wo-black);
+}
+
+/* Remove white from collection banner heading area */
+.collection-hero,
+.collection-hero__inner {
+  background-color: var(--wo-black);
+  color: var(--wo-off-white);
+}
