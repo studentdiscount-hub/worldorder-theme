@@ -518,7 +518,7 @@ a { color: inherit; }
 .wo-about-close {
   padding: 80px var(--wo-pad-h);
   border-top: 1px solid var(--wo-divider);
-  max-width: 760px;
+ 
 }
 
 .wo-about-close__line {
