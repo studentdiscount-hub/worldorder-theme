@@ -21,34 +21,19 @@
 <div class="wo-tracklist">
   {% for block in section.blocks %}
     {% if block.type == 'track' %}
-      <div class="wo-track-row{% if forloop.last and forloop.length == 5 %} wo-track-row--full{% endif %}" {{ block.shopify_attributes }}>
+      <a href="{{ section.settings.spotify_url }}" target="_blank" rel="noopener" class="wo-track-row{% if forloop.last and forloop.length == 5 %} wo-track-row--full{% endif %}" {{ block.shopify_attributes }}>
         <div class="wo-track-num">{{ block.settings.numeral }}</div>
         <div class="wo-track-info">
           <div class="wo-track-song">{{ block.settings.song }}</div>
           <div class="wo-track-artist">{{ block.settings.artist }}</div>
         </div>
         <span class="wo-track-badge">{{ ep_label }}</span>
-      </div>
+      </a>
     {% endif %}
   {% endfor %}
 </div>
 
-<div class="wo-radio-note">
-  <div class="wo-radio-note__copy">
-    {{ section.settings.context_note }}
-  </div>
-  <div class="wo-radio-note__meta">
-    {{ section.settings.next_ep }}
-  </div>
-</div>
 
-<div class="wo-radio-tieback">
-  <div>
-    <div class="wo-radio-tieback__label">{{ section.settings.tieback_label | default: 'This EP Ships With' }}</div>
-    <div class="wo-radio-tieback__title">{{ section.settings.tieback_drop | default: 'Standard Issue #001' }}</div>
-  </div>
-  <a href="{{ section.settings.tieback_url | default: '/collections/frontpage' }}" class="wo-radio-tieback__link">Shop the Drop →</a>
-</div>
 
 {% schema %}
 {
@@ -56,90 +41,38 @@
   "tag": "div",
   "settings": [
     {
-      "type": "text",
-      "id": "ep_label",
-      "label": "EP label",
-      "default": "EP #001"
-    },
-    {
-      "type": "text",
-      "id": "ep_title",
-      "label": "Big disc title",
-      "default": "WORLD ORDER RADIO"
-    },
-    {
-      "type": "text",
-      "id": "tagline",
-      "label": "Tagline (under disc)",
-      "default": "The clothes arrived first. The music explains why."
-    },
-    {
-      "type": "html",
-      "id": "context_note",
-      "label": "Context note copy",
-      "default": "Every World Order drop ships with a Radio EP. <em>The music is not a playlist — it's a context document.</em> Listen before you wear it. Or after. Either way, it changes what the clothes mean."
-    },
-    {
-      "type": "html",
-      "id": "next_ep",
-      "label": "Next EP note (right side)",
-      "default": "EP #002<br>arriving with<br>Drop 002"
-    },
-    {
-      "type": "text",
-      "id": "tieback_label",
-      "label": "Tie-back label",
-      "default": "This EP Ships With"
-    },
-    {
-      "type": "text",
-      "id": "tieback_drop",
-      "label": "Tie-back drop name",
-      "default": "Standard Issue #001"
-    },
-    {
       "type": "url",
-      "id": "tieback_url",
-      "label": "Shop the drop URL"
-    }
+      "id": "spotify_url",
+      "label": "Spotify Playlist URL",
+      "info": "Paste the full Spotify playlist link here"
+    },
+    { "type": "text", "id": "ep_label", "label": "EP label", "default": "EP #001" },
+    { "type": "text", "id": "ep_title", "label": "Big disc title", "default": "WORLD ORDER RADIO" },
+    { "type": "text", "id": "tagline", "label": "Tagline" },
+    { "type": "textarea", "id": "context_note", "label": "Context note copy" },
+    { "type": "text", "id": "next_ep", "label": "Next EP note" },
+    { "type": "text", "id": "tieback_label", "label": "Tie-back label", "default": "This EP Ships With" },
+    { "type": "text", "id": "tieback_drop", "label": "Tie-back drop name", "default": "Standard Issue #001" },
+    { "type": "url", "id": "tieback_url", "label": "Shop the drop URL" }
   ],
-  "blocks": [
-    {
-      "type": "track",
-      "name": "Track",
-      "settings": [
-        {
-          "type": "text",
-          "id": "numeral",
-          "label": "Roman numeral",
-          "default": "I"
-        },
-        {
-          "type": "text",
-          "id": "song",
-          "label": "Song title",
-          "default": "Call Me"
-        },
-        {
-          "type": "text",
-          "id": "artist",
-          "label": "Artist",
-          "default": "Blood Orange"
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "WO — Radio Page",
-      "blocks": [
-        { "type": "track", "settings": { "numeral": "I",   "song": "Call Me",             "artist": "Blood Orange, Park Hye Jin" } },
-        { "type": "track", "settings": { "numeral": "II",  "song": "Diving Board",         "artist": "redveil" } },
-        { "type": "track", "settings": { "numeral": "III", "song": "DHL",                  "artist": "Frank Ocean" } },
-        { "type": "track", "settings": { "numeral": "IV",  "song": "Alesis",               "artist": "Mk.gee" } },
-        { "type": "track", "settings": { "numeral": "V",   "song": "Fruits of the Spirit", "artist": "Jay Electronica" } }
-      ]
-    }
-  ]
+  "blocks": [{
+    "type": "track",
+    "name": "Track",
+    "settings": [
+      { "type": "text", "id": "numeral", "label": "Roman numeral", "default": "I" },
+      { "type": "text", "id": "song", "label": "Song title" },
+      { "type": "text", "id": "artist", "label": "Artist" }
+    ]
+  }],
+  "presets": [{
+    "name": "WO — Radio Page",
+    "blocks": [
+      { "type": "track", "settings": { "numeral": "I",   "song": "Call Me",             "artist": "Blood Orange, Park Hye Jin" } },
+      { "type": "track", "settings": { "numeral": "II",  "song": "Diving Board",         "artist": "redveil" } },
+      { "type": "track", "settings": { "numeral": "III", "song": "DHL",                  "artist": "Frank Ocean" } },
+      { "type": "track", "settings": { "numeral": "IV",  "song": "Alesis",               "artist": "Mk.gee" } },
+      { "type": "track", "settings": { "numeral": "V",   "song": "Fruits of the Spirit", "artist": "Jay Electronica" } }
+    ]
+  }]
 }
 {% endschema %}

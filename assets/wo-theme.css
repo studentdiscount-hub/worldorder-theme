@@ -1220,6 +1220,7 @@ h1.title, .page-title, .main-404 h1, .page__title {
   height: 30px;
   border-radius: 50%;
   background: var(--wo-black);
+  z-index: 0;
 }
 .wo-big-disc__title {
   font-family: 'Big Shoulders Display', sans-serif;
@@ -1545,4 +1546,14 @@ h1.title, .page-title, .main-404 h1, .page__title {
 .collection-hero__inner {
   background-color: var(--wo-black);
   color: var(--wo-off-white);
+}
+/* Spotify link - track row as anchor */
+a.wo-track-row {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+a.wo-track-row:hover {
+  opacity: 0.75;
+  cursor: pointer;
 }
