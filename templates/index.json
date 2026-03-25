@@ -54,21 +54,10 @@
         "pillar-3"
       ],
       "settings": {}
-    },
-    "wo-manifesto": {
-      "type": "wo-manifesto-band",
-      "settings": {
-        "manifesto_text": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.",
-        "show_radio_teaser": true,
-        "radio_title": "World Order Radio — EP #001",
-        "radio_tracks": "DHL · Frank Ocean\nDiving board · redveil\nFruits of the Spirit · Jay Electronica",
-        "radio_url": "/pages/wo-radio"
-      }
     }
   },
   "order": [
     "wo-hero",
-    "wo-editorial",
-    "wo-manifesto"
+    "wo-editorial"
   ]
 }
