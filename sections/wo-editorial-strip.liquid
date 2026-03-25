@@ -4,7 +4,6 @@
 {% endcomment %}
 
 <div class="wo-section wo-editorial">
-
   {% for block in section.blocks %}
     <div class="wo-editorial__cell" {{ block.shopify_attributes }}>
       <span class="wo-label">{{ block.settings.label }}</span>
@@ -12,69 +11,28 @@
       <p class="wo-editorial__copy">{{ block.settings.copy }}</p>
     </div>
   {% endfor %}
-
 </div>
 
 {% schema %}
 {
   "name": "WO — Editorial Strip",
   "tag": "div",
-  "blocks": [
-    {
-      "type": "pillar",
-      "name": "Pillar",
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Roman numeral label",
-          "default": "I. Origin"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Annapolis, 1649"
-        },
-        {
-          "type": "textarea",
-          "id": "copy",
-          "label": "Copy",
-          "default": "Where the bay meets the breakdown. Every piece starts there."
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "WO — Editorial Strip",
-      "blocks": [
-        {
-          "type": "pillar",
-          "settings": {
-            "label": "I. Origin",
-            "title": "Annapolis, 1649",
-            "copy": "Where the bay meets the breakdown. Every piece starts there."
-          }
-        },
-        {
-          "type": "pillar",
-          "settings": {
-            "label": "II. Framework",
-            "title": "Signal vs. Noise",
-            "copy": "Truth hides in the gap. We make clothes for that gap."
-          }
-        },
-        {
-          "type": "pillar",
-          "settings": {
-            "label": "III. Radio",
-            "title": "Canvas",
-            "copy": "Each drop ships with a tracklist. The music is the context."
-          }
-        }
-      ]
-    }
-  ]
+  "blocks": [{
+    "type": "pillar",
+    "name": "Pillar",
+    "settings": [
+      { "type": "text", "id": "label", "label": "Roman numeral label", "default": "I. Origin" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Annapolis, 1649" },
+      { "type": "textarea", "id": "copy", "label": "Copy", "default": "Where the bay meets the breakdown. Every piece starts there." }
+    ]
+  }],
+  "presets": [{
+    "name": "WO — Editorial Strip",
+    "blocks": [
+      { "type": "pillar", "settings": { "label": "I. Origin", "title": "Annapolis, 1649", "copy": "Where the bay meets the breakdown. Every piece starts there." } },
+      { "type": "pillar", "settings": { "label": "II. Framework", "title": "Chaos / Order / VOID", "copy": "Truth hides in the gap. We make clothes for that gap." } },
+      { "type": "pillar", "settings": { "label": "III. Radio", "title": "World Order Radio", "copy": "Each drop ships with a tracklist. The music is the context." } }
+    ]
+  }]
 }
 {% endschema %}

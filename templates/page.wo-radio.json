@@ -2,7 +2,24 @@
   "sections": {
     "wo-radio-content": {
       "type": "wo-radio-content",
-      "settings": {}
+      "settings": {
+        "ep_label": "EP #001",
+        "ep_title": "WORLD ORDER RADIO",
+        "tagline": "The clothes arrived first. The music explains why.",
+        "context_note": "Every World Order drop ships with a Radio EP. The music is not a playlist — it is a context document. Listen before you wear it. Or after. Either way, it changes what the clothes mean.",
+        "next_ep": "EP #002 arriving with Drop 002",
+        "tieback_label": "This EP Ships With",
+        "tieback_drop": "Standard Issue #001",
+        "tieback_url": "/collections/frontpage"
+      },
+      "blocks": {
+        "track-1": { "type": "track", "settings": { "numeral": "I",   "song": "Call Me",             "artist": "Blood Orange, Park Hye Jin" } },
+        "track-2": { "type": "track", "settings": { "numeral": "II",  "song": "Diving Board",         "artist": "redveil" } },
+        "track-3": { "type": "track", "settings": { "numeral": "III", "song": "DHL",                  "artist": "Frank Ocean" } },
+        "track-4": { "type": "track", "settings": { "numeral": "IV",  "song": "Alesis",               "artist": "Mk.gee" } },
+        "track-5": { "type": "track", "settings": { "numeral": "V",   "song": "Fruits of the Spirit", "artist": "Jay Electronica" } }
+      },
+      "block_order": ["track-1","track-2","track-3","track-4","track-5"]
     }
   },
   "order": ["wo-radio-content"]

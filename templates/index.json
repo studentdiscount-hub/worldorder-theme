@@ -14,7 +14,7 @@
       "settings": {
         "background_image": "shopify://shop_images/wo_hero_bg.jpg",
         "drop_tag": "Drop 001 · Standard Issue · SS // 26",
-        "headline": "there's a shape forming in the <em>dark.</em>",
+        "headline": "there's a shape forming in the <em style=\"color:#5F1804\">dark.</em>",
         "subline": "uniforms for the individual,<br>engineered with intention.",
         "cta_label": "Enter the catalog",
         "cta_url": "/collections/frontpage"
@@ -58,7 +58,7 @@
     "wo-manifesto": {
       "type": "wo-manifesto-band",
       "settings": {
-        "manifesto_text": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.<br><em style=\"color:rgba(242,243,238,0.35)\">— never. numb. again.</em>",
+        "manifesto_text": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.",
         "show_radio_teaser": true,
         "radio_title": "World Order Radio — EP #001",
         "radio_tracks": "DHL · Frank Ocean\nDiving board · redveil\nFruits of the Spirit · Jay Electronica",
