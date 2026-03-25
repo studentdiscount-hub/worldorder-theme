@@ -41,14 +41,22 @@ a { color: inherit; }
 .header__menu-item, .header__menu-item span, .list-menu__item {
   color: var(--wo-muted) !important;
   font-family: var(--wo-font-mono) !important;
-  font-size: 11px !important;
+  font-size: 13px !important;
   letter-spacing: 0.14em !important;
   text-transform: lowercase !important;
   transition: color 0.2s ease;
 }
+/* shift nav left so it doesn't crowd the centered logo */
+@media screen and (min-width: 990px) {
+  .header--middle-center .header__inline-menu {
+    justify-self: start;
+    margin-left: 0;
+  }
+}
 .header__menu-item:hover span, .list-menu__item:hover { color: var(--wo-off-white) !important; }
 .header__icon, .header__icon svg { color: var(--wo-off-white) !important; fill: currentColor; }
-.header__heading-logo { filter: brightness(10); }
+.header__heading-logo { filter: brightness(10); width: 220px !important; max-width: 220px !important; }
+.header__heading-logo-wrapper { width: 220px !important; }
 .menu-drawer, .menu-drawer__container { background-color: var(--wo-black) !important; }
 .menu-drawer__menu-item, .menu-drawer a {
   color: var(--wo-off-white) !important;
@@ -1067,7 +1075,7 @@ h1.title, .page-title, .main-404 h1, .page__title {
 .wo-hero__headline {
   font-family: 'Big Shoulders Display', sans-serif;
   font-weight: 900;
-  font-size: clamp(64px, 10vw, 120px);
+  font-size: clamp(42px, 6vw, 80px);
   line-height: 0.88;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -1111,7 +1119,7 @@ h1.title, .page-title, .main-404 h1, .page__title {
   background: var(--wo-off-white);
 }
 .wo-editorial__cell {
-  padding: 40px 36px;
+  padding: 24px 36px;
   border-right: 1px solid rgba(38,38,38,0.12);
 }
 .wo-editorial__cell:last-child { border-right: none; }
@@ -1134,6 +1142,7 @@ h1.title, .page-title, .main-404 h1, .page__title {
   margin-bottom: 10px;
 }
 .wo-editorial__copy {
+  display: none;
   font-family: 'Cormorant Garamond', serif;
   font-size: 15px;
   line-height: 1.6;

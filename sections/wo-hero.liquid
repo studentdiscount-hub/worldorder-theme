@@ -6,7 +6,7 @@
 <div class="wo-section wo-hero">
   <div class="wo-hero__bg"></div>
   <div class="wo-hero__content">
-    <div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>
+    {% if section.settings.drop_tag != blank %}<div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>{% endif %}
     <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
     <p class="wo-hero__subline">{{ section.settings.subline }}</p>
     <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">

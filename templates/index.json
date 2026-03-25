@@ -13,7 +13,7 @@
       "type": "wo-hero",
       "settings": {
         "background_image": "shopify://shop_images/wo_hero_bg.jpg",
-        "drop_tag": "Drop 001 · Standard Issue · SS // 26",
+        "drop_tag": "",
         "headline": "there's a shape forming in the <em style=\"color:#5F1804\">dark.</em>",
         "subline": "uniforms for the individual,<br>engineered with intention.",
         "cta_label": "Enter the catalog",
