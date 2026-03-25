@@ -18,8 +18,8 @@
     {{- /* WO custom fonts: preconnect + lazy-load to avoid @import chain in wo-theme.css */ -}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"></noscript>
 
     <title>
       {{ page_title }}
@@ -262,7 +262,6 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'kg-custom.css' | asset_url | stylesheet_tag }}
     {{ 'wo-theme.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
@@ -310,7 +309,6 @@
   <link rel="preload" as="image" href="{{ 'website_image_new-pfti.png' | image_url: width: 1100 }}" imagesrcset="{{ 'website_image_new-pfti.png' | image_url: width: 375 }} 375w, {{ 'website_image_new-pfti.png' | image_url: width: 750 }} 750w, {{ 'website_image_new-pfti.png' | image_url: width: 1100 }} 1100w, {{ 'website_image_new-pfti.png' | image_url: width: 1500 }} 1500w, {{ 'website_image_new-pfti.png' | image_url: width: 1800 }} 1800w" imagesizes="100vw" fetchpriority="high">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
-  {{ 'wo-theme.css' | asset_url | stylesheet_tag }}
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
