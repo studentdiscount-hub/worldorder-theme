@@ -28,7 +28,8 @@
           "settings": {
             "label": "I. Origin",
             "title": "Annapolis, 1649",
-            "copy": "Where the bay meets the breakdown. Every piece starts there."
+            "copy": "Where the bay meets the breakdown. Every piece starts there.",
+            "url": "/pages/about"
           }
         },
         "pillar-2": {
@@ -36,7 +37,8 @@
           "settings": {
             "label": "II. Framework",
             "title": "Signal vs. Noise",
-            "copy": "Truth hides in the gap. We make clothes for that gap."
+            "copy": "Truth hides in the gap. We make clothes for that gap.",
+            "url": "/collections/frontpage"
           }
         },
         "pillar-3": {
@@ -44,7 +46,8 @@
           "settings": {
             "label": "III. Radio",
             "title": "Canvas",
-            "copy": "Each drop ships with a tracklist. The music is the context."
+            "copy": "Each drop ships with a tracklist. The music is the context.",
+            "url": "/pages/canvas"
           }
         }
       },

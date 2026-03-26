@@ -3,13 +3,32 @@
   Section: Homepage Editorial Strip (3 pillars)
 {% endcomment %}
 
+<style>
+a.wo-editorial__cell {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+a.wo-editorial__cell:hover { opacity: 0.75; }
+</style>
+
 <div class="wo-section wo-editorial">
   {% for block in section.blocks %}
-    <div class="wo-editorial__cell" {{ block.shopify_attributes }}>
-      <span class="wo-label">{{ block.settings.label }}</span>
-      <div class="wo-editorial__title">{{ block.settings.title }}</div>
-      <p class="wo-editorial__copy">{{ block.settings.copy }}</p>
-    </div>
+    {% if block.settings.url != blank %}
+      <a href="{{ block.settings.url }}" class="wo-editorial__cell" {{ block.shopify_attributes }}>
+        <span class="wo-label">{{ block.settings.label }}</span>
+        <div class="wo-editorial__title">{{ block.settings.title }}</div>
+        <p class="wo-editorial__copy">{{ block.settings.copy }}</p>
+      </a>
+    {% else %}
+      <div class="wo-editorial__cell" {{ block.shopify_attributes }}>
+        <span class="wo-label">{{ block.settings.label }}</span>
+        <div class="wo-editorial__title">{{ block.settings.title }}</div>
+        <p class="wo-editorial__copy">{{ block.settings.copy }}</p>
+      </div>
+    {% endif %}
   {% endfor %}
 </div>
 
@@ -23,7 +42,8 @@
     "settings": [
       { "type": "text", "id": "label", "label": "Roman numeral label", "default": "I. Origin" },
       { "type": "text", "id": "title", "label": "Title", "default": "Annapolis, 1649" },
-      { "type": "textarea", "id": "copy", "label": "Copy", "default": "Where the bay meets the breakdown. Every piece starts there." }
+      { "type": "textarea", "id": "copy", "label": "Copy", "default": "Where the bay meets the breakdown. Every piece starts there." },
+      { "type": "url", "id": "url", "label": "Link URL" }
     ]
   }],
   "presets": [{
