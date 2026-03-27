@@ -1,37 +1,29 @@
-<div class="wo-section wo-hero" {% if section.settings.background_image != blank %}style="--wo-hero-bg: url('{{ section.settings.background_image | img_url: '2000x' }}')"{% endif %}>
+{% comment %}
+  WORLD ORDER — wo-hero.liquid
+  Section: Homepage hero — dark gradient, Big Shoulders Display headline
+{% endcomment %}
+
+<div class="wo-section wo-hero">
   <div class="wo-hero__bg"></div>
   <div class="wo-hero__content">
-    {% if section.settings.drop_tag != blank %}
-      <div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>
-    {% endif %}
-
-    <h1 class="wo-hero__headline wo-statement">{{ section.settings.headline | default: 'World Order' }}</h1>
-
-    {% if section.settings.tagline != blank %}
-      <p class="wo-hero__tagline wo-signal">{{ section.settings.tagline }}</p>
-    {% endif %}
-
-    {% if section.settings.subline != blank %}
-      <p class="wo-hero__subline">{{ section.settings.subline }}</p>
-    {% endif %}
-
-    {% if section.settings.cta_label != blank %}
-      <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
-        {{ section.settings.cta_label | default: 'Enter the catalog' }}
-      </a>
-    {% endif %}
+    {% if section.settings.drop_tag != blank %}<div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>{% endif %}
+    <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+    <p class="wo-hero__subline">{{ section.settings.subline }}</p>
+    <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
+      {{ section.settings.cta_label | default: 'Enter the catalog' }} &nbsp;&#8594;
+    </a>
   </div>
 </div>
 
 {% schema %}
 {
   "name": "WO Hero",
+  "tag": "div",
   "settings": [
     { "type": "image_picker", "id": "background_image", "label": "Background image" },
-    { "type": "text", "id": "drop_tag", "label": "Drop tag", "default": "Standard Issue — Drop 001" },
-    { "type": "text", "id": "headline", "label": "Headline", "default": "World Order" },
-    { "type": "text", "id": "tagline", "label": "Tagline (Signal voice)", "default": "there's a shape forming in the dark" },
-    { "type": "text", "id": "subline", "label": "Subline" },
+    { "type": "text", "id": "drop_tag", "label": "Drop tag line", "default": "Drop 001 · Standard Issue · SS 26" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "THERE IS A SHAPE FORMING IN THE DARK." },
+    { "type": "text", "id": "subline", "label": "Subline", "default": "uniforms for the individual, engineered with intention." },
     { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Enter the catalog" },
     { "type": "url", "id": "cta_url", "label": "CTA URL" }
   ],

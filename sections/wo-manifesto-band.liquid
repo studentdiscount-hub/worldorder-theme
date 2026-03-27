@@ -1,48 +1,45 @@
+{% comment %}
+  WORLD ORDER — wo-manifesto-band.liquid
+  Section: Manifesto band + Radio teaser (dark strip)
+{% endcomment %}
+
 <div class="wo-section wo-manifesto">
   <div class="wo-manifesto__text">
     {{ section.settings.manifesto_text | default: '<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.' }}
   </div>
-  {% if section.settings.brand_line != blank %}
-    <span class="wo-manifesto__brand-line wo-signal">{{ section.settings.brand_line }}</span>
-  {% endif %}
-  <div class="wo-manifesto__brand">
-    {% if section.settings.manifesto_headline != blank %}
-      <p class="wo-manifesto__headline wo-statement">{{ section.settings.manifesto_headline }}</p>
-    {% endif %}
-  </div>
+  <div class="wo-manifesto__brand">World Order</div>
 </div>
 
 {% if section.settings.show_radio_teaser %}
 <div class="wo-section wo-radio-teaser">
   <div class="wo-radio-teaser__left">
-    <div class="wo-disc"><div></div></div>
+    <div class="wo-disc"></div>
+    <div>
+      <div class="wo-radio-teaser__label">Now Listening</div>
+      <div class="wo-radio-teaser__title">{{ section.settings.radio_title | default: 'World Order Radio — EP #001' }}</div>
+    </div>
   </div>
-  <div>
-    <div class="wo-radio-teaser__label">Now Playing</div>
-    <div class="wo-radio-teaser__title">{{ section.settings.radio_title | default: 'World Order Radio — EP #001' }}</div>
-    <div class="wo-radio-teaser__tracks">{{ section.settings.radio_tracks | newline_to_br }}</div>
-    <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/canvas' }}">Listen &#x2192;</a>
-  </div>
+  <div class="wo-radio-teaser__tracks">{{ section.settings.radio_tracks | newline_to_br }}</div>
+  <a class="wo-radio-teaser__link" href="{{ section.settings.radio_url | default: '/pages/canvas' }}">Full tracklist →</a>
 </div>
 {% endif %}
 
 <div class="wo-section wo-footer-strip">
-  <span class="wo-footer-strip__brand"><strong>W &middot; O</strong></span><br>
+  <span class="wo-footer-strip__brand">World Order® &nbsp;·&nbsp; Annapolis, MD</span>
   <span class="wo-footer-strip__url">worldorderhq.com</span>
 </div>
 
 {% schema %}
 {
-  "name": "WO Manifesto Band",
+  "name": "WO — Manifesto Band",
+  "tag": "div",
   "settings": [
-    { "type": "richtext", "id": "manifesto_text", "label": "Manifesto text", "default": "<p><strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.</p>" },
-    { "type": "text", "id": "manifesto_headline", "label": "Headline (Statement voice)", "default": "Pain. Power. Peace." },
-    { "type": "text", "id": "brand_line", "label": "Brand line (Signal voice)", "default": "old money, new wounds." },
-    { "type": "checkbox", "id": "show_radio_teaser", "label": "Show Radio teaser", "default": true },
-    { "type": "text", "id": "radio_title", "label": "Radio title", "default": "World Order Radio &#x2014; EP #001" },
-    { "type": "textarea", "id": "radio_tracks", "label": "Track list" },
+    { "type": "html", "id": "manifesto_text", "label": "Manifesto text (HTML allowed)", "default": "<strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth." },
+    { "type": "checkbox", "id": "show_radio_teaser", "label": "Show radio teaser strip", "default": true },
+    { "type": "text", "id": "radio_title", "label": "Radio title", "default": "World Order Radio — EP #001" },
+    { "type": "textarea", "id": "radio_tracks", "label": "Track listing (one per line)", "default": "DHL · Frank Ocean\nDiving board · redveil\nFruits of the Spirit · Jay Electronica" },
     { "type": "url", "id": "radio_url", "label": "Radio page URL" }
   ],
-  "presets": [{ "name": "WO Manifesto Band" }]
+  "presets": [{ "name": "WO — Manifesto Band" }]
 }
 {% endschema %}
