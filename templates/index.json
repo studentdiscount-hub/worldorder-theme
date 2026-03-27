@@ -14,10 +14,11 @@
       "settings": {
         "background_image": "shopify://shop_images/wo_hero_bg.jpg",
         "drop_tag": "",
-        "headline": "there's a shape forming in the <em style=\"color:#5F1804\">dark.</em>",
-        "subline": "uniforms for the individual,<br>engineered with intention.",
+        "headline": "World Order",
+        "subline": "uniforms for the individual, engineered with intention.",
         "cta_label": "Enter the catalog",
-        "cta_url": "/collections/frontpage"
+        "cta_url": "/collections/frontpage",
+        "tagline": "there's a shape forming in the dark"
       }
     },
     "wo-editorial": {
@@ -57,10 +58,23 @@
         "pillar-3"
       ],
       "settings": {}
+    },
+    "wo-manifesto": {
+      "type": "wo-manifesto-band",
+      "settings": {
+        "manifesto_text": "<p><strong>Some nights I wear the silence like armor.</strong><br>Some mornings I wear noise like truth.</p>",
+        "manifesto_headline": "Pain. Power. Peace.",
+        "brand_line": "old money, new wounds.",
+        "show_radio_teaser": true,
+        "radio_title": "World Order Radio — EP #001",
+        "radio_tracks": "",
+        "radio_url": "/pages/canvas"
+      }
     }
   },
   "order": [
     "wo-hero",
+    "wo-manifesto",
     "wo-editorial"
   ]
 }
