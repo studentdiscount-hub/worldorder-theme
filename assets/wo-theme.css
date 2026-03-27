@@ -1566,3 +1566,165 @@ a.wo-track-row:hover {
   opacity: 0.75;
   cursor: pointer;
 }
+
+
+
+/* =============================================================
+   WORLD ORDER — Phase 5 Brand Bible Alignment
+   ============================================================= */
+
+/* ── SECONDARY PALETTE TOKENS ──────────────────────────────── */
+:root {
+  --wo-parchment:       #E6D0AC;
+  --wo-parchment-faint: rgba(230, 208, 172, 0.08);
+  --wo-parchment-mid:   rgba(230, 208, 172, 0.18);
+  --wo-sage:            #778176;
+  --wo-sage-faint:      rgba(119, 129, 118, 0.5);
+  --wo-stone:           #837C6C;
+  --wo-font-statement:  'Big Shoulders Display', 'Arial Black', sans-serif;
+  --wo-font-signal:     'Caveat', 'Bradley Hand', cursive;
+}
+
+/* ── TWO-VOICE UTILITY CLASSES ──────────────────────────────── */
+.wo-statement {
+  font-family: var(--wo-font-statement);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.92;
+}
+.wo-signal {
+  font-family: var(--wo-font-signal);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.wo-hero__headline {
+  font-family: var(--wo-font-statement);
+  font-weight: 900;
+  font-size: clamp(72px, 10vw, 140px);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--wo-off-white);
+  margin: 0 0 20px;
+}
+.wo-hero__tagline {
+  font-family: var(--wo-font-signal);
+  font-weight: 400;
+  font-size: clamp(22px, 3vw, 32px);
+  color: var(--wo-parchment);
+  opacity: 0.85;
+  margin: 0 0 36px;
+}
+
+/* ── MANIFESTO ──────────────────────────────────────────────── */
+.wo-manifesto__headline {
+  font-family: var(--wo-font-statement);
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--wo-off-white);
+  margin: 0 0 24px;
+}
+.wo-manifesto__brand-line {
+  font-family: var(--wo-font-signal);
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: var(--wo-parchment);
+  opacity: 0.8;
+  margin-top: 20px;
+  display: block;
+}
+.wo-manifesto__text {
+  font-family: var(--wo-font-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.55;
+  color: rgba(242,243,238,0.78);
+  max-width: 700px;
+}
+
+/* ── ABOUT: SIGNAL MARGINALIA ───────────────────────────────── */
+.wo-framework__item { position: relative; }
+.wo-framework__item::before {
+  font-family: var(--wo-font-signal);
+  font-size: 42px;
+  color: var(--wo-burgundy);
+  opacity: 0.25;
+  position: absolute;
+  left: -48px;
+  top: -8px;
+  line-height: 1;
+  pointer-events: none;
+}
+.wo-framework__item:nth-child(1)::before { content: '01'; }
+.wo-framework__item:nth-child(2)::before { content: '02'; }
+.wo-framework__item:nth-child(3)::before { content: '03'; }
+
+/* ── SECONDARY PALETTE APPLICATION ─────────────────────────── */
+.wo-editorial-strip__cell:hover {
+  background: var(--wo-parchment-faint);
+  border-color: rgba(230,208,172,0.25);
+}
+.card-wrapper:hover .card, .card:hover {
+  border-color: var(--wo-parchment-mid) !important;
+}
+.wo-framework__word, .facets__heading, .card__vendor,
+.breadcrumbs__link, .breadcrumbs__chevron { color: var(--wo-sage); }
+.rte p, .rte li, .product__description p,
+.caption-with-letter-spacing { color: var(--wo-stone); }
+
+/* ── B&W PRODUCT IMAGE FILTER ───────────────────────────────── */
+.card__media img, .card__media video,
+.product__media img, .product__media video,
+.media img, .media video {
+  filter: grayscale(100%) contrast(1.08);
+  transition: filter 0.4s ease;
+}
+.card-wrapper:hover .card__media img,
+.card-wrapper:hover .card__media video {
+  filter: grayscale(60%) contrast(1.04);
+}
+
+/* ── FOOTER SYMBOL ──────────────────────────────────────────── */
+.wo-footer-symbol {
+  display: block;
+  margin: 0 auto 32px;
+  opacity: 0.18;
+  transition: opacity 0.3s ease;
+  width: 48px; height: 48px;
+}
+.wo-footer-symbol:hover { opacity: 0.45; }
+
+/* ── RADIO / CANVAS ─────────────────────────────────────────── */
+.wo-radio-hero__title {
+  font-family: var(--wo-font-statement);
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 96px);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+.wo-radio-hero__tagline {
+  font-family: var(--wo-font-signal);
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--wo-parchment);
+  opacity: 0.8;
+  margin-top: 16px;
+}
+
+/* ── MICROCOPY ──────────────────────────────────────────────── */
+.cart__empty-text, [data-cart-empty] {
+  font-family: var(--wo-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--wo-stone);
+}
+.footer__content-bottom {
+  border-top: 1px solid rgba(230,208,172,0.2) !important;
+}
