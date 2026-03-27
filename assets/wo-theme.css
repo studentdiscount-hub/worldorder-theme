@@ -1728,3 +1728,28 @@ a.wo-track-row:hover {
 .footer__content-bottom {
   border-top: 1px solid rgba(230,208,172,0.2) !important;
 }
+
+/* ── STATEMENT FONT FORCE (overrides .wo-section h1 !important) ── */
+.wo-hero__headline.wo-statement,
+h1.wo-hero__headline,
+h1.wo-statement {
+  font-family: 'Big Shoulders Display', 'Arial Black', sans-serif !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+}
+
+.wo-manifesto__headline.wo-statement,
+p.wo-manifesto__headline {
+  font-family: 'Big Shoulders Display', 'Arial Black', sans-serif !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+}
+
+.wo-radio-hero__title.wo-statement {
+  font-family: 'Big Shoulders Display', 'Arial Black', sans-serif !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+}
