@@ -12,10 +12,7 @@
     "wo-hero": {
       "type": "wo-hero",
       "settings": {
-        "background_image": "shopify://shop_images/wo_hero_bg.jpg",
-        "drop_tag": "",
         "headline": "there's a shape forming in the <em style=\"color:#5F1804\">dark.</em>",
-        "subline": "uniforms for the individual,<br>engineered with intention.",
         "cta_label": "Enter the catalog",
         "cta_url": "/collections/frontpage"
       }
@@ -57,10 +54,19 @@
         "pillar-3"
       ],
       "settings": {}
+    },
+    "wo-manifesto": {
+      "type": "wo-manifesto-band",
+      "settings": {
+        "headline": "Pain. Power. Peace.",
+        "manifesto_text": "Committed to living with the friction of truth over the comfort of a lie.",
+        "brand_line": "old money, new wounds."
+      }
     }
   },
   "order": [
     "wo-hero",
+    "wo-manifesto",
     "wo-editorial"
   ]
 }
