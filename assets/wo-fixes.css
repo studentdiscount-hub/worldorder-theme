@@ -60,8 +60,8 @@
    --color-background token was still set to 255,255,255.
    ─────────────────────────────────────────────────────────── */
 body {
-  background-color: var(--wo-bg);
-  color: var(--wo-off-white);
+  background-color: var(--wo-bg) !important;
+  color: var(--wo-off-white) !important;
 }
 
 
