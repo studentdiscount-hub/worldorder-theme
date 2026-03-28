@@ -1086,11 +1086,11 @@ h1.title, .page-title, .main-404 h1, .page__title {
 .wo-hero__subline {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: 20px;
-  color: rgba(242,243,238,0.55);
+  font-size: clamp(22px, 2.2vw, 32px);
+  color: rgba(242,243,238,0.0.80);
   letter-spacing: 0.02em;
   margin-bottom: 48px;
-  max-width: 420px;
+  max-width: 480px;
 }
 .wo-hero__cta {
   display: inline-flex;
