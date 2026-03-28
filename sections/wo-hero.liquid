@@ -1,10 +1,10 @@
 {%- liquid
-  assign hero_image = section.settings.hero_image
-  assign headline   = section.settings.headline | default: 'World Order'
-  assign tagline    = section.settings.tagline | default: 'there’s a shape forming in the dark'
-  assign sub_text   = section.settings.sub_text
-  assign cta_label  = section.settings.cta_label | default: 'enter'
-  assign cta_url    = section.settings.cta_url | default: '/collections/frontpage'
+  assign hero_image  = section.settings.background_image
+  assign drop_tag    = section.settings.drop_tag
+  assign headline    = section.settings.headline | default: 'World Order'
+  assign subline     = section.settings.subline
+  assign cta_label   = section.settings.cta_label | default: 'Enter the catalog'
+  assign cta_url     = section.settings.cta_url | default: '/collections/frontpage'
 -%}
 
 <section class="wo-hero" id="wo-hero">
@@ -21,14 +21,14 @@
   {%- endif -%}
 
   <div class="wo-hero__content">
-    {%- if sub_text != blank -%}
-      <p class="wo-hero__sub">{{ sub_text }}</p>
+    {%- if drop_tag != blank -%}
+      <p class="wo-hero__sub">{{ drop_tag }}</p>
     {%- endif -%}
 
-    <h1 class="wo-hero__headline">{{ headline }}</h1>
+    <h1 class="wo-hero__headline wo-statement">{{ headline }}</h1>
 
-    {%- if tagline != blank -%}
-      <p class="wo-hero__tagline">{{ tagline }}</p>
+    {%- if subline != blank -%}
+      <p class="wo-hero__tagline wo-signal">{{ subline }}</p>
     {%- endif -%}
 
     {%- if cta_label != blank -%}
@@ -36,26 +36,6 @@
     {%- endif -%}
   </div>
 </section>
-
-<style>
-  .wo-hero__cta {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--wo-cream, #F2F3EE);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(242,243,238,0.35);
-    padding-bottom: 3px;
-    transition: color 0.2s, border-color 0.2s;
-    margin-top: 8px;
-  }
-  .wo-hero__cta:hover {
-    color: var(--wo-parchment, #E6D0AC);
-    border-color: var(--wo-parchment, #E6D0AC);
-  }
-</style>
 
 {% schema %}
 {
@@ -65,32 +45,31 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "hero_image",
+      "id": "background_image",
       "label": "Background image"
     },
     {
       "type": "text",
+      "id": "drop_tag",
+      "label": "Drop tag / overline (Space Mono)"
+    },
+    {
+      "type": "text",
       "id": "headline",
-      "label": "Headline",
+      "label": "Headline (Big Shoulders / statement voice)",
       "default": "World Order"
     },
     {
-      "type": "text",
-      "id": "tagline",
-      "label": "Tagline (Caveat / signal voice)",
-      "default": "there’s a shape forming in the dark"
-    },
-    {
-      "type": "text",
-      "id": "sub_text",
-      "label": "Sub-label (Space Mono / overline)",
-      "default": "Annapolis, MD — Est. MMXXIV"
+      "type": "textarea",
+      "id": "subline",
+      "label": "Subline (Caveat / signal voice)",
+      "default": "uniforms for the individual,\nengineered with intention."
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "CTA label",
-      "default": "enter"
+      "default": "Enter the catalog"
     },
     {
       "type": "url",
