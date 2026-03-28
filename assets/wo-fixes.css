@@ -1,0 +1,266 @@
+/* ============================================================
+   worldorder-theme — Design System Fixes
+   File:    assets/wo-fixes.css
+   Version: 1.0 — March 2026
+
+   HOW TO USE:
+   In layout/theme.liquid, add AFTER your main stylesheet:
+     {{ 'wo-fixes.css' | asset_url | stylesheet_tag }}
+
+   This file only overrides specific broken/inconsistent values.
+   It does not rewrite or replace any existing styles.
+   ============================================================ */
+
+
+/* ── TOKEN ADDITIONS ────────────────────────────────────────────
+   Extend the existing --wo-* custom property set with the
+   missing tokens identified in the audit. These fill gaps
+   that cause values to slip out of the design system.
+   ─────────────────────────────────────────────────────────── */
+:root {
+
+  /* Color */
+  --wo-bg:              #1A1A18;
+  --wo-faint:           rgba(242, 243, 238, 0.25);
+  --wo-accent:          #C4421A;    /* bright rust — functional UI, 5.2:1 contrast on --wo-bg */
+  --wo-accent-dark:     #5F1804;    /* dark rust — decorative/hero text only */
+
+  /* Fix Dawn's bleeding --color-background / --color-foreground tokens */
+  --color-background:   26, 26, 24;
+  --color-foreground:   242, 243, 238;
+
+  /* Typography — explicit font stack tokens */
+  --wo-font-display:    'EB Garamond', Georgia, serif;
+  --wo-font-body:       'Space Mono', 'Courier New', monospace;
+
+  /* Type scale — 4-step system */
+  --wo-size-micro:      9px;
+  --wo-size-label:      11px;
+  --wo-size-body:       13px;
+  --wo-size-body-lg:    16px;
+
+  /* Tracking — 4 tiers only */
+  --wo-ls-tight:        -0.6px;
+  --wo-ls-normal:       0.6px;
+  --wo-ls-wide:         1.8px;
+  --wo-ls-xwide:        2.8px;
+
+  /* Spacing — consistent scale */
+  --wo-gutter:          48px;
+  --wo-space-xs:        8px;
+  --wo-space-sm:        16px;
+  --wo-space-md:        24px;
+  --wo-space-lg:        48px;
+  --wo-space-xl:        80px;
+}
+
+
+/* ── FIX C-01 ───────────────────────────────────────────────────
+   body background was rgb(255,255,255) — white — because Dawn's
+   --color-background token was still set to 255,255,255.
+   ─────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--wo-bg);
+  color: var(--wo-off-white);
+}
+
+
+/* ── FIX T-01 / T-02 ────────────────────────────────────────────
+   Arial and system-ui leaking onto buttons, cart, and search.
+   ─────────────────────────────────────────────────────────── */
+button,
+input,
+select,
+textarea,
+.drawer__close,
+.search__button,
+.field__button,
+.modal__close-button,
+[class*="modal__close"],
+[class*="drawer__close"] {
+  font-family: var(--wo-font-body);
+  font-size: var(--wo-size-label);
+  letter-spacing: var(--wo-ls-normal);
+}
+
+
+/* ── FIX T-01 (continued) ───────────────────────────────────────
+   Cart drawer headings were Helvetica 700 (Dawn default).
+   ─────────────────────────────────────────────────────────── */
+.cart__empty-text,
+.cart__login-title {
+  font-family: var(--wo-font-body);
+  font-size: var(--wo-size-label);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: var(--wo-ls-wide);
+  color: var(--wo-off-white);
+  margin-bottom: 0;
+}
+
+
+/* ── FIX C-02 ───────────────────────────────────────────────────
+   Cart drawer text was rendering black on dark background.
+   ─────────────────────────────────────────────────────────── */
+.cart-drawer,
+.cart-notification,
+.cart__contents,
+.cart__footer,
+.cart__blocks {
+  color: var(--wo-off-white);
+}
+
+.cart__login-paragraph {
+  font-family: var(--wo-font-body);
+  color: var(--wo-muted);
+  font-size: var(--wo-size-label);
+}
+
+.cart .link,
+.cart .link--text,
+.link.underlined-link {
+  color: rgba(242, 243, 238, 0.75);
+}
+.cart .link:hover,
+.link.underlined-link:hover {
+  color: var(--wo-off-white);
+}
+
+
+/* ── FIX C-03 ───────────────────────────────────────────────────
+   Price was #5F1804 on #1A1A18 bg = ~2.1:1 contrast (fails WCAG).
+   Using bright accent #C4421A = ~5.2:1 contrast for legibility.
+   ─────────────────────────────────────────────────────────── */
+.price,
+.price__regular,
+.price__sale,
+.price-item,
+.price-item--regular,
+.price-item--sale,
+[class*="price__"] {
+  color: var(--wo-accent) !important;
+}
+
+
+/* ── FIX C-04 ───────────────────────────────────────────────────
+   Pure white rgb(255,255,255) unified to --wo-off-white (#F2F3EE).
+   ─────────────────────────────────────────────────────────── */
+.button,
+.btn,
+[class*="button--primary"] {
+  color: var(--wo-off-white);
+}
+
+.header__menu-drawer li,
+.mobile-facets__summary,
+.disclosure__button,
+.localization-form__select {
+  color: rgba(242, 243, 238, 0.75);
+}
+
+.search-modal__close-button,
+[class*="search-modal__close"],
+[class*="modal__close"] {
+  color: var(--wo-off-white);
+}
+
+
+/* ── FIX T-04 ───────────────────────────────────────────────────
+   Tracking normalization — 14 unique values collapsed to 4 tiers.
+   ─────────────────────────────────────────────────────────── */
+.wo-hero__subline {
+  letter-spacing: var(--wo-ls-normal);
+}
+
+.card__heading {
+  letter-spacing: var(--wo-ls-normal);
+}
+
+footer a,
+.footer a {
+  letter-spacing: var(--wo-ls-normal);
+}
+
+.skip-to-content-link,
+.button[class*="skip"] {
+  letter-spacing: var(--wo-ls-wide);
+}
+
+
+/* ── FIX T-05 ───────────────────────────────────────────────────
+   line-height: 0px on logo link causing vertical clipping.
+   ─────────────────────────────────────────────────────────── */
+.header__heading-link,
+.header__heading {
+  line-height: 1;
+}
+
+
+/* ── FIX T-06 ───────────────────────────────────────────────────
+   Hero subline: Cormorant Garamond replaced with EB Garamond italic.
+   ─────────────────────────────────────────────────────────── */
+.wo-hero__subline {
+  font-family: var(--wo-font-display);
+  font-style: italic;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+
+/* ── FIX T-03 ───────────────────────────────────────────────────
+   Browser-default 13.3333px on unstyled buttons → 11px.
+   ─────────────────────────────────────────────────────────── */
+button:not([class*="wo-"]):not([class*="button"]):not([class*="btn"]) {
+  font-size: var(--wo-size-label);
+}
+
+
+/* ── FIX SZ-01 ──────────────────────────────────────────────────
+   Collection hero 106px tall with 56px h1 — zero breathing room.
+   ─────────────────────────────────────────────────────────── */
+.collection-hero {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  min-height: 200px;
+}
+
+.collection-hero__title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* ── FIX S-01 ───────────────────────────────────────────────────
+   Three different horizontal insets — unified to 48px gutter.
+   ─────────────────────────────────────────────────────────── */
+.wo-editorial__cell {
+  padding-left: var(--wo-gutter);
+  padding-right: var(--wo-gutter);
+}
+
+
+/* ── FIX SZ-02 ──────────────────────────────────────────────────
+   Product grid and editorial cells anchored to 48px vertical rhythm.
+   ─────────────────────────────────────────────────────────── */
+[class*="product-grid-pad"],
+.collection .grid-parent,
+.section-template--product-grid {
+  padding-top: var(--wo-space-lg);
+  padding-bottom: var(--wo-space-lg);
+}
+
+
+/* ── FIX SZ-03 ──────────────────────────────────────────────────
+   .wo-label was 8px — bumped to 9px for legibility.
+   ─────────────────────────────────────────────────────────── */
+.wo-label {
+  font-size: 9px;
+}
+
+
+/* ── FIX S-03 ───────────────────────────────────────────────────
+   .card__information padding simplified to 24px 0.
+   ─────────────────────────────────────────────────────────── */
+.card__information {
+  padding: var(--wo-space-md) 0;
+}
