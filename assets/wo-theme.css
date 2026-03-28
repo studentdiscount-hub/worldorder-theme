@@ -132,7 +132,7 @@ header.header {
   color: var(--wo-cream);
 }
 
-/* ────── LOGO: Suppress raster JPEG, render crisp SVG wordmark via data URI ──────
+/* ── LOGO: Suppress raster JPEG, render crisp SVG wordmark via data URI ──
    The uploaded JPEG logo pixelates at high DPI. We hide it and inject
    a crisp inline SVG wordmark via CSS background-image data URI.
    Font: Big Shoulders Display 900 via SVG (loads independently of Google Fonts). */
@@ -162,7 +162,7 @@ header.header {
   line-height: 0;
 }
 
-/* ────── NAV: Left-align menu — Dawn defaults to centered or offset right ────── */
+/* ── NAV: Left-align menu — Dawn defaults to centered or offset right ── */
 .header__inline-menu,
 .header .header__inline-menu {
   margin-left: 0 !important;
@@ -223,7 +223,7 @@ header.header {
 
 /* --------------------------------------------------------------------------
    HERO — wo-hero.liquid
-   --------------------------------------- */
+   -------------------------------------------------------------------------- */
 .wo-hero {
   position: relative;
   min-height: 92vh;
