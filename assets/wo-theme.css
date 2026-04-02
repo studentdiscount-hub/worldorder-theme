@@ -41,7 +41,7 @@ a { color: inherit; }
 .header__menu-item, .header__menu-item span, .list-menu__item {
   color: var(--wo-muted) !important;
   font-family: var(--wo-font-mono) !important;
-  font-size: 13px !important;
+  font-size: 15px !important;
   letter-spacing: 0.14em !important;
   text-transform: lowercase !important;
   transition: color 0.2s ease;
@@ -50,7 +50,7 @@ a { color: inherit; }
 @media screen and (min-width: 990px) {
   .header--middle-center .header__inline-menu {
     justify-self: start;
-    margin-left: 0;
+    margin-left: -2rem;
   }
 }
 .header__menu-item:hover span, .list-menu__item:hover { color: var(--wo-off-white) !important; }
@@ -1262,10 +1262,10 @@ h1.title, .page-title, .main-404 h1, .page__title {
 }
 .wo-radio-powered {
   font-family: 'Space Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(242,243,238,0.2);
+  color: rgba(242,243,238,0.6);
   text-align: center;
 }
 .wo-tracklist {
@@ -1565,4 +1565,31 @@ a.wo-track-row {
 a.wo-track-row:hover {
   opacity: 0.75;
   cursor: pointer;
+}
+
+/* ── Spotify Embed Section (replaces track listing on canvas page) ── */
+.wo-spotify-section {
+  background-color: #111110;
+  border-top: 1px solid var(--wo-divider);
+  padding: 48px var(--wo-pad-h) 64px;
+}
+
+.wo-spotify-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.wo-spotify-inner iframe {
+  display: block;
+  width: 100%;
+  opacity: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .wo-spotify-section {
+    padding: 36px 24px 48px;
+  }
+  .wo-spotify-inner iframe {
+    height: 320px;
+  }
 }

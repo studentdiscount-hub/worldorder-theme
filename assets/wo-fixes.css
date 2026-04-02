@@ -113,12 +113,23 @@ button:not([class*="wo-"]):not([class*="button"]):not([class*="icon"]) {
 /* FIX SZ-01: Collection hero cramped 106px to 200px min */
 .collection-hero {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 32px;
   min-height: 200px;
   display: flex;
   align-items: center;
 }
-.collection-hero__title { margin-top: 0; margin-bottom: 0; }
+.collection-hero__title { margin-top: 0; margin-bottom: 8px; }
+.collection-hero__description { margin-top: 0; margin-bottom: 0; }
+
+/* FIX SZ-04: Tighten gap between collection header and product grid */
+.collection-hero + .shopify-section,
+.section-collection-template + .shopify-section {
+  margin-top: 0 !important;
+}
+.main-collection-product-grid,
+[data-section-type="main-collection-product-grid"] {
+  padding-top: 0 !important;
+}
 
 /* FIX S-01: Editorial cell gutter 36px to 48px */
 .wo-editorial__cell {

@@ -12,14 +12,8 @@
         "tieback_drop": "Standard Issue #001",
         "tieback_url": "/collections/frontpage"
       },
-      "blocks": {
-        "track-1": { "type": "track", "settings": { "numeral": "I",   "song": "Call Me",             "artist": "Blood Orange, Park Hye Jin" } },
-        "track-2": { "type": "track", "settings": { "numeral": "II",  "song": "Diving Board",         "artist": "redveil" } },
-        "track-3": { "type": "track", "settings": { "numeral": "III", "song": "DHL",                  "artist": "Frank Ocean" } },
-        "track-4": { "type": "track", "settings": { "numeral": "IV",  "song": "Alesis",               "artist": "Mk.gee" } },
-        "track-5": { "type": "track", "settings": { "numeral": "V",   "song": "Fruits of the Spirit", "artist": "Jay Electronica" } }
-      },
-      "block_order": ["track-1","track-2","track-3","track-4","track-5"]
+      "blocks": {},
+      "block_order": []
     }
   },
   "order": ["wo-radio-content"]

@@ -18,19 +18,19 @@
   </div>
 </div>
 
-<div class="wo-tracklist">
-  {% for block in section.blocks %}
-    {% if block.type == 'track' %}
-      <a href="{{ section.settings.spotify_url }}" target="_blank" rel="noopener" class="wo-track-row{% if forloop.last and forloop.length == 5 %} wo-track-row--full{% endif %}" {{ block.shopify_attributes }}>
-        <div class="wo-track-num">{{ block.settings.numeral }}</div>
-        <div class="wo-track-info">
-          <div class="wo-track-song">{{ block.settings.song }}</div>
-          <div class="wo-track-artist">{{ block.settings.artist }}</div>
-        </div>
-        <span class="wo-track-badge">{{ ep_label }}</span>
-      </a>
-    {% endif %}
-  {% endfor %}
+<div class="wo-spotify-section">
+  <div class="wo-spotify-inner">
+    <iframe
+      src="https://open.spotify.com/embed/playlist/1XY3kVW7NmjD3DhlRABoeh?utm_source=generator&theme=0"
+      width="100%"
+      height="380"
+      frameborder="0"
+      allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      style="border-radius:0; border:none;"
+    ></iframe>
+  </div>
 </div>
 
 
