@@ -1,17 +1,127 @@
 {% comment %}
-  WORLD ORDER — wo-hero.liquid
-  Section: Homepage hero — dark gradient, Big Shoulders Display headline
+  WORLD ORDER — wo-hero.liquid  v2
+  Homepage hero — full-viewport, dark background, grain texture
+  Typography: Big Shoulders Display (headline) / Space Mono (label/cta) / Cormorant Garamond (subline)
 {% endcomment %}
 
-<div class="wo-section wo-hero">
-  <div class="wo-hero__bg"></div>
-  <div class="wo-hero__content">
-    {% if section.settings.drop_tag != blank %}<div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>{% endif %}
-    <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+<style>
+/* ── Hero v2 specific overrides ── */
+.wo-hero {
+  min-height: 94svh;
+  min-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+.wo-hero__bg-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  filter: grayscale(100%) contrast(1.1);
+  opacity: 0.55;
+  z-index: 0;
+  transform: scale(1.04);
+  transition: transform 10s ease;
+}
+.wo-hero:hover .wo-hero__bg-image {
+  transform: scale(1.0);
+}
+.wo-hero__rule {
+  display: block;
+  width: 1px;
+  height: 64px;
+  background: var(--wo-burgundy);
+  margin-bottom: 20px;
+}
+.wo-hero__content {
+  padding-top: 0;
+  padding-bottom: 80px;
+}
+.wo-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.wo-hero__drop-tag {
+  margin-bottom: 0;
+}
+.wo-hero__meta-div {
+  width: 1px;
+  height: 14px;
+  background: rgba(242,243,238,0.2);
+}
+.wo-hero__origin {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(242,243,238,0.3);
+}
+.wo-hero__headline-wrap {
+  overflow: hidden;
+}
+.wo-hero__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.wo-hero__secondary {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(242,243,238,0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.wo-hero__secondary:hover { color: rgba(242,243,238,0.6); }
+
+@media screen and (max-width: 749px) {
+  .wo-hero { min-height: 90svh; min-height: 90vh; }
+  .wo-hero__content { padding-bottom: 56px; }
+  .wo-hero__cta-row { gap: 24px; }
+  .wo-hero__rule { height: 40px; }
+}
+</style>
+
+<div class="wo-section wo-hero wo-grain">
+  <div class="wo-hero__bg">
+    {%- if section.settings.background_image != blank -%}
+      <div class="wo-hero__bg-image" style="background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="wo-hero__content" style="position:relative;z-index:3;padding-left:var(--wo-pad-h);padding-right:var(--wo-pad-h);max-width:var(--wo-max-w);">
+    <span class="wo-hero__rule"></span>
+
+    <div class="wo-hero__meta">
+      {%- if section.settings.drop_tag != blank -%}
+        <div class="wo-hero__drop-tag">{{ section.settings.drop_tag }}</div>
+        <div class="wo-hero__meta-div"></div>
+      {%- endif -%}
+      <span class="wo-hero__origin">Annapolis &#xB7; Est. 1649</span>
+    </div>
+
+    <div class="wo-hero__headline-wrap">
+      <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+    </div>
+
     <p class="wo-hero__subline">{{ section.settings.subline }}</p>
-    <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
-      {{ section.settings.cta_label | default: 'Enter the catalog' }} &nbsp;&#8594;
-    </a>
+
+    <div class="wo-hero__cta-row">
+      <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
+        {{ section.settings.cta_label | default: 'Enter the catalog' }} &nbsp;&#8594;
+      </a>
+      {%- if section.settings.secondary_label != blank and section.settings.secondary_url != blank -%}
+        <a href="{{ section.settings.secondary_url }}" class="wo-hero__secondary">
+          {{ section.settings.secondary_label }}
+        </a>
+      {%- endif -%}
+    </div>
   </div>
 </div>
 
@@ -20,12 +130,14 @@
   "name": "WO Hero",
   "tag": "div",
   "settings": [
-    { "type": "image_picker", "id": "background_image", "label": "Background image" },
-    { "type": "text", "id": "drop_tag", "label": "Drop tag line", "default": "Drop 001 · Standard Issue · SS 26" },
-    { "type": "text", "id": "headline", "label": "Headline", "default": "THERE IS A SHAPE FORMING IN THE DARK." },
-    { "type": "text", "id": "subline", "label": "Subline", "default": "uniforms for the individual, engineered with intention." },
-    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Enter the catalog" },
-    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+    { "type": "image_picker", "id": "background_image", "label": "Background image (optional — leave blank for gradient)" },
+    { "type": "text", "id": "drop_tag", "label": "Drop tag", "default": "Drop 001 \u00b7 Standard Issue" },
+    { "type": "richtext", "id": "headline", "label": "Headline", "default": "<p>There is a shape forming in the <em>dark.</em></p>" },
+    { "type": "text", "id": "subline", "label": "Subline", "default": "Uniforms for the individual, engineered with intention." },
+    { "type": "text", "id": "cta_label", "label": "Primary CTA label", "default": "Enter the catalog" },
+    { "type": "url", "id": "cta_url", "label": "Primary CTA URL" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary link label", "default": "World Order Radio" },
+    { "type": "url", "id": "secondary_url", "label": "Secondary link URL" }
   ],
   "presets": [{ "name": "WO Hero" }]
 }

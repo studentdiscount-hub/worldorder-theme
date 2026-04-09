@@ -1,23 +1,16 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "wo-hero": {
       "type": "wo-hero",
       "settings": {
-        "background_image": "shopify://shop_images/wo_hero_bg.jpg",
-        "drop_tag": "",
-        "headline": "there's a shape forming in the <em style=\"color:#5F1804\">dark.</em>",
-        "subline": "uniforms for the individual,<br>engineered with intention.",
+        "background_image": "",
+        "drop_tag": "Drop 001 \u00b7 Standard Issue",
+        "headline": "<p>There is a shape forming in the <em style=\"color:#5F1804\">dark.</em></p>",
+        "subline": "Uniforms for the individual,\u00a0engineered with intention.",
         "cta_label": "Enter the catalog",
-        "cta_url": "/collections/frontpage"
+        "cta_url": "/collections/frontpage",
+        "secondary_label": "World Order Radio \u2192 EP #001",
+        "secondary_url": "/pages/canvas"
       }
     },
     "wo-editorial": {
@@ -51,16 +44,9 @@
           }
         }
       },
-      "block_order": [
-        "pillar-1",
-        "pillar-2",
-        "pillar-3"
-      ],
+      "block_order": ["pillar-1", "pillar-2", "pillar-3"],
       "settings": {}
     }
   },
-  "order": [
-    "wo-hero",
-    "wo-editorial"
-  ]
+  "order": ["wo-hero", "wo-editorial"]
 }
