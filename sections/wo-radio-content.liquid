@@ -1,50 +1,81 @@
-<section class="wo-radio" style="padding: var(--wo-space-xl) var(--wo-space-md);">
-  <div class="wo-radio__header">
-    <span class="wo-radio__ep-label">{{ section.settings.ep_label }}</span>
-    <h1 class="wo-radio__ep-title">{{ section.settings.ep_title }}</h1>
-  </div>
+{%- assign spotify_url = section.settings.spotify_url | default: '#' -%}
 
-  <ol class="wo-radio__tracklist" type="I">
-    {%- for i in (1..10) -%}
-      {%- assign title_key  = 'track_title_'  | append: i -%}
-      {%- assign artist_key = 'track_artist_' | append: i -%}
-      {%- if section.settings[title_key] != blank -%}
-        <li class="wo-radio__track">
-          <span class="wo-radio__track-title">{{ section.settings[title_key] }}</span>
-          <span class="wo-radio__track-artist">{{ section.settings[artist_key] }}</span>
-        </li>
+<section class="wo-canvas" style="padding: var(--wo-space-xl) var(--wo-space-md); min-height: 60vh;">
+  <div class="wo-canvas__inner" style="max-width: 680px; margin: 0 auto;">
+
+    <div class="wo-canvas__header" style="margin-bottom: var(--wo-space-lg);">
+      {%- if section.settings.ep_label != blank -%}
+        <span class="wo-canvas__ep-label" style="font-family: var(--wo-font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wo-burgundy); display: block; margin-bottom: 12px;">
+          {{- section.settings.ep_label -}}
+        </span>
       {%- endif -%}
-    {%- endfor -%}
-  </ol>
+      {%- if section.settings.ep_title != blank -%}
+        <h1 class="wo-canvas__ep-title" style="font-family: var(--wo-font-mono); font-size: clamp(16px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">
+          {{- section.settings.ep_title -}}
+        </h1>
+      {%- endif -%}
+      {%- if section.settings.tagline != blank -%}
+        <p class="wo-canvas__tagline" style="font-family: var(--wo-font-serif); font-style: italic; font-size: 15px; margin-top: 10px; opacity: 0.65;">
+          {{- section.settings.tagline -}}
+        </p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <a href="{{ spotify_url }}" target="_blank" rel="noopener" class="wo-canvas__tracklist-link" style="display: block; text-decoration: none; color: inherit;">
+        <ol class="wo-canvas__tracklist" style="list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--wo-border);">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'track' -%}
+              <li class="wo-canvas__track"
+                  style="display: flex; align-items: baseline; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--wo-border); transition: opacity 0.2s;"
+                  onmouseenter="this.style.opacity='0.6'" onmouseleave="this.style.opacity='1'">
+                <span class="wo-canvas__track-left" style="display: flex; align-items: baseline; gap: 20px;">
+                  <span style="font-family: var(--wo-font-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--wo-burgundy); min-width: 24px;">
+                    {{- block.settings.numeral -}}
+                  </span>
+                  <span style="font-family: var(--wo-font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">
+                    {{- block.settings.song -}}
+                  </span>
+                </span>
+                <span style="font-family: var(--wo-font-mono); font-size: 11px; opacity: 0.5; text-align: right;">
+                  {{- block.settings.artist -}}
+                </span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+        {%- if spotify_url != '#' -%}
+          <p style="font-family: var(--wo-font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 24px; opacity: 0.4;">
+            Listen on Spotify →
+          </p>
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+
+  </div>
 </section>
 
 {% schema %}
 {
-  "name": "WO Radio",
+  "name": "WO Canvas",
   "settings": [
-    { "type": "text", "id": "ep_label",        "label": "EP Label",           "default": "EP #001" },
-    { "type": "text", "id": "ep_title",        "label": "EP Title",           "default": "World Order Radio" },
-    { "type": "text", "id": "track_title_1",   "label": "Track 1 — Title" },
-    { "type": "text", "id": "track_artist_1",  "label": "Track 1 — Artist" },
-    { "type": "text", "id": "track_title_2",   "label": "Track 2 — Title" },
-    { "type": "text", "id": "track_artist_2",  "label": "Track 2 — Artist" },
-    { "type": "text", "id": "track_title_3",   "label": "Track 3 — Title" },
-    { "type": "text", "id": "track_artist_3",  "label": "Track 3 — Artist" },
-    { "type": "text", "id": "track_title_4",   "label": "Track 4 — Title" },
-    { "type": "text", "id": "track_artist_4",  "label": "Track 4 — Artist" },
-    { "type": "text", "id": "track_title_5",   "label": "Track 5 — Title" },
-    { "type": "text", "id": "track_artist_5",  "label": "Track 5 — Artist" },
-    { "type": "text", "id": "track_title_6",   "label": "Track 6 — Title" },
-    { "type": "text", "id": "track_artist_6",  "label": "Track 6 — Artist" },
-    { "type": "text", "id": "track_title_7",   "label": "Track 7 — Title" },
-    { "type": "text", "id": "track_artist_7",  "label": "Track 7 — Artist" },
-    { "type": "text", "id": "track_title_8",   "label": "Track 8 — Title" },
-    { "type": "text", "id": "track_artist_8",  "label": "Track 8 — Artist" },
-    { "type": "text", "id": "track_title_9",   "label": "Track 9 — Title" },
-    { "type": "text", "id": "track_artist_9",  "label": "Track 9 — Artist" },
-    { "type": "text", "id": "track_title_10",  "label": "Track 10 — Title" },
-    { "type": "text", "id": "track_artist_10", "label": "Track 10 — Artist" }
+    { "type": "text",  "id": "ep_label",    "label": "Label",    "default": "World Order Radio" },
+    { "type": "text",  "id": "ep_title",    "label": "Title",    "default": "There's a shape forming in the dark" },
+    { "type": "text",  "id": "tagline",     "label": "Tagline"  },
+    { "type": "url",   "id": "spotify_url", "label": "Spotify playlist URL" }
   ],
-  "presets": [{ "name": "WO Radio" }]
+  "blocks": [
+    {
+      "type": "track",
+      "name": "Track",
+      "settings": [
+        { "type": "text", "id": "numeral", "label": "Numeral (e.g. I, II, III)" },
+        { "type": "text", "id": "song",    "label": "Song title" },
+        { "type": "text", "id": "artist",  "label": "Artist" }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [{ "name": "WO Canvas" }]
 }
 {% endschema %}

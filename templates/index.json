@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "wo-hero": {
@@ -15,9 +24,9 @@
     "wo-about-strip": {
       "type": "wo-about-strip",
       "settings": {
-        "text": "World Order is a fashion brand built on the tension between chaos and structure. Every piece is designed to hold its own.",
+        "text": "Uniforms for the individual, engineered with intention. Each piece interrogates the tension between surface and substance, signal and noise.",
         "link_label": "Read the story",
-        "link_url": "/pages/story"
+        "link_url": "/pages/about"
       }
     }
   },
