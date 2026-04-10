@@ -1,0 +1,49 @@
+<section class="wo-hero">
+  <div class="wo-hero__image-wrap">
+    {%- if section.settings.hero_image != blank -%}
+      <img
+        src="{{ section.settings.hero_image | image_url: width: 2000 }}"
+        srcset="{{ section.settings.hero_image | image_url: width: 800 }} 800w,
+                {{ section.settings.hero_image | image_url: width: 1400 }} 1400w,
+                {{ section.settings.hero_image | image_url: width: 2000 }} 2000w"
+        sizes="100vw"
+        alt="{{ section.settings.hero_image.alt | default: 'World Order' }}"
+        class="wo-hero__img"
+        loading="eager"
+        fetchpriority="high"
+      >
+    {%- else -%}
+      <div class="wo-hero__placeholder">
+        {%- if section.settings.headline != blank -%}
+          <span class="wo-hero__placeholder-text">{{ section.settings.headline }}</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    <div class="wo-hero__overlay"></div>
+    <div class="wo-hero__content">
+      {%- if section.settings.hero_image != blank and section.settings.headline != blank -%}
+        <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WO Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "World Order"
+    }
+  ],
+  "presets": [{ "name": "WO Hero" }]
+}
+{% endschema %}

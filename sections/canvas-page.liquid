@@ -1,0 +1,30 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}{%- style -%}
+  :root {
+    --wo-bg: #1a1a18;
+    --wo-cream: #F2F3EE;
+    --wo-red: #5F1804;
+    --wo-muted: #837C6C;
+    --wo-border: rgba(242,243,238,0.08);
+  }
+  .wo-page-wrapper { background-color: var(--wo-bg); color: var(--wo-cream); }
+  .wo-page-inner { max-width: var(--page-width,1200px); margin:0 auto; padding:80px 5rem 32px; }
+  .wo-divider { width:40px; height:1px; background:var(--wo-red); margin-bottom:48px; }
+  .wo-page-content { font-size:15px; line-height:1.85; color:rgba(242,243,238,0.75); font-family:'Courier New',monospace; }
+  .wo-page-content p { margin-bottom:1.6em; }
+  .wo-page-content a { color:var(--wo-cream); border-bottom:1px solid var(--wo-red); text-decoration:none; transition:opacity 0.2s; }
+  .wo-page-content a:hover { opacity:0.6; }
+  .wo-page-content h2, .wo-page-content h3 { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--wo-red); margin:48px 0 16px; font-weight:500; }
+  .section-{{ section.id }}-padding { padding-top:{{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom:{{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
+  @media screen and (min-width:750px) { .section-{{ section.id }}-padding { padding-top:{{ section.settings.padding_top }}px; padding-bottom:{{ section.settings.padding_bottom }}px; } }
+  @media (min-width:750px) { .wo-page-inner { padding:100px 5rem 32px; } }
+  @media (max-width:749px) { .wo-page-inner { padding:60px 1.5rem 24px; } }
+{%- endstyle -%}
+<div class="wo-page-wrapper section-{{ section.id }}-padding">
+  <div class="wo-page-inner">
+    <div class="wo-divider"></div>
+    <div class="wo-page-content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+{% schema %}{"name":"t:sections.main-page.name","tag":"section","class":"section","settings":[{"type":"header","content":"t:sections.all.padding.section_padding_heading"},{"type":"range","id":"padding_top","min":0,"max":100,"step":4,"unit":"px","label":"t:sections.all.padding.padding_top","default":36},{"type":"range","id":"padding_bottom","min":0,"max":100,"step":4,"unit":"px","label":"t:sections.all.padding.padding_bottom","default":36}]}{% endschema %}

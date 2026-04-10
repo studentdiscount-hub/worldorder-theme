@@ -1,0 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "wo-radio-content": {
+      "type": "wo-radio-content",
+      "settings": {
+        "ep_label": "EP #001",
+        "ep_title": "WORLD ORDER RADIO",
+        "tagline": "The clothes arrived first. The music explains why."
+      },
+      "blocks": {
+        "track-1": {
+          "type": "track",
+          "settings": {
+            "numeral": "I",
+            "song": "Call Me",
+            "artist": "Blood Orange, Park Hye Jin"
+          }
+        },
+        "track-2": {
+          "type": "track",
+          "settings": {
+            "numeral": "II",
+            "song": "Diving Board",
+            "artist": "redveil"
+          }
+        },
+        "track-3": {
+          "type": "track",
+          "settings": {
+            "numeral": "III",
+            "song": "DHL",
+            "artist": "Frank Ocean"
+          }
+        },
+        "track-4": {
+          "type": "track",
+          "settings": {
+            "numeral": "IV",
+            "song": "Alesis",
+            "artist": "Mk.gee"
+          }
+        },
+        "track-5": {
+          "type": "track",
+          "settings": {
+            "numeral": "V",
+            "song": "Fruits of the Spirit",
+            "artist": "Jay Electronica"
+          }
+        }
+      },
+      "block_order": [
+        "track-1",
+        "track-2",
+        "track-3",
+        "track-4",
+        "track-5"
+      ]
+    }
+  },
+  "order": [
+    "wo-radio-content"
+  ]
+}

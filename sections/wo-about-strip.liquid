@@ -1,0 +1,38 @@
+<section class="wo-about-strip" style="padding: var(--wo-space-lg) var(--wo-space-md);">
+  <div class="wo-about-strip__inner">
+    {%- if section.settings.text != blank -%}
+      <p class="wo-about-strip__text">{{ section.settings.text }}</p>
+    {%- endif -%}
+    {%- if section.settings.link_label != blank -%}
+      <a href="{{ section.settings.link_url }}" class="wo-about-strip__link">
+        {{ section.settings.link_label }} →
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WO About Strip",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description (2 sentences max)",
+      "default": "World Order is a fashion brand built on the tension between chaos and structure. Every piece is designed to hold its own."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link text",
+      "default": "Read the story"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [{ "name": "WO About Strip" }]
+}
+{% endschema %}

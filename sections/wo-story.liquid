@@ -1,0 +1,39 @@
+<section class="wo-story" style="padding: var(--wo-space-xl) var(--wo-space-md);">
+
+  <h1 class="wo-story__headline">{{ section.settings.headline }}</h1>
+
+  <div class="wo-story__manifesto">
+    {{ section.settings.manifesto }}
+  </div>
+
+  <div class="wo-story__framework">
+    {%- for i in (1..3) -%}
+      {%- assign label_key = 'framework_label_' | append: i -%}
+      {%- assign body_key  = 'framework_body_'  | append: i -%}
+      {%- if section.settings[label_key] != blank -%}
+        <div class="wo-story__framework-item">
+          <span class="wo-story__framework-label">{{ section.settings[label_key] }}</span>
+          <span class="wo-story__framework-body">{{ section.settings[body_key] }}</span>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "WO Story",
+  "settings": [
+    { "type": "text",     "id": "headline",           "label": "Headline",                    "default": "Pain. Power. Peace." },
+    { "type": "richtext", "id": "manifesto",           "label": "Manifesto (5 lines)" },
+    { "type": "text",     "id": "framework_label_1",  "label": "Framework 1 — Label",         "default": "Chaos" },
+    { "type": "text",     "id": "framework_body_1",   "label": "Framework 1 — Sentence" },
+    { "type": "text",     "id": "framework_label_2",  "label": "Framework 2 — Label",         "default": "VOID" },
+    { "type": "text",     "id": "framework_body_2",   "label": "Framework 2 — Sentence" },
+    { "type": "text",     "id": "framework_label_3",  "label": "Framework 3 — Label",         "default": "Order" },
+    { "type": "text",     "id": "framework_body_3",   "label": "Framework 3 — Sentence" }
+  ],
+  "presets": [{ "name": "WO Story" }]
+}
+{% endschema %}

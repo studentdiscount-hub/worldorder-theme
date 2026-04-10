@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "wo-hero": {
+      "type": "wo-hero",
+      "settings": {
+        "headline": "World Order"
+      }
+    },
+    "wo-products-strip": {
+      "type": "wo-products-strip",
+      "settings": {
+        "product_limit": 3
+      }
+    },
+    "wo-about-strip": {
+      "type": "wo-about-strip",
+      "settings": {
+        "text": "World Order is a fashion brand built on the tension between chaos and structure. Every piece is designed to hold its own.",
+        "link_label": "Read the story",
+        "link_url": "/pages/story"
+      }
+    }
+  },
+  "order": ["wo-hero", "wo-products-strip", "wo-about-strip"]
+}

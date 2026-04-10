@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "wo-about-content": {
+      "type": "wo-about-content",
+      "settings": {}
+    }
+  },
+  "order": ["wo-about-content"]
+}

@@ -1,0 +1,47 @@
+<section class="wo-products-strip" style="padding: var(--wo-space-lg) var(--wo-space-md);">
+  <div class="wo-products-strip__grid">
+    {%- for product in collections[section.settings.collection].products limit: section.settings.product_limit -%}
+      <a href="{{ product.url }}" class="wo-product-card">
+        <div class="wo-product-card__image-wrap">
+          {%- if product.featured_image -%}
+            <img
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              class="wo-product-card__img"
+              loading="lazy"
+            >
+          {%- else -%}
+            <div class="wo-product-card__no-image"></div>
+          {%- endif -%}
+        </div>
+        <div class="wo-product-card__info">
+          <span class="wo-product-card__name">{{ product.title }}</span>
+          <span class="wo-product-card__price">{{ product.price | money }}</span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WO Products Strip",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Number of products",
+      "default": 3
+    }
+  ],
+  "presets": [{ "name": "WO Products Strip" }]
+}
+{% endschema %}

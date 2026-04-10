@@ -1,0 +1,72 @@
+{% comment %}
+  WORLD ORDER — wo-product-narrative.liquid
+  Product page narrative section: drop context, conceptual frame, trust signals.
+  Sits below the main Dawn product section.
+{% endcomment %}
+
+<div class="wo-narrative">
+
+  {% if section.settings.drop_label != blank or section.settings.drop_number != blank %}
+  <div class="wo-narrative__drop-header">
+    {% if section.settings.drop_number != blank %}
+      <span class="wo-narrative__drop-num">{{ section.settings.drop_number }}</span>
+    {% endif %}
+    {% if section.settings.drop_label != blank %}
+      <span class="wo-narrative__drop-label">{{ section.settings.drop_label }}</span>
+    {% endif %}
+    <span class="wo-narrative__drop-rule"></span>
+  </div>
+  {% endif %}
+
+  {% if section.settings.concept_heading != blank %}
+  <h2 class="wo-narrative__heading">{{ section.settings.concept_heading }}</h2>
+  {% endif %}
+
+  {% if section.settings.concept_body != blank %}
+  <div class="wo-narrative__body">{{ section.settings.concept_body }}</div>
+  {% endif %}
+
+  <div class="wo-narrative__trust">
+    <div class="wo-narrative__trust-item">
+      <span class="wo-narrative__trust-icon">&#x2014;</span>
+      <span>{{ section.settings.trust_1 | default: 'Limited run. No restocks.' }}</span>
+    </div>
+    <div class="wo-narrative__trust-item">
+      <span class="wo-narrative__trust-icon">&#x2014;</span>
+      <span>{{ section.settings.trust_2 | default: 'Ships within 5 business days.' }}</span>
+    </div>
+    <div class="wo-narrative__trust-item">
+      <span class="wo-narrative__trust-icon">&#x2014;</span>
+      <span>{{ section.settings.trust_3 | default: 'Every drop ships with a Radio EP.' }}</span>
+    </div>
+  </div>
+
+  {% if section.settings.radio_ep != blank %}
+  <div class="wo-narrative__radio">
+    <span class="wo-narrative__radio-label">Listening context</span>
+    <a href="{{ section.settings.radio_url | default: '/pages/canvas' }}" class="wo-narrative__radio-link">
+      {{ section.settings.radio_ep }} &#x2192;
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+
+{% schema %}
+{
+  "name": "WO \u2014 Product Narrative",
+  "tag": "div",
+  "settings": [
+    { "type": "text",     "id": "drop_number",      "label": "Drop number",        "default": "001" },
+    { "type": "text",     "id": "drop_label",        "label": "Drop name",          "default": "Standard Issue" },
+    { "type": "text",     "id": "concept_heading",   "label": "Concept heading",    "default": "Engineered with intention." },
+    { "type": "richtext", "id": "concept_body",      "label": "Concept body copy",  "default": "<p>Not a statement. A standard. Something you reach for when the noise gets loud and you still have to show up.</p>" },
+    { "type": "text",     "id": "trust_1",           "label": "Trust line 1",       "default": "Limited run. No restocks." },
+    { "type": "text",     "id": "trust_2",           "label": "Trust line 2",       "default": "Ships within 5 business days." },
+    { "type": "text",     "id": "trust_3",           "label": "Trust line 3",       "default": "Every drop ships with a Radio EP." },
+    { "type": "text",     "id": "radio_ep",          "label": "Radio EP label",     "default": "World Order Radio \u2014 EP #001" },
+    { "type": "url",      "id": "radio_url",         "label": "Radio page URL" }
+  ],
+  "presets": [{ "name": "WO \u2014 Product Narrative" }]
+}
+{% endschema %}

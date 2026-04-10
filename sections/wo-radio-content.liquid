@@ -1,0 +1,50 @@
+<section class="wo-radio" style="padding: var(--wo-space-xl) var(--wo-space-md);">
+  <div class="wo-radio__header">
+    <span class="wo-radio__ep-label">{{ section.settings.ep_label }}</span>
+    <h1 class="wo-radio__ep-title">{{ section.settings.ep_title }}</h1>
+  </div>
+
+  <ol class="wo-radio__tracklist" type="I">
+    {%- for i in (1..10) -%}
+      {%- assign title_key  = 'track_title_'  | append: i -%}
+      {%- assign artist_key = 'track_artist_' | append: i -%}
+      {%- if section.settings[title_key] != blank -%}
+        <li class="wo-radio__track">
+          <span class="wo-radio__track-title">{{ section.settings[title_key] }}</span>
+          <span class="wo-radio__track-artist">{{ section.settings[artist_key] }}</span>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ol>
+</section>
+
+{% schema %}
+{
+  "name": "WO Radio",
+  "settings": [
+    { "type": "text", "id": "ep_label",        "label": "EP Label",           "default": "EP #001" },
+    { "type": "text", "id": "ep_title",        "label": "EP Title",           "default": "World Order Radio" },
+    { "type": "text", "id": "track_title_1",   "label": "Track 1 — Title" },
+    { "type": "text", "id": "track_artist_1",  "label": "Track 1 — Artist" },
+    { "type": "text", "id": "track_title_2",   "label": "Track 2 — Title" },
+    { "type": "text", "id": "track_artist_2",  "label": "Track 2 — Artist" },
+    { "type": "text", "id": "track_title_3",   "label": "Track 3 — Title" },
+    { "type": "text", "id": "track_artist_3",  "label": "Track 3 — Artist" },
+    { "type": "text", "id": "track_title_4",   "label": "Track 4 — Title" },
+    { "type": "text", "id": "track_artist_4",  "label": "Track 4 — Artist" },
+    { "type": "text", "id": "track_title_5",   "label": "Track 5 — Title" },
+    { "type": "text", "id": "track_artist_5",  "label": "Track 5 — Artist" },
+    { "type": "text", "id": "track_title_6",   "label": "Track 6 — Title" },
+    { "type": "text", "id": "track_artist_6",  "label": "Track 6 — Artist" },
+    { "type": "text", "id": "track_title_7",   "label": "Track 7 — Title" },
+    { "type": "text", "id": "track_artist_7",  "label": "Track 7 — Artist" },
+    { "type": "text", "id": "track_title_8",   "label": "Track 8 — Title" },
+    { "type": "text", "id": "track_artist_8",  "label": "Track 8 — Artist" },
+    { "type": "text", "id": "track_title_9",   "label": "Track 9 — Title" },
+    { "type": "text", "id": "track_artist_9",  "label": "Track 9 — Artist" },
+    { "type": "text", "id": "track_title_10",  "label": "Track 10 — Title" },
+    { "type": "text", "id": "track_artist_10", "label": "Track 10 — Artist" }
+  ],
+  "presets": [{ "name": "WO Radio" }]
+}
+{% endschema %}

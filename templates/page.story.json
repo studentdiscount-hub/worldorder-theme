@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "story": {
+      "type": "wo-story",
+      "settings": {}
+    }
+  },
+  "order": ["story"]
+}
