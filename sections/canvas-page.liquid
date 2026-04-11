@@ -113,29 +113,32 @@
         <h2 class="wo-email-capture__heading">{{ section.settings.email_heading | default: 'Stay in the frequency.' }}</h2>
         <p class="wo-email-capture__sub">{{ section.settings.email_subtext | default: 'New drops, editorial content, and transmissions from the studio.' }}</p>
 
-        {%- form 'customer', id: 'CanvasEmailForm', class: 'wo-email-capture__form' -%}
+        {%- form 'customer', id: 'CanvasEmailForm', class: 'wo-email-capture__form-wrap' -%}
           <input type="hidden" name="contact[tags]" value="newsletter,canvas">
-          <input
-            type="email"
-            name="contact[email]"
-            class="wo-email-capture__input"
-            placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
-            aria-label="Email address"
-            autocomplete="email"
-            required
-            value="{{ form.email }}"
-            {% if form.errors %}aria-invalid="true"{% endif %}
-          >
-          <button type="submit" class="wo-email-capture__btn">
-            {{ section.settings.email_cta | default: 'Subscribe' }}
-          </button>
-        {%- endform -%}
-
-        {%- form 'customer', id: 'CanvasEmailFormCheck' -%}
           {%- if form.posted_successfully? -%}
-            <p class="wo-email-capture__success" style="display:block;">
+            <p class="wo-email-capture__success">
               {{ section.settings.email_success | default: "You're in. We'll be in touch." }}
             </p>
+          {%- else -%}
+            <div class="wo-email-capture__form">
+              <input
+                type="email"
+                name="contact[email]"
+                class="wo-email-capture__input"
+                placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
+                aria-label="Email address"
+                autocomplete="email"
+                required
+                value="{{ form.email }}"
+                {% if form.errors %}aria-invalid="true"{% endif %}
+              >
+              <button type="submit" class="wo-email-capture__btn">
+                {{ section.settings.email_cta | default: 'Subscribe' }}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <p class="wo-email-capture__error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+            {%- endif -%}
           {%- endif -%}
         {%- endform -%}
       </div>

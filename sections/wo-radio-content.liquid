@@ -1,6 +1,6 @@
 {%- assign spotify_url = section.settings.spotify_url | default: '#' -%}
 
-<section class="wo-canvas" style="padding: 80px var(--wo-space-md) 100px; min-height: 70vh; background-color: #1A1A18; color: #F2F3EE;">
+<section class="wo-canvas" style="padding: var(--wo-space-xl) var(--wo-space-md); min-height: 60vh;">
   <div class="wo-canvas__inner" style="max-width: 680px; margin: 0 auto;">
 
     <div class="wo-canvas__header" style="margin-bottom: var(--wo-space-lg);">
@@ -10,12 +10,12 @@
         </span>
       {%- endif -%}
       {%- if section.settings.ep_title != blank -%}
-        <h1 class="wo-canvas__ep-title" style="font-family: var(--wo-font-mono); font-size: clamp(22px, 3.5vw, 36px); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-top: 16px; line-height: 1.15;">
+        <h1 class="wo-canvas__ep-title" style="font-family: var(--wo-font-mono); font-size: clamp(16px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">
           {{- section.settings.ep_title -}}
         </h1>
       {%- endif -%}
       {%- if section.settings.tagline != blank -%}
-        <p class="wo-canvas__tagline" style="font-family: var(--wo-font-mono); font-style: italic; font-size: 14px; margin-top: 16px; opacity: 0.55; letter-spacing: 0.03em;">
+        <p class="wo-canvas__tagline" style="font-family: var(--wo-font-serif); font-style: italic; font-size: 15px; margin-top: 10px; opacity: 0.65;">
           {{- section.settings.tagline -}}
         </p>
       {%- endif -%}
@@ -52,6 +52,50 @@
       </a>
     {%- endif -%}
 
+
+    {%- if section.settings.show_email_capture -%}
+      <div class="wo-canvas__email-capture" style="margin-top: var(--wo-space-xl); padding-top: var(--wo-space-lg); border-top: 1px solid var(--wo-border);">
+        <span style="font-family: var(--wo-font-mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--wo-burgundy); display: block; margin-bottom: 12px;">
+          {{ section.settings.email_eyebrow | default: 'The List' }}
+        </span>
+        <h2 style="font-family: var(--wo-font-serif); font-style: italic; font-weight: 300; font-size: clamp(20px, 2.5vw, 26px); color: inherit; line-height: 1.25; margin-bottom: 6px;">
+          {{ section.settings.email_heading | default: 'Stay in the frequency.' }}
+        </h2>
+        <p style="font-family: var(--wo-font-mono); font-size: 12px; opacity: 0.45; margin-bottom: var(--wo-space-md);">
+          {{ section.settings.email_subtext | default: 'New drops, editorial content, and transmissions from the studio.' }}
+        </p>
+        {%- form 'customer', id: 'CanvasEmailCapture' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter,canvas">
+          {%- if form.posted_successfully? -%}
+            <p style="font-family: var(--wo-font-mono); font-size: 12px; opacity: 0.65;">
+              {{ section.settings.email_success | default: "You're in. We'll be in touch." }}
+            </p>
+          {%- else -%}
+            <div style="display: flex; max-width: 440px; gap: 0;">
+              <input
+                type="email"
+                name="contact[email]"
+                style="flex:1; background: transparent; border: 1px solid rgba(26,26,24,0.25); border-right: none; font-family: var(--wo-font-mono); font-size: 12px; padding: 13px 16px; outline: none; color: inherit; border-radius: 0; -webkit-appearance: none;"
+                placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
+                aria-label="Email address"
+                autocomplete="email"
+                required
+                value="{{ form.email }}"
+                {% if form.errors %}aria-invalid="true"{% endif %}
+              >
+              <button type="submit"
+                style="background: var(--wo-burgundy, #5F1804); color: #F5F4EF; border: 1px solid var(--wo-burgundy, #5F1804); font-family: var(--wo-font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 13px 20px; cursor: pointer; border-radius: 0; white-space: nowrap;">
+                {{ section.settings.email_cta | default: 'Subscribe' }}
+              </button>
+            </div>
+            {%- if form.errors -%}
+              <p style="font-family: var(--wo-font-mono); font-size: 11px; color: var(--wo-burgundy, #5F1804); margin-top: 8px;">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+
   </div>
 </section>
 
@@ -62,7 +106,15 @@
     { "type": "text",  "id": "ep_label",    "label": "Label",    "default": "World Order Radio" },
     { "type": "text",  "id": "ep_title",    "label": "Title",    "default": "There's a shape forming in the dark" },
     { "type": "text",  "id": "tagline",     "label": "Tagline"  },
-    { "type": "url",   "id": "spotify_url", "label": "Spotify playlist URL" }
+    { "type": "url",   "id": "spotify_url", "label": "Spotify playlist URL" },
+    { "type": "header", "content": "Email Capture" },
+    { "type": "checkbox", "id": "show_email_capture", "label": "Show email capture", "default": true },
+    { "type": "text", "id": "email_eyebrow",   "label": "Eyebrow", "default": "The List" },
+    { "type": "text", "id": "email_heading",   "label": "Heading", "default": "Stay in the frequency." },
+    { "type": "text", "id": "email_subtext",   "label": "Subtext", "default": "New drops, editorial content, and transmissions from the studio." },
+    { "type": "text", "id": "email_placeholder", "label": "Placeholder", "default": "your@email.com" },
+    { "type": "text", "id": "email_cta",      "label": "Button", "default": "Subscribe" },
+    { "type": "text", "id": "email_success",  "label": "Success message", "default": "You're in. We'll be in touch." }
   ],
   "blocks": [
     {
