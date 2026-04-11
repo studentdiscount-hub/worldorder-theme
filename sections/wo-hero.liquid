@@ -1,3 +1,62 @@
+<style>
+  .wo-hero {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1A1A18;
+  }
+  .wo-hero__image-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wo-hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .wo-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 24, 0.55);
+  }
+  .wo-hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: var(--wo-space-xl) var(--wo-space-md);
+  }
+  .wo-hero__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    min-height: 70vh;
+    padding: var(--wo-space-xl) var(--wo-space-md);
+    text-align: center;
+  }
+  .wo-hero__line,
+  .wo-hero__headline {
+    display: block;
+    font-family: var(--wo-font-mono);
+    font-size: clamp(18px, 3vw, 28px);
+    letter-spacing: 0.04em;
+    font-weight: 400;
+    color: #F2F3EE;
+    line-height: 1.6;
+    margin: 0;
+  }
+</style>
+
 <section class="wo-hero">
   <div class="wo-hero__image-wrap">
     {%- if section.settings.hero_image != blank -%}
@@ -12,19 +71,25 @@
         loading="eager"
         fetchpriority="high"
       >
+      <div class="wo-hero__overlay"></div>
+      <div class="wo-hero__content">
+        {%- if section.settings.headline != blank -%}
+          <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+        {%- endif -%}
+        {%- if section.settings.line2 != blank -%}
+          <p class="wo-hero__headline">{{ section.settings.line2 }}</p>
+        {%- endif -%}
+      </div>
     {%- else -%}
       <div class="wo-hero__placeholder">
         {%- if section.settings.headline != blank -%}
-          <span class="wo-hero__placeholder-text">{{ section.settings.headline }}</span>
+          <h1 class="wo-hero__line">{{ section.settings.headline }}</h1>
+        {%- endif -%}
+        {%- if section.settings.line2 != blank -%}
+          <p class="wo-hero__line">{{ section.settings.line2 }}</p>
         {%- endif -%}
       </div>
     {%- endif -%}
-    <div class="wo-hero__overlay"></div>
-    <div class="wo-hero__content">
-      {%- if section.settings.hero_image != blank and section.settings.headline != blank -%}
-        <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
-      {%- endif -%}
-    </div>
   </div>
 </section>
 
@@ -40,8 +105,14 @@
     {
       "type": "text",
       "id": "headline",
-      "label": "Headline",
-      "default": "World Order"
+      "label": "Line 1",
+      "default": "The world runs on a managed lie."
+    },
+    {
+      "type": "text",
+      "id": "line2",
+      "label": "Line 2",
+      "default": "This is the uniform."
     }
   ],
   "presets": [{ "name": "WO Hero" }]

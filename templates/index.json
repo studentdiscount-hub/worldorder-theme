@@ -1,18 +1,10 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "wo-hero": {
       "type": "wo-hero",
       "settings": {
-        "headline": "World Order"
+        "headline": "The world runs on a managed lie.",
+        "line2": "This is the uniform."
       }
     },
     "wo-products-strip": {
@@ -20,15 +12,7 @@
       "settings": {
         "product_limit": 3
       }
-    },
-    "wo-about-strip": {
-      "type": "wo-about-strip",
-      "settings": {
-        "text": "Uniforms for the individual, engineered with intention. Each piece interrogates the tension between surface and substance, signal and noise.",
-        "link_label": "Read the story",
-        "link_url": "/pages/about"
-      }
     }
   },
-  "order": ["wo-hero", "wo-products-strip", "wo-about-strip"]
+  "order": ["wo-hero", "wo-products-strip"]
 }
