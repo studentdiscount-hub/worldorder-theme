@@ -1,6 +1,6 @@
 {%- assign spotify_url = section.settings.spotify_url | default: '#' -%}
 
-<section class="wo-canvas" style="padding: var(--wo-space-xl) var(--wo-space-md); min-height: 60vh;">
+<section class="wo-canvas" style="padding: 80px var(--wo-space-md) 100px; min-height: 70vh; background-color: #1A1A18; color: #F2F3EE;">
   <div class="wo-canvas__inner" style="max-width: 680px; margin: 0 auto;">
 
     <div class="wo-canvas__header" style="margin-bottom: var(--wo-space-lg);">
@@ -10,12 +10,12 @@
         </span>
       {%- endif -%}
       {%- if section.settings.ep_title != blank -%}
-        <h1 class="wo-canvas__ep-title" style="font-family: var(--wo-font-mono); font-size: clamp(16px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;">
+        <h1 class="wo-canvas__ep-title" style="font-family: var(--wo-font-mono); font-size: clamp(22px, 3.5vw, 36px); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; margin-top: 16px; line-height: 1.15;">
           {{- section.settings.ep_title -}}
         </h1>
       {%- endif -%}
       {%- if section.settings.tagline != blank -%}
-        <p class="wo-canvas__tagline" style="font-family: var(--wo-font-serif); font-style: italic; font-size: 15px; margin-top: 10px; opacity: 0.65;">
+        <p class="wo-canvas__tagline" style="font-family: var(--wo-font-mono); font-style: italic; font-size: 14px; margin-top: 16px; opacity: 0.55; letter-spacing: 0.03em;">
           {{- section.settings.tagline -}}
         </p>
       {%- endif -%}
