@@ -1,0 +1,93 @@
+{% comment %}
+  WORLD ORDER — wo-about-content.liquid
+  About page — chaos animation, approved manifesto copy, Pain/Power/Peace sequence
+  All styles live in wo-theme.css. No inline overrides needed.
+{% endcomment %}
+
+<div class="wo-about-hero">
+  <div class="wo-about-hero__coords">
+    <span>38.9764&#xB0; N</span><span>76.4896&#xB0; W</span>
+  </div>
+
+  <h1 class="wo-chaos-headline" aria-label="chaos repeats until meaning appears">
+    <span class="wo-chaos-line">chaos</span>
+    <span class="wo-chaos-line">
+      <span class="wo-repeat-roller" aria-hidden="true">
+        <span class="wo-repeat-strip">
+          <span>repeats</span>
+          <span>returns</span>
+          <span>remains</span>
+          <span>repeats</span>
+        </span>
+      </span>
+    </span>
+    <span class="wo-chaos-line">until meaning</span>
+    <span class="wo-chaos-line"><span class="wo-appear-word">appears.</span></span>
+  </h1>
+
+  <ul class="wo-manifesto-lines">
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">I.</span>
+      <span><em>Friction over comfort. Signal over noise.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">II.</span>
+      <span>The world runs on a managed lie &#x2014; social media, advertising, trends &#x2014; a system built to keep the individual dumb, distracted, and dependent. Some comply. <em>Most don&#x27;t notice.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">III.</span>
+      <span><em>World Order is for those who noticed.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">IV.</span>
+      <span>To wear this brand is not a statement of style. It is a declaration of sovereignty &#x2014; the conscious acceptance of social exile over silent surrender. <em>The friction is the point. The edge is not anger. It is clarity.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">V.</span>
+      <span>We call the fear they install in you noise. <em>The signal is what remains when the noise is gone.</em></span>
+    </li>
+    <li class="wo-manifesto-lines__item">
+      <span class="wo-manifesto-lines__num">VI.</span>
+      <span>The journey doesn&#x27;t begin in peace. It begins in fire &#x2014; resentment as resistance, sharpness as survival. From that fire comes power. From power, earned through the work, comes <em>the only peace worth having.</em></span>
+    </li>
+  </ul>
+
+  <div class="wo-sequence">
+    <div class="wo-sequence__step">
+      <div class="wo-sequence__arrow" aria-hidden="true" style="visibility: hidden;">&#x2192;</div>
+      <div class="wo-sequence__word">Pain</div>
+      <div class="wo-sequence__desc">Resentment<br>as resistance</div>
+    </div>
+    <div class="wo-sequence__step">
+      <div class="wo-sequence__arrow">&#x2192;</div>
+      <div class="wo-sequence__word">Power</div>
+      <div class="wo-sequence__desc">Earned<br>through the work</div>
+    </div>
+    <div class="wo-sequence__step">
+      <div class="wo-sequence__arrow">&#x2192;</div>
+      <div class="wo-sequence__word">Peace</div>
+      <div class="wo-sequence__desc">The only kind<br>worth having</div>
+    </div>
+  </div>
+</div>
+
+<div class="wo-about-close">
+  <blockquote class="wo-about-close__line">Not a slogan. A sequence.</blockquote>
+  <div class="wo-never-numb">never.<br>numb.<br>again.</div>
+</div>
+
+<script>
+(function() {
+  function triggerAppear() {
+    var el = document.querySelector('.wo-appear-word');
+    if (el) setTimeout(function() { el.classList.add('is-visible'); }, 1800);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', triggerAppear);
+  } else {
+    triggerAppear();
+  }
+})();
+</script>
+
+{% schema %}{"name":"WO About","tag":"div","settings":[],"presets":[{"name":"WO About"}]}{% endschema %}
