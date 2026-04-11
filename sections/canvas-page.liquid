@@ -1,4 +1,5 @@
-{{ 'section-main-page.css' | asset_url | stylesheet_tag }}{%- style -%}
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{%- style -%}
   :root {
     --wo-bg: #1a1a18;
     --wo-cream: #F2F3EE;
@@ -18,13 +19,206 @@
   @media screen and (min-width:750px) { .section-{{ section.id }}-padding { padding-top:{{ section.settings.padding_top }}px; padding-bottom:{{ section.settings.padding_bottom }}px; } }
   @media (min-width:750px) { .wo-page-inner { padding:100px 5rem 32px; } }
   @media (max-width:749px) { .wo-page-inner { padding:60px 1.5rem 24px; } }
+
+  /* ---- Inline email capture ---- */
+  .wo-email-capture {
+    margin-top: 72px;
+    padding-top: 56px;
+    border-top: 1px solid var(--wo-border);
+  }
+  .wo-email-capture__label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wo-red);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 16px;
+  }
+  .wo-email-capture__heading {
+    font-size: clamp(20px, 3vw, 28px);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--wo-cream);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .wo-email-capture__sub {
+    font-size: 12px;
+    color: var(--wo-muted);
+    margin-bottom: 32px;
+    font-family: 'Courier New', monospace;
+  }
+  .wo-email-capture__form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+  }
+  .wo-email-capture__input {
+    flex: 1;
+    background: transparent;
+    border: 1px solid rgba(242,243,238,0.2);
+    border-right: none;
+    color: var(--wo-cream);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+  .wo-email-capture__input::placeholder { color: var(--wo-muted); }
+  .wo-email-capture__input:focus { border-color: rgba(242,243,238,0.5); }
+  .wo-email-capture__btn {
+    background: var(--wo-red);
+    color: var(--wo-cream);
+    border: 1px solid var(--wo-red);
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    border-radius: 0;
+  }
+  .wo-email-capture__btn:hover { opacity: 0.8; }
+  .wo-email-capture__success {
+    font-size: 12px;
+    color: var(--wo-cream);
+    opacity: 0.7;
+    margin-top: 12px;
+    font-family: 'Courier New', monospace;
+    display: none;
+  }
+  @media (max-width:749px) {
+    .wo-email-capture__form { flex-direction: column; }
+    .wo-email-capture__input { border-right: 1px solid rgba(242,243,238,0.2); border-bottom: none; }
+    .wo-email-capture__btn { text-align: center; }
+  }
 {%- endstyle -%}
+
 <div class="wo-page-wrapper section-{{ section.id }}-padding">
   <div class="wo-page-inner">
     <div class="wo-divider"></div>
     <div class="wo-page-content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       {{ page.content }}
     </div>
+
+    {%- if section.settings.show_email_capture -%}
+      <div class="wo-email-capture">
+        <p class="wo-email-capture__label">{{ section.settings.email_eyebrow | default: 'The List' }}</p>
+        <h2 class="wo-email-capture__heading">{{ section.settings.email_heading | default: 'Stay in the frequency.' }}</h2>
+        <p class="wo-email-capture__sub">{{ section.settings.email_subtext | default: 'New drops, editorial content, and transmissions from the studio.' }}</p>
+
+        {%- form 'customer', id: 'CanvasEmailForm', class: 'wo-email-capture__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter,canvas">
+          <input
+            type="email"
+            name="contact[email]"
+            class="wo-email-capture__input"
+            placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
+            aria-label="Email address"
+            autocomplete="email"
+            required
+            value="{{ form.email }}"
+            {% if form.errors %}aria-invalid="true"{% endif %}
+          >
+          <button type="submit" class="wo-email-capture__btn">
+            {{ section.settings.email_cta | default: 'Subscribe' }}
+          </button>
+        {%- endform -%}
+
+        {%- form 'customer', id: 'CanvasEmailFormCheck' -%}
+          {%- if form.posted_successfully? -%}
+            <p class="wo-email-capture__success" style="display:block;">
+              {{ section.settings.email_success | default: "You're in. We'll be in touch." }}
+            </p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
-{% schema %}{"name":"t:sections.main-page.name","tag":"section","class":"section","settings":[{"type":"header","content":"t:sections.all.padding.section_padding_heading"},{"type":"range","id":"padding_top","min":0,"max":100,"step":4,"unit":"px","label":"t:sections.all.padding.padding_top","default":36},{"type":"range","id":"padding_bottom","min":0,"max":100,"step":4,"unit":"px","label":"t:sections.all.padding.padding_bottom","default":36}]}{% endschema %}
+
+{% schema %}
+{
+  "name": "Canvas Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Email Capture"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_email_capture",
+      "label": "Show email capture",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "email_eyebrow",
+      "label": "Eyebrow label",
+      "default": "The List"
+    },
+    {
+      "type": "text",
+      "id": "email_heading",
+      "label": "Heading",
+      "default": "Stay in the frequency."
+    },
+    {
+      "type": "text",
+      "id": "email_subtext",
+      "label": "Subtext",
+      "default": "New drops, editorial content, and transmissions from the studio."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Input placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "email_cta",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "email_success",
+      "label": "Success message",
+      "default": "You're in. We'll be in touch."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
