@@ -8,6 +8,7 @@
   --wo-cream:    #F5F4EF;
   --wo-black:    #1A1A18;
   --wo-burgundy: #5F1804;
+  --wo-muted:    #837C6C;
   --wo-border:   rgba(26, 26, 24, 0.12);
   --wo-font-serif: 'Cormorant Garamond', Georgia, serif;
   --wo-font-mono:  'Space Mono', 'Courier New', monospace;
@@ -16,6 +17,17 @@
   --wo-space-md: 32px;
   --wo-space-lg: 80px;
   --wo-space-xl: 120px;
+
+  /* Hijack Dawn's font system so all Dawn components (cards, hero, facets, etc.)
+     inherit WO fonts without needing per-class !important overrides */
+  --font-heading-family: 'Cormorant Garamond', Georgia, serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 300;
+  --font-body-family: 'Space Mono', 'Courier New', monospace;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-scale: 1;
+  --font-heading-scale: 1;
 }
 
 /* --- Reset / Base --- */
@@ -125,32 +137,6 @@ a:hover { opacity: 0.7; }
   .wo-hero__content { left: var(--wo-space-sm); right: var(--wo-space-sm); bottom: var(--wo-space-lg); }
 }
 
-/* --- Products Strip Heading --- */
-.wo-products-strip__heading {
-  font-family: var(--wo-font-mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--wo-burgundy);
-  margin-bottom: var(--wo-space-md);
-  font-weight: 500;
-}
-.wo-products-strip__footer {
-  margin-top: var(--wo-space-md);
-  text-align: center;
-}
-.wo-products-strip__link {
-  font-family: var(--wo-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--wo-black);
-  border-bottom: 1px solid var(--wo-black);
-  padding-bottom: 2px;
-  transition: opacity 0.2s;
-}
-.wo-products-strip__link:hover { opacity: 0.6; }
-
 /* --- Products Strip (Homepage) --- */
 .wo-products-strip__grid {
   display: grid;
@@ -241,6 +227,11 @@ a:hover { opacity: 0.7; }
 .collection__products .card-wrapper {
   background: transparent !important;
 }
+/* Force portrait aspect ratio (4:5) so product images read larger */
+.product-grid .card__inner.ratio,
+.collection__products .card__inner.ratio {
+  --ratio-percent: 125% !important;
+}
 /* Force product prices to burgundy */
 .price .price__regular,
 .price--on-sale .price__sale {
@@ -261,6 +252,104 @@ a:hover { opacity: 0.7; }
   .collection__products {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* Collection banner title — Dawn's h1 inside collection-hero */
+.collection-hero__title {
+  font-family: var(--wo-font-serif) !important;
+  font-size: clamp(28px, 4vw, 56px) !important;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  letter-spacing: 0.02em !important;
+  color: var(--wo-black) !important;
+}
+/* Remove Dawn's gradient color scheme tinting from the banner */
+.collection-hero.gradient,
+.collection-hero.color-scheme-1,
+.collection-hero[class*="color-"] {
+  background: var(--wo-cream) !important;
+  color: var(--wo-black) !important;
+}
+.collection-hero__inner {
+  padding-top: var(--wo-space-lg) !important;
+  padding-bottom: var(--wo-space-md) !important;
+  padding-left: var(--wo-space-md) !important;
+  padding-right: var(--wo-space-md) !important;
+  max-width: none !important;
+}
+/* Also strip color scheme from the product grid section */
+.section-{{ section.id }}-padding.gradient,
+.gradient.color-scheme-1 {
+  background: var(--wo-cream) !important;
+}
+
+/* Card image container — no Dawn shadows/borders */
+.card--standard,
+.card--card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.card--standard .card__inner,
+.card--card {
+  border: none !important;
+}
+.card--standard .card__inner::after,
+.card--card::after {
+  display: none !important;
+}
+
+/* Filter / sort / facets UI — restyle to WO mono */
+.facets__summary,
+.facets__label,
+.facet-filters__label,
+.facet-filters__sort select,
+.select__select,
+.product-count__text,
+.facets-wrap label,
+.mobile-facets__open,
+.mobile-facets__close,
+.facets-vertical-form label,
+.caption,
+.caption-large,
+.caption-with-letter-spacing,
+.facet-checkbox,
+.price-range__from,
+.price-range__to {
+  font-family: var(--wo-font-mono) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: var(--wo-black) !important;
+}
+.select__select,
+.facet-filters__sort select {
+  border: 1px solid var(--wo-border) !important;
+  border-radius: 0 !important;
+  background: var(--wo-cream) !important;
+  padding: 8px 12px !important;
+}
+.active-facets__button,
+.active-facets__button-inner {
+  font-family: var(--wo-font-mono) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  border: 1px solid var(--wo-border) !important;
+  background: transparent !important;
+  color: var(--wo-black) !important;
+}
+.pagination__item,
+.pagination__item a,
+.pagination__item span {
+  font-family: var(--wo-font-mono) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 0 !important;
+}
+.pagination__item--current {
+  border-bottom: 1px solid var(--wo-black) !important;
+  background: transparent !important;
 }
 
 /* --- Story Page --- */

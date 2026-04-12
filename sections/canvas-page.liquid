@@ -1,206 +1,301 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
+  /* === CANVAS PAGE — WO Transmission Aesthetic === */
   :root {
-    --wo-bg: #1a1a18;
-    --wo-cream: #F2F3EE;
-    --wo-red: #5F1804;
-    --wo-muted: #837C6C;
+    --wo-bg:     #1a1a18;
+    --wo-cream:  #F2F3EE;
+    --wo-red:    #5F1804;
+    --wo-muted:  #837C6C;
     --wo-border: rgba(242,243,238,0.08);
   }
-  .wo-page-wrapper { background-color: var(--wo-bg); color: var(--wo-cream); }
-  .wo-page-inner { max-width: var(--page-width,1200px); margin:0 auto; padding:80px 5rem 32px; }
-  .wo-divider { width:40px; height:1px; background:var(--wo-red); margin-bottom:48px; }
-  .wo-page-content { font-size:15px; line-height:1.85; color:rgba(242,243,238,0.75); font-family:'Courier New',monospace; }
-  .wo-page-content p { margin-bottom:1.6em; }
-  .wo-page-content a { color:var(--wo-cream); border-bottom:1px solid var(--wo-red); text-decoration:none; transition:opacity 0.2s; }
-  .wo-page-content a:hover { opacity:0.6; }
-  .wo-page-content h2, .wo-page-content h3 { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--wo-red); margin:48px 0 16px; font-weight:500; }
-  .section-{{ section.id }}-padding { padding-top:{{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom:{{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
-  @media screen and (min-width:750px) { .section-{{ section.id }}-padding { padding-top:{{ section.settings.padding_top }}px; padding-bottom:{{ section.settings.padding_bottom }}px; } }
-  @media (min-width:750px) { .wo-page-inner { padding:100px 5rem 32px; } }
-  @media (max-width:749px) { .wo-page-inner { padding:60px 1.5rem 24px; } }
 
-  /* ---- Inline email capture ---- */
-  .wo-email-capture {
-    margin-top: 72px;
-    padding-top: 56px;
-    border-top: 1px solid var(--wo-border);
+  .wo-canvas { background: var(--wo-bg); color: var(--wo-cream); position: relative; overflow: hidden; min-height: 100vh; }
+
+  /* Grain overlay */
+  .wo-canvas::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 0;
   }
-  .wo-email-capture__label {
+
+  /* Horizontal scanline sweep */
+  .wo-canvas__scan {
+    position: fixed;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(95,24,4,0.4), transparent);
+    animation: wo-scan 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+  @keyframes wo-scan {
+    0%   { top: -2px; opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 0.6; }
+    100% { top: 100vh; opacity: 0; }
+  }
+
+  /* Header band */
+  .wo-canvas__header {
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid var(--wo-border);
+    padding: 48px 5rem 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .wo-canvas__coords {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--wo-muted);
+    line-height: 1.8;
+  }
+  .wo-canvas__coords span { display: block; }
+
+  .wo-canvas__title-block { max-width: 640px; }
+
+  .wo-canvas__label {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--wo-red);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .wo-canvas__label::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--wo-red);
+    flex-shrink: 0;
+  }
+
+  .wo-canvas__headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--wo-cream);
+    letter-spacing: 0.01em;
+  }
+
+  /* Ticker bar */
+  .wo-canvas__ticker {
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid var(--wo-border);
+    padding: 10px 0;
+    overflow: hidden;
+    background: rgba(95,24,4,0.06);
+  }
+  .wo-canvas__ticker-track {
+    display: flex;
+    gap: 0;
+    animation: wo-ticker 40s linear infinite;
+    width: max-content;
+    white-space: nowrap;
+  }
+  .wo-canvas__ticker-track span {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--wo-muted);
+    padding: 0 40px;
+  }
+  .wo-canvas__ticker-track span.wo-accent { color: var(--wo-red); }
+  @keyframes wo-ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Main content area */
+  .wo-canvas__body {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 5rem 120px;
+  }
+
+  .wo-canvas__body .wo-page-content {
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(242,243,238,0.78);
+    font-family: 'Space Mono', 'Courier New', monospace;
+  }
+  .wo-canvas__body .wo-page-content p { margin-bottom: 1.6em; }
+  .wo-canvas__body .wo-page-content a {
+    color: var(--wo-cream);
+    border-bottom: 1px solid var(--wo-red);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .wo-canvas__body .wo-page-content a:hover { opacity: 0.6; }
+  .wo-canvas__body .wo-page-content h2,
+  .wo-canvas__body .wo-page-content h3 {
     font-size: 10px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--wo-red);
-    font-family: 'Courier New', monospace;
-    margin-bottom: 16px;
+    margin: 56px 0 18px;
+    font-weight: 500;
+    font-family: 'Space Mono', 'Courier New', monospace;
   }
-  .wo-email-capture__heading {
-    font-size: clamp(20px, 3vw, 28px);
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--wo-cream);
-    line-height: 1.25;
-    margin-bottom: 8px;
-  }
-  .wo-email-capture__sub {
-    font-size: 12px;
+  .wo-canvas__body .wo-page-content h2::before,
+  .wo-canvas__body .wo-page-content h3::before {
+    content: '— ';
     color: var(--wo-muted);
-    margin-bottom: 32px;
-    font-family: 'Courier New', monospace;
   }
-  .wo-email-capture__form {
+
+  /* Footer closing mark */
+  .wo-canvas__close {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--wo-border);
+    padding: 40px 5rem;
     display: flex;
-    gap: 0;
-    max-width: 480px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-  .wo-email-capture__input {
-    flex: 1;
-    background: transparent;
-    border: 1px solid rgba(242,243,238,0.2);
-    border-right: none;
-    color: var(--wo-cream);
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    padding: 14px 16px;
-    outline: none;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-    border-radius: 0;
+  .wo-canvas__close-sig {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--wo-muted);
+    letter-spacing: 0.05em;
   }
-  .wo-email-capture__input::placeholder { color: var(--wo-muted); }
-  .wo-email-capture__input:focus { border-color: rgba(242,243,238,0.5); }
-  .wo-email-capture__btn {
-    background: var(--wo-red);
-    color: var(--wo-cream);
-    border: 1px solid var(--wo-red);
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
+  .wo-canvas__close-mark {
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    padding: 14px 24px;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    white-space: nowrap;
-    border-radius: 0;
+    color: rgba(242,243,238,0.2);
   }
-  .wo-email-capture__btn:hover { opacity: 0.8; }
-  .wo-email-capture__success {
-    font-size: 12px;
-    color: var(--wo-cream);
-    opacity: 0.7;
-    margin-top: 12px;
-    font-family: 'Courier New', monospace;
-    display: none;
+
+  /* Vertical rule accent */
+  .wo-canvas__body::before {
+    content: '';
+    position: absolute;
+    left: calc(5rem - 20px);
+    top: 80px;
+    bottom: 120px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--wo-red), transparent);
+    opacity: 0.3;
   }
-  @media (max-width:749px) {
-    .wo-email-capture__form { flex-direction: column; }
-    .wo-email-capture__input { border-right: 1px solid rgba(242,243,238,0.2); border-bottom: none; }
-    .wo-email-capture__btn { text-align: center; }
+
+  /* Responsive */
+  @media (max-width: 749px) {
+    .wo-canvas__header { padding: 40px 1.5rem 28px; }
+    .wo-canvas__body { padding: 60px 1.5rem 80px; }
+    .wo-canvas__body::before { left: 0.75rem; }
+    .wo-canvas__close { padding: 32px 1.5rem; }
+    .wo-canvas__coords { display: none; }
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
 {%- endstyle -%}
 
-<div class="wo-page-wrapper section-{{ section.id }}-padding">
-  <div class="wo-page-inner">
-    <div class="wo-divider"></div>
+<div class="wo-canvas section-{{ section.id }}-padding">
+
+  <div class="wo-canvas__scan" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <div class="wo-canvas__header">
+    <div class="wo-canvas__title-block">
+      <div class="wo-canvas__label">transmission</div>
+      <h1 class="wo-canvas__headline">{{ page.title }}</h1>
+    </div>
+    <div class="wo-canvas__coords" aria-hidden="true">
+      <span>38.9764&deg; N</span>
+      <span>76.4896&deg; W</span>
+      <span>Annapolis, MD</span>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="wo-canvas__ticker" aria-hidden="true">
+    <div class="wo-canvas__ticker-track">
+      <span>Friction over comfort</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Signal over noise</span>
+      <span class="wo-accent">&bull;</span>
+      <span>The edge is clarity</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Never numb again</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Chaos &rarr; VOID &rarr; Order</span>
+      <span class="wo-accent">&bull;</span>
+      <span>World Order Est. 2024</span>
+      <span class="wo-accent">&bull;</span>
+      <!-- duplicate for seamless loop -->
+      <span>Friction over comfort</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Signal over noise</span>
+      <span class="wo-accent">&bull;</span>
+      <span>The edge is clarity</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Never numb again</span>
+      <span class="wo-accent">&bull;</span>
+      <span>Chaos &rarr; VOID &rarr; Order</span>
+      <span class="wo-accent">&bull;</span>
+      <span>World Order Est. 2024</span>
+      <span class="wo-accent">&bull;</span>
+    </div>
+  </div>
+
+  <!-- Body content -->
+  <div class="wo-canvas__body">
     <div class="wo-page-content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       {{ page.content }}
     </div>
-
-    {%- if section.settings.show_email_capture -%}
-      <div class="wo-email-capture">
-        <p class="wo-email-capture__label">{{ section.settings.email_eyebrow | default: 'The List' }}</p>
-        <h2 class="wo-email-capture__heading">{{ section.settings.email_heading | default: 'Stay in the frequency.' }}</h2>
-        <p class="wo-email-capture__sub">{{ section.settings.email_subtext | default: 'New drops, editorial content, and transmissions from the studio.' }}</p>
-
-        {%- form 'customer', id: 'CanvasEmailForm', class: 'wo-email-capture__form-wrap' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter,canvas">
-          {%- if form.posted_successfully? -%}
-            <p class="wo-email-capture__success">
-              {{ section.settings.email_success | default: "You're in. We'll be in touch." }}
-            </p>
-          {%- else -%}
-            <div class="wo-email-capture__form">
-              <input
-                type="email"
-                name="contact[email]"
-                class="wo-email-capture__input"
-                placeholder="{{ section.settings.email_placeholder | default: 'your@email.com' }}"
-                aria-label="Email address"
-                autocomplete="email"
-                required
-                value="{{ form.email }}"
-                {% if form.errors %}aria-invalid="true"{% endif %}
-              >
-              <button type="submit" class="wo-email-capture__btn">
-                {{ section.settings.email_cta | default: 'Subscribe' }}
-              </button>
-            </div>
-            {%- if form.errors -%}
-              <p class="wo-email-capture__error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
-            {%- endif -%}
-          {%- endif -%}
-        {%- endform -%}
-      </div>
-    {%- endif -%}
   </div>
+
+  <!-- Closing mark -->
+  <div class="wo-canvas__close">
+    <span class="wo-canvas__close-sig">the work continues.</span>
+    <span class="wo-canvas__close-mark">WO &mdash; {{ 'now' | date: '%Y' }}</span>
+  </div>
+
 </div>
 
 {% schema %}
 {
-  "name": "Canvas Page",
+  "name": "WO Canvas Page",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "header",
-      "content": "Email Capture"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_email_capture",
-      "label": "Show email capture",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "email_eyebrow",
-      "label": "Eyebrow label",
-      "default": "The List"
-    },
-    {
-      "type": "text",
-      "id": "email_heading",
-      "label": "Heading",
-      "default": "Stay in the frequency."
-    },
-    {
-      "type": "text",
-      "id": "email_subtext",
-      "label": "Subtext",
-      "default": "New drops, editorial content, and transmissions from the studio."
-    },
-    {
-      "type": "text",
-      "id": "email_placeholder",
-      "label": "Input placeholder",
-      "default": "your@email.com"
-    },
-    {
-      "type": "text",
-      "id": "email_cta",
-      "label": "Button label",
-      "default": "Subscribe"
-    },
-    {
-      "type": "text",
-      "id": "email_success",
-      "label": "Success message",
-      "default": "You're in. We'll be in touch."
-    },
-    {
-      "type": "header",
-      "content": "Padding"
+      "content": "Section padding"
     },
     {
       "type": "range",
@@ -210,7 +305,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 36
+      "default": 0
     },
     {
       "type": "range",
@@ -220,7 +315,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 36
+      "default": 0
     }
   ]
 }
