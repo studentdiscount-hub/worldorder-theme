@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "wo-canvas-content": {
+      "type": "wo-canvas-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": ["wo-canvas-content"]
+}
