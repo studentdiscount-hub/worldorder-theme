@@ -308,7 +308,11 @@
       "@type": "Organization",
       "name": "World Order",
       "url": "{{ shop.url }}",
-      "logo": "{{ shop.url }}/cdn/shop/files/wo-logo.svg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ shop.url }}/cdn/shop/files/wo-logo.svg"
+      },
+      {{- /* NOTE: logo path is hardcoded. If wo-logo.svg is renamed in Shopify Admin → Content → Files, update this path. */ -}}
       "description": "{{ shop.description | escape }}",
       "sameAs": [
         "{{ settings.social_instagram_link }}",

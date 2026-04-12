@@ -246,7 +246,6 @@ a:hover { opacity: 0.7; }
   max-width: none !important;
 }
 /* Also strip color scheme from the product grid section */
-.section-{{ section.id }}-padding.gradient,
 .gradient.color-scheme-1 {
   background: var(--wo-cream) !important;
 }
@@ -787,4 +786,23 @@ footer { background-color: var(--wo-cream) !important; }
 /* Sticky header — keep cream when scrolled */
 .shopify-section-header-sticky .header-wrapper {
   background-color: var(--wo-cream) !important;
+}
+
+/* ============================================================
+   REDUCED MOTION — respect OS accessibility preference
+   Covers About page animations and any global transition effects.
+   Canvas page animations (wo-scan, wo-ticker) handled in
+   wo-canvas-page.liquid style block.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .wo-repeat-strip {
+    animation: none;
+    transform: translateY(0) !important;
+  }
+
+  .wo-appear-word {
+    opacity: 1 !important;
+    transition: none !important;
+    letter-spacing: 0 !important;
+  }
 }

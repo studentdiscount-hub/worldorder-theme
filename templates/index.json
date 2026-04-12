@@ -24,9 +24,9 @@
     "wo-about-strip": {
       "type": "wo-about-strip",
       "settings": {
-        "text": "World Order is a fashion brand built on the tension between chaos and structure. Every piece is designed to hold its own.",
-        "link_label": "Read the story",
-        "link_url": "/pages/story"
+        "text": "Pain into power. Power into peace. The sequence doesn't lie — it just costs. World Order exists for those who already know.",
+        "link_label": "Read the manifesto",
+        "link_url": "/pages/about"
       }
     }
   },

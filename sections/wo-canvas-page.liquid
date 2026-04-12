@@ -2,12 +2,14 @@
 
 {%- style -%}
   /* === CANVAS PAGE — WO Transmission Aesthetic === */
-  :root {
+  /* Scoped to .wo-canvas (not :root) so these overrides don't bleed into
+     the site header or any element outside the canvas section. */
+  .wo-canvas {
     --wo-bg:     #1a1a18;
-    --wo-cream:  #F2F3EE;
+    --wo-cream:  #F5F4EF;
     --wo-red:    #5F1804;
     --wo-muted:  #837C6C;
-    --wo-border: rgba(242,243,238,0.08);
+    --wo-border: rgba(245,244,239,0.08);
   }
 
   .wo-canvas { background: var(--wo-bg); color: var(--wo-cream); position: relative; overflow: hidden; min-height: 100vh; }
@@ -137,7 +139,7 @@
   .wo-canvas__body .wo-page-content {
     font-size: 15px;
     line-height: 1.9;
-    color: rgba(242,243,238,0.78);
+    color: rgba(245,244,239,0.78);
     font-family: 'Space Mono', 'Courier New', monospace;
   }
   .wo-canvas__body .wo-page-content p { margin-bottom: 1.6em; }
@@ -188,7 +190,7 @@
     font-size: 9px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: rgba(242,243,238,0.2);
+    color: rgba(245,244,239,0.2);
   }
 
   /* Vertical rule accent */
@@ -220,6 +222,18 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Reduced motion — freeze canvas-specific animations */
+  @media (prefers-reduced-motion: reduce) {
+    .wo-canvas__scan {
+      animation: none !important;
+      display: none;
+    }
+
+    .wo-canvas__ticker-track {
+      animation: none !important;
     }
   }
 {%- endstyle -%}
@@ -275,6 +289,7 @@
   <!-- Body content -->
   <div class="wo-canvas__body">
     <div class="wo-page-content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <p style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--wo-muted);margin-bottom:3em;">— This page updates with each drop. What you see is current.</p>
       {{ page.content }}
     </div>
   </div>

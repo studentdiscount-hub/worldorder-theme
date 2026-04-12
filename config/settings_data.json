@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/Asset_1.svg",
+    "logo": "shopify://shop_images/logo.png",
     "logo_width": 160,
     "favicon": "shopify://shop_images/Asset_1-pfti.png",
     "type_header_font": "helvetica_n7",
