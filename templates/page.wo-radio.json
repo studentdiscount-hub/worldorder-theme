@@ -12,10 +12,9 @@
     "wo-radio-content": {
       "type": "wo-radio-content",
       "settings": {
-        "ep_label": "World Order Radio",
-        "ep_title": "There\u2019s a shape forming in the dark",
-        "tagline": "The clothes arrived first. The music explains why.",
-        "spotify_url": "https://open.spotify.com/playlist/1XY3kVW7NmjD3DhlRABoeh"
+        "ep_label": "EP #001",
+        "ep_title": "WORLD ORDER RADIO",
+        "tagline": "The clothes arrived first. The music explains why."
       },
       "blocks": {
         "track-1": {
