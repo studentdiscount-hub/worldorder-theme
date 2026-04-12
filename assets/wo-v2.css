@@ -10,6 +10,7 @@
   --wo-burgundy: #5F1804;
   --wo-muted:    #837C6C;
   --wo-border:   rgba(26, 26, 24, 0.12);
+  --wo-border-light: rgba(245, 244, 239, 0.15);
   --wo-font-serif: 'Cormorant Garamond', Georgia, serif;
   --wo-font-mono:  'Space Mono', 'Courier New', monospace;
   --wo-space-xs: 8px;
@@ -82,7 +83,7 @@ a:hover { opacity: 0.7; }
 }
 
 /* --- Hero --- */
-.wo-hero { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+.wo-hero { position: relative; width: 100%; height: 100vh; height: 100svh; overflow: hidden; }
 .wo-hero__image-wrap { width: 100%; height: 100%; }
 .wo-hero__img {
   width: 100%;
