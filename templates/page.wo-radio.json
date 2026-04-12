@@ -14,57 +14,17 @@
       "settings": {
         "ep_label": "EP #001",
         "ep_title": "WORLD ORDER RADIO",
-        "tagline": "The clothes arrived first. The music explains why."
-      },
-      "blocks": {
-        "track-1": {
-          "type": "track",
-          "settings": {
-            "numeral": "I",
-            "song": "Call Me",
-            "artist": "Blood Orange, Park Hye Jin"
-          }
-        },
-        "track-2": {
-          "type": "track",
-          "settings": {
-            "numeral": "II",
-            "song": "Diving Board",
-            "artist": "redveil"
-          }
-        },
-        "track-3": {
-          "type": "track",
-          "settings": {
-            "numeral": "III",
-            "song": "DHL",
-            "artist": "Frank Ocean"
-          }
-        },
-        "track-4": {
-          "type": "track",
-          "settings": {
-            "numeral": "IV",
-            "song": "Alesis",
-            "artist": "Mk.gee"
-          }
-        },
-        "track-5": {
-          "type": "track",
-          "settings": {
-            "numeral": "V",
-            "song": "Fruits of the Spirit",
-            "artist": "Jay Electronica"
-          }
-        }
-      },
-      "block_order": [
-        "track-1",
-        "track-2",
-        "track-3",
-        "track-4",
-        "track-5"
-      ]
+        "track_title_1": "Call Me",
+        "track_artist_1": "Blood Orange, Park Hye Jin",
+        "track_title_2": "Diving Board",
+        "track_artist_2": "redveil",
+        "track_title_3": "DHL",
+        "track_artist_3": "Frank Ocean",
+        "track_title_4": "Alesis",
+        "track_artist_4": "Mk.gee",
+        "track_title_5": "Fruits of the Spirit",
+        "track_artist_5": "Jay Electronica"
+      }
     }
   },
   "order": [

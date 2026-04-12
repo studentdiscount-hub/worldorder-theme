@@ -1,8 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "story": {
       "type": "wo-story",
-      "settings": {}
+      "settings": {
+        "headline": "Pain. Power. Peace.",
+        "manifesto": "<p>We didn't build a brand. We documented a sequence.</p><p>Pain was the entry point. Most stopped there. We didn't.</p><p>Power isn't claimed — it's extracted from the things that tried to end you.</p><p>Peace isn't comfort. It's arriving on the other side with everything you need.</p><p>World Order is what happens when you stop negotiating with the noise.</p>",
+        "framework_label_1": "Chaos",
+        "framework_body_1": "Where most people see disorder, we saw the beginning of clarity.",
+        "framework_label_2": "VOID",
+        "framework_body_2": "The space between who you were and who you're becoming. Most people skip it. We live there.",
+        "framework_label_3": "Order",
+        "framework_body_3": "Not calm. Not comfortable. Sovereign."
+      }
     }
   },
   "order": ["story"]
