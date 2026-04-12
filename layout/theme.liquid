@@ -338,6 +338,20 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {%- if template.name == 'product' -%}
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Brand",
+  "name": "World Order",
+  "url": "{{ shop.url }}",
+  "logo": "{{ shop.url }}/cdn/shop/files/wo-logo.svg",
+  "description": "{{ shop.description | escape }}",
+  "sameAs": ["https://instagram.com/worldorderhq"]
+}
+    </script>
+    {%- endif -%}
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
