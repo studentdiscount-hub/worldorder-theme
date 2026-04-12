@@ -6,9 +6,15 @@
           {%- if product.featured_image -%}
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"
+              srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
+                      {{ product.featured_image | image_url: width: 800 }} 800w,
+                      {{ product.featured_image | image_url: width: 1200 }} 1200w"
+              sizes="(max-width: 768px) 100vw, (max-width: 990px) 50vw, 33vw"
               alt="{{ product.featured_image.alt | default: product.title }}"
               class="wo-product-card__img"
               loading="lazy"
+              width="800"
+              height="1067"
             >
           {%- else -%}
             <div class="wo-product-card__no-image"></div>

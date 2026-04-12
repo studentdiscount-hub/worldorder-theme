@@ -300,6 +300,39 @@
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "World Order",
+      "url": "{{ shop.url }}",
+      "logo": "{{ shop.url }}/cdn/shop/files/wo-logo.svg",
+      "description": "{{ shop.description | escape }}",
+      "sameAs": [
+        "{{ settings.social_instagram_link }}",
+        "{{ settings.social_twitter_link }}",
+        "{{ settings.social_tiktok_link }}"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "name": "{{ shop.name | escape }}",
+      "url": "{{ shop.url }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+    </script>
+
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
