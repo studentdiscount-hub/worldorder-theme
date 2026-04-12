@@ -350,7 +350,10 @@
   "@type": "Brand",
   "name": "World Order",
   "url": "{{ shop.url }}",
-  "logo": "{{ shop.url }}/cdn/shop/files/wo-logo.svg",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ shop.url }}/cdn/shop/files/wo-logo.svg"
+  },
   "description": "{{ shop.description | escape }}",
   "sameAs": ["https://instagram.com/worldorderhq"]
 }
