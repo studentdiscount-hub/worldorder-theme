@@ -1,25 +1,38 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "wo-hero": {
       "type": "wo-hero",
       "settings": {
-        "headline": "World Order"
+        "wordmark_line1": "WORLD ORDER",
+        "subline": "Uniforms for the individual. Engineered with intention.",
+        "drop_label": "Standard Issue — #001",
+        "cta_label": "Shop the Drop",
+        "cta_url": "/collections/all"
       }
     },
     "wo-products-strip": {
       "type": "wo-products-strip",
       "settings": {
+        "eyebrow": "Standard Issue — #001",
+        "section_title": "The Drop",
+        "view_all_url": "/collections/all",
+        "view_all_label": "Shop all",
         "product_limit": 3
       }
+    },
+    "wo-brand-statement": {
+      "type": "wo-brand-statement",
+      "settings": {
+        "headline_part1": "EACH ORDER BREAKS.",
+        "headline_part2": "EVERY BREAK CREATES ORDER.",
+        "signal_text": "can static speak in code?",
+        "sub_text": "Uniforms for the individual. Engineered with intention.",
+        "mark_text": "never. numb. again."
+      }
+    },
+    "wo-philosophy-strip": {
+      "type": "wo-philosophy-strip",
+      "settings": {}
     },
     "wo-about-strip": {
       "type": "wo-about-strip",
@@ -28,7 +41,23 @@
         "link_label": "Read the manifesto",
         "link_url": "/pages/about"
       }
+    },
+    "wo-email-capture": {
+      "type": "wo-email-capture",
+      "settings": {
+        "eyebrow": "Early Access",
+        "headline": "Drop 002:\nIntellectual\nProperty.",
+        "sub_text": "First in. Nothing explained. Nothing for everyone.",
+        "btn_label": "Request Access"
+      }
     }
   },
-  "order": ["wo-hero", "wo-products-strip", "wo-about-strip"]
+  "order": [
+    "wo-hero",
+    "wo-products-strip",
+    "wo-brand-statement",
+    "wo-philosophy-strip",
+    "wo-about-strip",
+    "wo-email-capture"
+  ]
 }

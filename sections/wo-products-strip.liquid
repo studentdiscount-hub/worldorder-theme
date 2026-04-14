@@ -1,5 +1,40 @@
-<section class="wo-products-strip" style="padding: var(--wo-space-lg) var(--wo-space-md);">
+{% comment %}
+  WORLD ORDER -- wo-products-strip.liquid
+  Homepage drop feature. Dark/charcoal field.
+  Big Shoulders product names. Editorial card treatment.
+{% endcomment %}
+
+<section class="wo-products-strip">
+  <div class="wo-products-strip__header">
+    <div>
+      <p class="wo-products-strip__label">
+        {%- if section.settings.eyebrow != blank -%}
+          {{ section.settings.eyebrow }}
+        {%- else -%}
+          Standard Issue &#x23;001
+        {%- endif -%}
+      </p>
+      <h2 class="wo-products-strip__title">
+        {%- if section.settings.section_title != blank -%}
+          {{ section.settings.section_title }}
+        {%- else -%}
+          The Drop
+        {%- endif -%}
+      </h2>
+    </div>
+    {%- if section.settings.view_all_url != blank -%}
+      <a href="{{ section.settings.view_all_url }}" class="wo-products-strip__viewall">
+        {%- if section.settings.view_all_label != blank -%}
+          {{ section.settings.view_all_label }}
+        {%- else -%}
+          View all
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+  </div>
+
   <div class="wo-products-strip__grid">
+    {%- assign product_index = 1 -%}
     {%- for product in collections[section.settings.collection].products limit: section.settings.product_limit -%}
       <a href="{{ product.url }}" class="wo-product-card">
         <div class="wo-product-card__image-wrap">
@@ -9,7 +44,7 @@
               srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
                       {{ product.featured_image | image_url: width: 800 }} 800w,
                       {{ product.featured_image | image_url: width: 1200 }} 1200w"
-              sizes="(max-width: 768px) 100vw, (max-width: 990px) 50vw, 33vw"
+              sizes="(max-width: 600px) 50vw, (max-width: 990px) 50vw, 33vw"
               alt="{{ product.featured_image.alt | default: product.title }}"
               class="wo-product-card__img"
               loading="lazy"
@@ -21,10 +56,12 @@
           {%- endif -%}
         </div>
         <div class="wo-product-card__info">
-          <span class="wo-product-card__name">{{ product.title }}</span>
+          <span class="wo-product-card__num">0{{ product_index }}</span>
+          <span class="wo-product-card__name">{{ product.title | upcase }}</span>
           <span class="wo-product-card__price">{{ product.price | money }}</span>
         </div>
       </a>
+      {%- assign product_index = product_index | plus: 1 -%}
     {%- endfor -%}
   </div>
 </section>
@@ -37,6 +74,29 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow / drop label",
+      "default": "Standard Issue #001"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "The Drop"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View all URL"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all label",
+      "default": "Shop all"
     },
     {
       "type": "range",

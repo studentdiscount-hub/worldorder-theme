@@ -1,0 +1,85 @@
+{% comment %}
+  WORLD ORDER -- wo-brand-statement.liquid
+  Full-width editorial break. Off-white field. Statement voice dominates.
+  Signal voice whispers underneath.
+{% endcomment %}
+
+<section class="wo-brand-statement">
+  <span class="wo-brand-statement__signal" aria-hidden="true">
+    {%- if section.settings.signal_text != blank -%}
+      {{ section.settings.signal_text }}
+    {%- else -%}
+      can static speak in code?
+    {%- endif -%}
+  </span>
+
+  <h2 class="wo-brand-statement__headline">
+    {%- if section.settings.headline_part1 != blank -%}
+      {{ section.settings.headline_part1 }}
+    {%- else -%}
+      EACH ORDER BREAKS.
+    {%- endif -%}
+    <br>
+    {%- if section.settings.headline_part2 != blank -%}
+      <em>{{ section.settings.headline_part2 }}</em>
+    {%- else -%}
+      <em>EVERY BREAK CREATES ORDER.</em>
+    {%- endif -%}
+  </h2>
+
+  <div class="wo-brand-statement__footer">
+    <span class="wo-brand-statement__sub">
+      {%- if section.settings.sub_text != blank -%}
+        {{ section.settings.sub_text }}
+      {%- else -%}
+        Uniforms for the individual. Engineered with intention.
+      {%- endif -%}
+    </span>
+    <span class="wo-brand-statement__mark" aria-hidden="true">
+      {%- if section.settings.mark_text != blank -%}
+        {{ section.settings.mark_text }}
+      {%- else -%}
+        never. numb. again.
+      {%- endif -%}
+    </span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WO Brand Statement",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline_part1",
+      "label": "Headline line 1",
+      "default": "EACH ORDER BREAKS."
+    },
+    {
+      "type": "text",
+      "id": "headline_part2",
+      "label": "Headline line 2 (outline style)",
+      "default": "EVERY BREAK CREATES ORDER."
+    },
+    {
+      "type": "text",
+      "id": "signal_text",
+      "label": "Signal text (handwritten, background)",
+      "default": "can static speak in code?"
+    },
+    {
+      "type": "text",
+      "id": "sub_text",
+      "label": "Sub text (underlined)",
+      "default": "Uniforms for the individual. Engineered with intention."
+    },
+    {
+      "type": "text",
+      "id": "mark_text",
+      "label": "Mark text (right, red)",
+      "default": "never. numb. again."
+    }
+  ],
+  "presets": [{ "name": "WO Brand Statement" }]
+}
+{% endschema %}

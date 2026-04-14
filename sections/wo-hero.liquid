@@ -1,6 +1,14 @@
-<section class="wo-hero">
-  <div class="wo-hero__image-wrap">
-    {%- if section.settings.hero_image != blank -%}
+{% comment %}
+  WORLD ORDER -- wo-hero.liquid
+  Homepage Hero System v2.0
+  Typography-forward. Dark field. Grain. Entrance animation.
+  Big Shoulders Display Bold = Statement voice wordmark.
+{% endcomment %}
+
+<section class="wo-hero" id="wo-hero">
+
+  {%- if section.settings.hero_image != blank -%}
+    <div class="wo-hero__image-wrap">
       <img
         src="{{ section.settings.hero_image | image_url: width: 2000 }}"
         srcset="{{ section.settings.hero_image | image_url: width: 800 }} 800w,
@@ -12,20 +20,46 @@
         loading="eager"
         fetchpriority="high"
       >
-    {%- else -%}
-      <div class="wo-hero__placeholder">
-        {%- if section.settings.headline != blank -%}
-          <span class="wo-hero__placeholder-text">{{ section.settings.headline }}</span>
+      <div class="wo-hero__overlay"></div>
+    </div>
+  {%- else -%}
+    <div class="wo-hero__placeholder"></div>
+  {%- endif -%}
+
+  <div class="wo-hero__content">
+    <h1 class="wo-hero__wordmark" aria-label="World Order">
+      {%- if section.settings.wordmark_line1 != blank -%}
+        {{ section.settings.wordmark_line1 }}
+      {%- else -%}
+        WORLD ORDER
+      {%- endif -%}
+    </h1>
+
+    <div class="wo-hero__rule" aria-hidden="true"></div>
+
+    <div class="wo-hero__meta">
+      <span class="wo-hero__subline">
+        {%- if section.settings.subline != blank -%}
+          {{ section.settings.subline }}
+        {%- else -%}
+          Uniforms for the individual. Engineered with intention.
         {%- endif -%}
-      </div>
-    {%- endif -%}
-    <div class="wo-hero__overlay"></div>
-    <div class="wo-hero__content">
-      {%- if section.settings.headline != blank -%}
-        <h1 class="wo-hero__headline">{{ section.settings.headline }}</h1>
+      </span>
+
+      {%- if section.settings.drop_label != blank -%}
+        <span class="wo-hero__drop-label">{{ section.settings.drop_label }}</span>
       {%- endif -%}
     </div>
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+      <a href="{{ section.settings.cta_url }}" class="wo-hero__cta">
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
   </div>
+
+  <span class="wo-hero__scroll" aria-hidden="true">Scroll</span>
+
 </section>
 
 {% schema %}
@@ -35,13 +69,36 @@
     {
       "type": "image_picker",
       "id": "hero_image",
-      "label": "Hero image"
+      "label": "Background image (optional -- dark field is default)"
     },
     {
       "type": "text",
-      "id": "headline",
-      "label": "Headline",
-      "default": "World Order"
+      "id": "wordmark_line1",
+      "label": "Wordmark",
+      "default": "WORLD ORDER"
+    },
+    {
+      "type": "text",
+      "id": "subline",
+      "label": "Subline",
+      "default": "Uniforms for the individual. Engineered with intention."
+    },
+    {
+      "type": "text",
+      "id": "drop_label",
+      "label": "Drop label (right side)",
+      "default": "Standard Issue #001"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Shop the Drop"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
     }
   ],
   "presets": [{ "name": "WO Hero" }]

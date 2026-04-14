@@ -1,0 +1,84 @@
+{% comment %}
+  WORLD ORDER -- wo-email-capture.liquid
+  Drop 002 early access. Parchment field. Statement voice.
+  No embellishment. Copy does the work.
+{% endcomment %}
+
+<section class="wo-email-capture">
+  <p class="wo-email-capture__eyebrow">
+    {%- if section.settings.eyebrow != blank -%}
+      {{ section.settings.eyebrow }}
+    {%- else -%}
+      Early Access
+    {%- endif -%}
+  </p>
+
+  <h2 class="wo-email-capture__headline">
+    {%- if section.settings.headline != blank -%}
+      {{ section.settings.headline }}
+    {%- else -%}
+      Drop 002:<br>Intellectual<br>Property.
+    {%- endif -%}
+  </h2>
+
+  <p class="wo-email-capture__sub">
+    {%- if section.settings.sub_text != blank -%}
+      {{ section.settings.sub_text }}
+    {%- else -%}
+      First in. Nothing explained. Nothing for everyone.
+    {%- endif -%}
+  </p>
+
+  {%- form 'customer', class: 'wo-email-capture__form' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter,drop-002-early-access">
+    <input
+      type="email"
+      name="contact[email]"
+      id="wo-email-input"
+      class="wo-email-capture__input"
+      placeholder="EMAIL ADDRESS"
+      required
+      autocomplete="email"
+    >
+    <button type="submit" class="wo-email-capture__btn">
+      {%- if section.settings.btn_label != blank -%}
+        {{ section.settings.btn_label }}
+      {%- else -%}
+        Request Access
+      {%- endif -%}
+    </button>
+  {%- endform -%}
+</section>
+
+{% schema %}
+{
+  "name": "WO Email Capture",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Early Access"
+    },
+    {
+      "type": "textarea",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Drop 002: Intellectual Property."
+    },
+    {
+      "type": "text",
+      "id": "sub_text",
+      "label": "Sub text",
+      "default": "First in. Nothing explained. Nothing for everyone."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Request Access"
+    }
+  ],
+  "presets": [{ "name": "WO Email Capture" }]
+}
+{% endschema %}
