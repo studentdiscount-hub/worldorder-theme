@@ -1,0 +1,59 @@
+{% comment %}
+  World Order Radio — Philosophy Footer Strip
+  Dark field. Space Mono body. Big Shoulders Display sequence.
+  Pain → Power → Peace: the "Pain" word is blood red (#5F1804).
+  Mirrors homepage philosophy strip aesthetic.
+{% endcomment %}
+
+<section class="wo-radio-footer">
+
+  <p class="wo-radio-footer__line">
+    {{ section.settings.footer_line | default: 'Broadcasting from the void between chaos and order.' }}
+  </p>
+
+  <p class="wo-radio-footer__sequence">
+    <span>{{ section.settings.sequence_word_1 | default: 'Pain' }}</span>
+    &nbsp;→&nbsp;
+    {{ section.settings.sequence_word_2 | default: 'Power' }}
+    &nbsp;→&nbsp;
+    {{ section.settings.sequence_word_3 | default: 'Peace' }}
+  </p>
+
+</section>
+
+{% schema %}
+{
+  "name": "WO Radio Footer Strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_line",
+      "label": "Footer line",
+      "default": "Broadcasting from the void between chaos and order."
+    },
+    {
+      "type": "text",
+      "id": "sequence_word_1",
+      "label": "Sequence word 1 (red)",
+      "default": "Pain"
+    },
+    {
+      "type": "text",
+      "id": "sequence_word_2",
+      "label": "Sequence word 2",
+      "default": "Power"
+    },
+    {
+      "type": "text",
+      "id": "sequence_word_3",
+      "label": "Sequence word 3",
+      "default": "Peace"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WO Radio Footer Strip"
+    }
+  ]
+}
+{% endschema %}

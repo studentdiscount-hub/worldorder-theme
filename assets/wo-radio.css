@@ -1,0 +1,247 @@
+/* World Order Radio — CSS Asset */
+/* Design System: Black #1A1A18, Charcoal #262626, White #F2F3EE, Red #5F1804, Parchment #E6D0AC */
+
+/* ——— RADIO HERO SECTION ——— */
+
+.wo-radio-hero {
+  min-height: 90vh;
+  background-color: #1A1A18;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.wo-radio-hero__grain {
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="100" height="100" fill="%23F2F3EE" opacity="0.04" filter="url(%23noise)" /></svg>');
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.wo-radio-hero__eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #5F1804;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  text-align: center;
+  z-index: 1;
+}
+
+.wo-radio-hero__title {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(56px, 12vw, 140px);
+  font-weight: 900;
+  color: #F2F3EE;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-align: center;
+  margin-bottom: 32px;
+  z-index: 1;
+}
+
+.wo-radio-hero__signal {
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: clamp(18px, 3vw, 28px);
+  color: #F2F3EE;
+  opacity: 0.6;
+  text-align: center;
+  margin-bottom: 60px;
+  z-index: 1;
+}
+
+.wo-radio-hero__vinyl {
+  width: clamp(180px, 30vw, 320px);
+  height: clamp(180px, 30vw, 320px);
+  margin: 0 auto 48px auto;
+  animation: wo-spin 20s linear infinite;
+  z-index: 1;
+}
+
+@keyframes wo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ——— EPISODE STRIP SECTION ——— */
+
+.wo-radio-episode {
+  background-color: #E6D0AC;
+  padding: 80px 24px;
+}
+
+.wo-radio-episode__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.wo-radio-episode__label {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 900;
+  color: #1A1A18;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.wo-radio-episode__desc {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #1A1A18;
+  opacity: 0.7;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+.wo-radio-episode__player {
+  width: 100%;
+  border-radius: 0;
+  margin-bottom: 48px;
+  border: 1px solid rgba(26, 26, 24, 0.15);
+}
+
+.wo-radio-episode__tracklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid rgba(26, 26, 24, 0.2);
+}
+
+.wo-radio-episode__track {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(26, 26, 24, 0.1);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: #1A1A18;
+}
+
+.wo-radio-episode__track-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 10px;
+  opacity: 0.4;
+  min-width: 32px;
+}
+
+.wo-radio-episode__track-title {
+  flex: 1;
+  padding: 0 16px;
+  letter-spacing: 0.05em;
+}
+
+.wo-radio-episode__track-duration {
+  opacity: 0.4;
+  font-size: 10px;
+}
+
+/* ——— PHILOSOPHY FOOTER STRIP ——— */
+
+.wo-radio-footer {
+  background-color: #1A1A18;
+  padding: 64px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(242, 243, 238, 0.08);
+}
+
+.wo-radio-footer__line {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(12px, 2vw, 15px);
+  color: #F2F3EE;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 24px;
+}
+
+.wo-radio-footer__sequence {
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-size: clamp(20px, 4vw, 36px);
+  font-weight: 900;
+  color: #F2F3EE;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.wo-radio-footer__sequence span {
+  color: #5F1804;
+}
+
+/* ——— RESPONSIVE ADJUSTMENTS ——— */
+
+@media (max-width: 768px) {
+  .wo-radio-hero {
+    padding: 60px 20px;
+    min-height: 85vh;
+  }
+
+  .wo-radio-hero__eyebrow {
+    margin-bottom: 20px;
+  }
+
+  .wo-radio-hero__title {
+    margin-bottom: 24px;
+  }
+
+  .wo-radio-hero__signal {
+    margin-bottom: 48px;
+  }
+
+  .wo-radio-hero__vinyl {
+    margin-bottom: 40px;
+  }
+
+  .wo-radio-episode {
+    padding: 60px 20px;
+  }
+
+  .wo-radio-episode__desc {
+    margin-bottom: 40px;
+  }
+
+  .wo-radio-episode__player {
+    margin-bottom: 40px;
+  }
+
+  .wo-radio-footer {
+    padding: 48px 20px;
+  }
+
+  .wo-radio-footer__line {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wo-radio-hero {
+    padding: 48px 16px;
+    min-height: 80vh;
+  }
+
+  .wo-radio-episode {
+    padding: 48px 16px;
+  }
+
+  .wo-radio-episode__track {
+    padding: 12px 0;
+  }
+
+  .wo-radio-footer {
+    padding: 40px 16px;
+  }
+}

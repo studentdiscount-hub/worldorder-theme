@@ -1,0 +1,99 @@
+{% comment %}
+  World Order Radio — Episode Strip
+  Background: Parchment (#E6D0AC) — editorial warmth contrast against hero dark
+  Tracklist via blocks. Spotify embed via admin HTML field.
+{% endcomment %}
+
+<section class="wo-radio-episode">
+  <div class="wo-radio-episode__inner">
+
+    <h2 class="wo-radio-episode__label">
+      {{ section.settings.ep_label | default: 'EP. 001 — Annapolis' }}
+    </h2>
+
+    <p class="wo-radio-episode__desc">
+      {{ section.settings.ep_desc | default: 'Powered by Student Discount. The sonic backdrop to the Standard Issue era.' }}
+    </p>
+
+    {% if section.settings.spotify_embed != blank %}
+      <div class="wo-radio-episode__player">
+        {{ section.settings.spotify_embed }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <ul class="wo-radio-episode__tracklist">
+        {% for block in section.blocks %}
+          {% assign track_num = forloop.index %}
+          {% if track_num < 10 %}
+            {% assign track_num_display = '0' | append: track_num %}
+          {% else %}
+            {% assign track_num_display = track_num %}
+          {% endif %}
+          <li class="wo-radio-episode__track" {{ block.shopify_attributes }}>
+            <span class="wo-radio-episode__track-num">{{ track_num_display }}</span>
+            <span class="wo-radio-episode__track-title">{{ block.settings.track_title }}</span>
+            <span class="wo-radio-episode__track-duration">{{ block.settings.track_duration }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WO Radio Episode",
+  "settings": [
+    {
+      "type": "text",
+      "id": "ep_label",
+      "label": "Episode label",
+      "default": "EP. 001 — Annapolis"
+    },
+    {
+      "type": "textarea",
+      "id": "ep_desc",
+      "label": "Episode description",
+      "default": "Powered by Student Discount. The sonic backdrop to the Standard Issue era."
+    },
+    {
+      "type": "html",
+      "id": "spotify_embed",
+      "label": "Spotify embed code",
+      "info": "Paste Spotify iframe embed here. Use compact embed style from Spotify."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "track",
+      "name": "Track",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_title",
+          "label": "Track title"
+        },
+        {
+          "type": "text",
+          "id": "track_duration",
+          "label": "Duration (e.g. 3:42)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WO Radio Episode",
+      "blocks": [
+        { "type": "track", "settings": { "track_title": "SIGNAL / NOISE", "track_duration": "4:12" } },
+        { "type": "track", "settings": { "track_title": "ANNAPOLIS REDUX", "track_duration": "3:55" } },
+        { "type": "track", "settings": { "track_title": "FRICTION (INTERLUDE)", "track_duration": "1:44" } },
+        { "type": "track", "settings": { "track_title": "PAIN → POWER", "track_duration": "5:03" } },
+        { "type": "track", "settings": { "track_title": "VOID", "track_duration": "6:21" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

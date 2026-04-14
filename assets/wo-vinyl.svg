@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Define gradients and styles -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@900&family=IBM+Plex+Mono:wght@700&display=swap');
+
+      .vinyl-text-title {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-size: 14px;
+        font-weight: 900;
+        fill: #1A1A18;
+        letter-spacing: 3px;
+        text-anchor: middle;
+      }
+
+      .vinyl-text-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        fill: #1A1A18;
+        opacity: 0.6;
+        text-anchor: middle;
+      }
+
+      .vinyl-text-detail {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8px;
+        font-weight: 700;
+        fill: #5F1804;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+
+  <!-- Outer vinyl circle -->
+  <circle cx="200" cy="200" r="195" fill="#1A1A18" stroke="#F2F3EE" stroke-width="1"/>
+
+  <!-- Groove rings (6 total) -->
+  <circle cx="200" cy="200" r="185" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+  <circle cx="200" cy="200" r="170" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+  <circle cx="200" cy="200" r="155" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+  <circle cx="200" cy="200" r="140" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+  <circle cx="200" cy="200" r="125" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+  <circle cx="200" cy="200" r="110" fill="none" stroke="#F2F3EE" stroke-width="0.3" opacity="0.12"/>
+
+  <!-- Label area circle (parchment) -->
+  <circle cx="200" cy="200" r="90" fill="#E6D0AC"/>
+
+  <!-- Inner groove rings on label -->
+  <circle cx="200" cy="200" r="85" fill="none" stroke="#1A1A18" stroke-width="0.5" opacity="0.15"/>
+  <circle cx="200" cy="200" r="75" fill="none" stroke="#1A1A18" stroke-width="0.5" opacity="0.15"/>
+
+  <!-- Label text: "WORLD ORDER" -->
+  <text x="200" y="182" class="vinyl-text-title">WORLD ORDER</text>
+
+  <!-- Label text: "RADIO" -->
+  <text x="200" y="200" class="vinyl-text-label">RADIO</text>
+
+  <!-- Label text: "EP. 001 — ANNAPOLIS" -->
+  <text x="200" y="218" class="vinyl-text-detail">EP. 001 — ANNAPOLIS</text>
+
+  <!-- Center hole -->
+  <circle cx="200" cy="200" r="8" fill="#1A1A18"/>
+
+  <!-- Red butterfly symbol (brand mark) positioned near label bottom -->
+  <!-- Simple butterfly shape using paths -->
+  <g transform="translate(174, 232)">
+    <!-- Left wing -->
+    <path d="M 0 0 Q -4 -3 -6 -2 Q -5 0 -3 1 Q -1 0 0 0" fill="#5F1804"/>
+    <!-- Right wing -->
+    <path d="M 0 0 Q 4 -3 6 -2 Q 5 0 3 1 Q 1 0 0 0" fill="#5F1804"/>
+    <!-- Body -->
+    <circle cx="0" cy="0" r="1.2" fill="#5F1804"/>
+  </g>
+
+</svg>

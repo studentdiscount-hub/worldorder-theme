@@ -1,0 +1,68 @@
+{
+  "sections": {
+    "wo-radio-hero": {
+      "type": "wo-radio-hero",
+      "settings": {
+        "eyebrow": "Powered by Student Discount",
+        "headline": "World Order Radio",
+        "signal_text": "broadcasting from the void"
+      }
+    },
+    "wo-radio-episode": {
+      "type": "wo-radio-episode",
+      "blocks": {
+        "track-1": {
+          "type": "track",
+          "settings": {
+            "track_title": "SIGNAL / NOISE",
+            "track_duration": "4:12"
+          }
+        },
+        "track-2": {
+          "type": "track",
+          "settings": {
+            "track_title": "ANNAPOLIS REDUX",
+            "track_duration": "3:55"
+          }
+        },
+        "track-3": {
+          "type": "track",
+          "settings": {
+            "track_title": "FRICTION (INTERLUDE)",
+            "track_duration": "1:44"
+          }
+        },
+        "track-4": {
+          "type": "track",
+          "settings": {
+            "track_title": "PAIN → POWER",
+            "track_duration": "5:03"
+          }
+        },
+        "track-5": {
+          "type": "track",
+          "settings": {
+            "track_title": "VOID",
+            "track_duration": "6:21"
+          }
+        }
+      },
+      "block_order": ["track-1", "track-2", "track-3", "track-4", "track-5"],
+      "settings": {
+        "ep_label": "EP. 001 — Annapolis",
+        "ep_desc": "Powered by Student Discount. The sonic backdrop to the Standard Issue era.",
+        "spotify_embed": ""
+      }
+    },
+    "wo-radio-footer": {
+      "type": "wo-radio-footer",
+      "settings": {
+        "footer_line": "Broadcasting from the void between chaos and order.",
+        "sequence_word_1": "Pain",
+        "sequence_word_2": "Power",
+        "sequence_word_3": "Peace"
+      }
+    }
+  },
+  "order": ["wo-radio-hero", "wo-radio-episode", "wo-radio-footer"]
+}

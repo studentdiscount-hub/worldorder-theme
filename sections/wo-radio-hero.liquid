@@ -1,0 +1,56 @@
+{% comment %}
+  World Order Radio — Hero Section
+  Statement voice: Big Shoulders Display Bold
+  Signal voice: Nothing You Could Do (lowercase only — never primary)
+  Palette: #1A1A18 dominant, #5F1804 accent (ONE per frame)
+{% endcomment %}
+
+<section class="wo-radio-hero">
+  <div class="wo-radio-hero__grain" aria-hidden="true"></div>
+
+  <p class="wo-radio-hero__eyebrow">{{ section.settings.eyebrow | default: 'Powered by Student Discount' }}</p>
+
+  <h1 class="wo-radio-hero__title">
+    {{ section.settings.headline | default: 'World Order Radio' }}
+  </h1>
+
+  <p class="wo-radio-hero__signal">
+    {{ section.settings.signal_text | default: 'broadcasting from the void' }}
+  </p>
+
+  <div class="wo-radio-hero__vinyl" aria-hidden="true">
+    <img src="{{ 'wo-vinyl.svg' | asset_url }}" alt="World Order Radio vinyl" width="320" height="320" loading="eager">
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "WO Radio Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Powered by Student Discount"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "World Order Radio"
+    },
+    {
+      "type": "text",
+      "id": "signal_text",
+      "label": "Signal voice text (always lowercase)",
+      "default": "broadcasting from the void"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WO Radio Hero"
+    }
+  ]
+}
+{% endschema %}
