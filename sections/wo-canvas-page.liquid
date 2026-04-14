@@ -1,5 +1,5 @@
 {%- style -%}
-  /* === CANVAS PAGE — WO Transmission Aesthetic === */
+  /* === CANVAS PAGE — WO Radio Edition === */
   /* All color and font tokens inherit from wo-v2.css (:root).
      No local variable overrides — single source of truth. */
 
@@ -79,13 +79,23 @@
   }
 
   .wo-canvas__headline {
-    font-family: var(--wo-font-serif);
-    font-size: clamp(36px, 5vw, 64px);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.1;
+    font-family: var(--wo-font-display);
+    font-size: clamp(42px, 7vw, 96px);
+    font-weight: 900;
+    font-style: normal;
+    line-height: 0.95;
     color: var(--wo-white);
-    letter-spacing: 0.01em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .wo-canvas__subhead {
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--wo-white);
+    opacity: 0.5;
+    margin-top: 20px;
+    letter-spacing: 0;
   }
 
   /* Ticker bar */
@@ -118,44 +128,159 @@
     100% { transform: translateX(-50%); }
   }
 
-  /* Main content area */
+  /* ---- VINYL ---- */
+  .wo-canvas__vinyl-block {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 5rem 60px;
+    border-bottom: 1px solid var(--wo-border-light);
+  }
+
+  .wo-canvas__vinyl {
+    width: clamp(200px, 32vw, 340px);
+    height: clamp(200px, 32vw, 340px);
+    animation: wo-spin-vinyl 20s linear infinite;
+  }
+
+  @keyframes wo-spin-vinyl {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* ---- EPISODE BODY ---- */
   .wo-canvas__body {
     position: relative;
     z-index: 2;
     max-width: 760px;
     margin: 0 auto;
-    padding: 80px 5rem 120px;
+    padding: 72px 5rem 100px;
   }
 
-  .wo-canvas__body .wo-page-content {
-    font-size: 15px;
-    line-height: 1.9;
-    color: rgba(242,243,238,0.78);
-    font-family: var(--wo-font-body);
+  .wo-canvas__body::before {
+    content: '';
+    position: absolute;
+    left: calc(5rem - 20px);
+    top: 72px;
+    bottom: 100px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--wo-red), transparent);
+    opacity: 0.3;
   }
-  .wo-canvas__body .wo-page-content p { margin-bottom: 1.6em; }
-  .wo-canvas__body .wo-page-content a {
-    color: var(--wo-white);
-    border-bottom: 1px solid var(--wo-red);
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .wo-canvas__body .wo-page-content a:hover { opacity: 0.6; }
-  .wo-canvas__body .wo-page-content h2,
-  .wo-canvas__body .wo-page-content h3 {
-    font-size: 10px;
-    letter-spacing: 0.25em;
+
+  .wo-canvas__ep-label {
+    font-family: var(--wo-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--wo-red);
-    margin: 56px 0 18px;
-    font-weight: 500;
-    font-family: var(--wo-font-mono);
+    margin-bottom: 8px;
+    display: block;
   }
-  .wo-canvas__body .wo-page-content h2::before,
-  .wo-canvas__body .wo-page-content h3::before {
-    content: '— ';
+
+  .wo-canvas__ep-title {
+    font-family: var(--wo-font-display);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wo-white);
+    margin-bottom: 8px;
+  }
+
+  .wo-canvas__ep-desc {
+    font-family: var(--wo-font-body);
+    font-size: 12px;
     color: var(--wo-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+    line-height: 1.6;
   }
+
+  /* Spotify embed */
+  .wo-canvas__player {
+    width: 100%;
+    margin-bottom: 56px;
+    border: 1px solid rgba(242,243,238,0.08);
+  }
+
+  /* Tracklist */
+  .wo-canvas__tracklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid rgba(242,243,238,0.1);
+  }
+
+  .wo-canvas__track {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(242,243,238,0.06);
+    gap: 16px;
+  }
+
+  .wo-canvas__track-num {
+    font-family: var(--wo-font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--wo-red);
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+
+  .wo-canvas__track-title {
+    font-family: var(--wo-font-body);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--wo-white);
+    flex: 1;
+    text-transform: uppercase;
+  }
+
+  .wo-canvas__track-artist {
+    font-family: var(--wo-font-mono);
+    font-size: 10px;
+    color: var(--wo-muted);
+    letter-spacing: 0.08em;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ---- PHILOSOPHY FOOTER STRIP ---- */
+  .wo-canvas__philosophy {
+    position: relative;
+    z-index: 2;
+    background: rgba(242,243,238,0.03);
+    border-top: 1px solid var(--wo-border-light);
+    padding: 56px 5rem;
+    text-align: center;
+  }
+
+  .wo-canvas__philosophy-line {
+    font-family: var(--wo-font-body);
+    font-size: clamp(11px, 1.5vw, 13px);
+    color: var(--wo-white);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 20px;
+  }
+
+  .wo-canvas__philosophy-sequence {
+    font-family: var(--wo-font-display);
+    font-size: clamp(22px, 4vw, 40px);
+    font-weight: 900;
+    color: var(--wo-white);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .wo-canvas__philosophy-sequence .wo-red { color: var(--wo-red); }
 
   /* Footer closing mark */
   .wo-canvas__close {
@@ -184,25 +309,15 @@
     color: rgba(242,243,238,0.2);
   }
 
-  /* Vertical rule accent */
-  .wo-canvas__body::before {
-    content: '';
-    position: absolute;
-    left: calc(5rem - 20px);
-    top: 80px;
-    bottom: 120px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--wo-red), transparent);
-    opacity: 0.3;
-  }
-
   /* Responsive */
   @media (max-width: 749px) {
-    .wo-canvas__header { padding: 40px 1.5rem 28px; }
-    .wo-canvas__body { padding: 60px 1.5rem 80px; }
+    .wo-canvas__header     { padding: 40px 1.5rem 28px; }
+    .wo-canvas__vinyl-block { padding: 60px 1.5rem 48px; }
+    .wo-canvas__body       { padding: 56px 1.5rem 72px; }
     .wo-canvas__body::before { left: 0.75rem; }
-    .wo-canvas__close { padding: 32px 1.5rem; }
-    .wo-canvas__coords { display: none; }
+    .wo-canvas__philosophy { padding: 48px 1.5rem; }
+    .wo-canvas__close      { padding: 32px 1.5rem; }
+    .wo-canvas__coords     { display: none; }
   }
 
   .section-{{ section.id }}-padding {
@@ -216,16 +331,11 @@
     }
   }
 
-  /* Reduced motion — freeze canvas-specific animations */
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .wo-canvas__scan {
-      animation: none !important;
-      display: none;
-    }
-
-    .wo-canvas__ticker-track {
-      animation: none !important;
-    }
+    .wo-canvas__scan         { animation: none !important; display: none; }
+    .wo-canvas__ticker-track { animation: none !important; }
+    .wo-canvas__vinyl        { animation: none !important; }
   }
 {%- endstyle -%}
 
@@ -236,8 +346,9 @@
   <!-- Header -->
   <div class="wo-canvas__header">
     <div class="wo-canvas__title-block">
-      <div class="wo-canvas__label">transmission</div>
-      <h1 class="wo-canvas__headline">{{ page.title }}</h1>
+      <div class="wo-canvas__label">{{ section.settings.eyebrow | default: 'Powered by Student Discount' }}</div>
+      <h1 class="wo-canvas__headline">{{ section.settings.headline | default: 'World Order Radio' }}</h1>
+      <p class="wo-canvas__subhead">{{ section.settings.signal_text | default: 'broadcasting from the void' }}</p>
     </div>
     <div class="wo-canvas__coords" aria-hidden="true">
       <span>38.9764&deg; N</span>
@@ -257,9 +368,9 @@
       <span class="wo-accent">&bull;</span>
       <span>Never numb again</span>
       <span class="wo-accent">&bull;</span>
-      <span>Chaos &rarr; VOID &rarr; Order</span>
+      <span>EP. 001 &mdash; Annapolis</span>
       <span class="wo-accent">&bull;</span>
-      <span>World Order Est. 2024</span>
+      <span>World Order Radio</span>
       <span class="wo-accent">&bull;</span>
       <!-- duplicate for seamless loop -->
       <span>Friction over comfort</span>
@@ -270,35 +381,178 @@
       <span class="wo-accent">&bull;</span>
       <span>Never numb again</span>
       <span class="wo-accent">&bull;</span>
-      <span>Chaos &rarr; VOID &rarr; Order</span>
+      <span>EP. 001 &mdash; Annapolis</span>
       <span class="wo-accent">&bull;</span>
-      <span>World Order Est. 2024</span>
+      <span>World Order Radio</span>
       <span class="wo-accent">&bull;</span>
     </div>
   </div>
 
-  <!-- Body content -->
+  <!-- Vinyl -->
+  <div class="wo-canvas__vinyl-block">
+    <img
+      class="wo-canvas__vinyl"
+      src="{{ 'wo-vinyl.svg' | asset_url }}"
+      alt="World Order Radio — EP. 001 Annapolis"
+      width="340"
+      height="340"
+      loading="eager"
+    >
+  </div>
+
+  <!-- Episode body -->
   <div class="wo-canvas__body">
-    <div class="wo-page-content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <p style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--wo-muted);margin-bottom:3em;">— This page updates with each drop. What you see is current.</p>
-      {{ page.content }}
-    </div>
+
+    <span class="wo-canvas__ep-label">{{ section.settings.ep_label | default: 'EP. 001' }}</span>
+    <h2 class="wo-canvas__ep-title">{{ section.settings.ep_title | default: 'Annapolis' }}</h2>
+    <p class="wo-canvas__ep-desc">{{ section.settings.ep_desc | default: 'Powered by Student Discount. The sonic backdrop to the Standard Issue era.' }}</p>
+
+    {% if section.settings.spotify_embed != blank %}
+      <div class="wo-canvas__player">
+        {{ section.settings.spotify_embed }}
+      </div>
+    {% endif %}
+
+    {% assign has_tracks = false %}
+    {% for i in (1..10) %}
+      {% assign title_key = 'track_title_' | append: i %}
+      {% if section.settings[title_key] != blank %}
+        {% assign has_tracks = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% if has_tracks %}
+      <ul class="wo-canvas__tracklist">
+        {% for i in (1..10) %}
+          {% assign title_key  = 'track_title_'  | append: i %}
+          {% assign artist_key = 'track_artist_' | append: i %}
+          {% if section.settings[title_key] != blank %}
+            {% if i < 10 %}
+              {% assign num_display = '0' | append: i %}
+            {% else %}
+              {% assign num_display = i %}
+            {% endif %}
+            <li class="wo-canvas__track">
+              <span class="wo-canvas__track-num">{{ num_display }}</span>
+              <span class="wo-canvas__track-title">{{ section.settings[title_key] }}</span>
+              {% if section.settings[artist_key] != blank %}
+                <span class="wo-canvas__track-artist">{{ section.settings[artist_key] }}</span>
+              {% endif %}
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  </div>
+
+  <!-- Philosophy strip -->
+  <div class="wo-canvas__philosophy">
+    <p class="wo-canvas__philosophy-line">{{ section.settings.footer_line | default: 'Broadcasting from the void between chaos and order.' }}</p>
+    <p class="wo-canvas__philosophy-sequence">
+      <span class="wo-red">Pain</span>&nbsp;&rarr;&nbsp;Power&nbsp;&rarr;&nbsp;Peace
+    </p>
   </div>
 
   <!-- Closing mark -->
   <div class="wo-canvas__close">
-    <span class="wo-canvas__close-sig">the work continues.</span>
-    <span class="wo-canvas__close-mark">WO &mdash; {{ 'now' | date: '%Y' }}</span>
+    <span class="wo-canvas__close-sig">the transmission continues.</span>
+    <span class="wo-canvas__close-mark">WO Radio &mdash; {{ 'now' | date: '%Y' }}</span>
   </div>
 
 </div>
 
 {% schema %}
 {
-  "name": "WO Canvas",
+  "name": "WO Canvas — Radio",
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Powered by Student Discount"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "World Order Radio"
+    },
+    {
+      "type": "text",
+      "id": "signal_text",
+      "label": "Signal voice subhead (lowercase)",
+      "default": "broadcasting from the void"
+    },
+    {
+      "type": "header",
+      "content": "Episode"
+    },
+    {
+      "type": "text",
+      "id": "ep_label",
+      "label": "EP label",
+      "default": "EP. 001"
+    },
+    {
+      "type": "text",
+      "id": "ep_title",
+      "label": "EP title",
+      "default": "Annapolis"
+    },
+    {
+      "type": "textarea",
+      "id": "ep_desc",
+      "label": "EP description",
+      "default": "Powered by Student Discount. The sonic backdrop to the Standard Issue era."
+    },
+    {
+      "type": "html",
+      "id": "spotify_embed",
+      "label": "Spotify embed code",
+      "info": "Paste Spotify iframe embed code here. Use the compact embed style."
+    },
+    {
+      "type": "header",
+      "content": "Tracklist"
+    },
+    { "type": "text", "id": "track_title_1",   "label": "Track 1 — Title",  "default": "Call Me" },
+    { "type": "text", "id": "track_artist_1",  "label": "Track 1 — Artist", "default": "Blood Orange, Park Hye Jin" },
+    { "type": "text", "id": "track_title_2",   "label": "Track 2 — Title",  "default": "Diving Board" },
+    { "type": "text", "id": "track_artist_2",  "label": "Track 2 — Artist", "default": "redveil" },
+    { "type": "text", "id": "track_title_3",   "label": "Track 3 — Title",  "default": "DHL" },
+    { "type": "text", "id": "track_artist_3",  "label": "Track 3 — Artist", "default": "Frank Ocean" },
+    { "type": "text", "id": "track_title_4",   "label": "Track 4 — Title",  "default": "Alesis" },
+    { "type": "text", "id": "track_artist_4",  "label": "Track 4 — Artist", "default": "Mk.gee" },
+    { "type": "text", "id": "track_title_5",   "label": "Track 5 — Title",  "default": "Fruits of the Spirit" },
+    { "type": "text", "id": "track_artist_5",  "label": "Track 5 — Artist", "default": "Jay Electronica" },
+    { "type": "text", "id": "track_title_6",   "label": "Track 6 — Title" },
+    { "type": "text", "id": "track_artist_6",  "label": "Track 6 — Artist" },
+    { "type": "text", "id": "track_title_7",   "label": "Track 7 — Title" },
+    { "type": "text", "id": "track_artist_7",  "label": "Track 7 — Artist" },
+    { "type": "text", "id": "track_title_8",   "label": "Track 8 — Title" },
+    { "type": "text", "id": "track_artist_8",  "label": "Track 8 — Artist" },
+    { "type": "text", "id": "track_title_9",   "label": "Track 9 — Title" },
+    { "type": "text", "id": "track_artist_9",  "label": "Track 9 — Artist" },
+    { "type": "text", "id": "track_title_10",  "label": "Track 10 — Title" },
+    { "type": "text", "id": "track_artist_10", "label": "Track 10 — Artist" },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_line",
+      "label": "Philosophy footer line",
+      "default": "Broadcasting from the void between chaos and order."
+    },
     {
       "type": "header",
       "content": "Section padding"
