@@ -1,18 +1,9 @@
-{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
   /* === CANVAS PAGE — WO Transmission Aesthetic === */
-  /* Scoped to .wo-canvas (not :root) so these overrides don't bleed into
-     the site header or any element outside the canvas section. */
-  .wo-canvas {
-    --wo-bg:     #1a1a18;
-    --wo-cream:  #F5F4EF;
-    --wo-red:    #5F1804;
-    --wo-muted:  #837C6C;
-    --wo-border: rgba(245,244,239,0.08);
-  }
+  /* All color and font tokens inherit from wo-v2.css (:root).
+     No local variable overrides — single source of truth. */
 
-  .wo-canvas { background: var(--wo-bg); color: var(--wo-cream); position: relative; overflow: hidden; min-height: 100vh; }
+  .wo-canvas { background: var(--wo-black); color: var(--wo-white); position: relative; overflow: hidden; min-height: 100vh; }
 
   /* Grain overlay */
   .wo-canvas::before {
@@ -46,7 +37,7 @@
   .wo-canvas__header {
     position: relative;
     z-index: 2;
-    border-bottom: 1px solid var(--wo-border);
+    border-bottom: 1px solid var(--wo-border-light);
     padding: 48px 5rem 36px;
     display: flex;
     align-items: flex-end;
@@ -56,7 +47,7 @@
   }
 
   .wo-canvas__coords {
-    font-family: 'Space Mono', 'Courier New', monospace;
+    font-family: var(--wo-font-mono);
     font-size: 9px;
     letter-spacing: 0.45em;
     text-transform: uppercase;
@@ -68,7 +59,7 @@
   .wo-canvas__title-block { max-width: 640px; }
 
   .wo-canvas__label {
-    font-family: 'Space Mono', 'Courier New', monospace;
+    font-family: var(--wo-font-mono);
     font-size: 9px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -88,12 +79,12 @@
   }
 
   .wo-canvas__headline {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: var(--wo-font-serif);
     font-size: clamp(36px, 5vw, 64px);
     font-weight: 300;
     font-style: italic;
     line-height: 1.1;
-    color: var(--wo-cream);
+    color: var(--wo-white);
     letter-spacing: 0.01em;
   }
 
@@ -101,7 +92,7 @@
   .wo-canvas__ticker {
     position: relative;
     z-index: 2;
-    border-bottom: 1px solid var(--wo-border);
+    border-bottom: 1px solid var(--wo-border-light);
     padding: 10px 0;
     overflow: hidden;
     background: rgba(95,24,4,0.06);
@@ -114,7 +105,7 @@
     white-space: nowrap;
   }
   .wo-canvas__ticker-track span {
-    font-family: 'Space Mono', 'Courier New', monospace;
+    font-family: var(--wo-font-mono);
     font-size: 9px;
     letter-spacing: 0.35em;
     text-transform: uppercase;
@@ -139,12 +130,12 @@
   .wo-canvas__body .wo-page-content {
     font-size: 15px;
     line-height: 1.9;
-    color: rgba(245,244,239,0.78);
-    font-family: 'Space Mono', 'Courier New', monospace;
+    color: rgba(242,243,238,0.78);
+    font-family: var(--wo-font-body);
   }
   .wo-canvas__body .wo-page-content p { margin-bottom: 1.6em; }
   .wo-canvas__body .wo-page-content a {
-    color: var(--wo-cream);
+    color: var(--wo-white);
     border-bottom: 1px solid var(--wo-red);
     text-decoration: none;
     transition: opacity 0.2s;
@@ -158,7 +149,7 @@
     color: var(--wo-red);
     margin: 56px 0 18px;
     font-weight: 500;
-    font-family: 'Space Mono', 'Courier New', monospace;
+    font-family: var(--wo-font-mono);
   }
   .wo-canvas__body .wo-page-content h2::before,
   .wo-canvas__body .wo-page-content h3::before {
@@ -170,7 +161,7 @@
   .wo-canvas__close {
     position: relative;
     z-index: 2;
-    border-top: 1px solid var(--wo-border);
+    border-top: 1px solid var(--wo-border-light);
     padding: 40px 5rem;
     display: flex;
     align-items: center;
@@ -179,18 +170,18 @@
     gap: 16px;
   }
   .wo-canvas__close-sig {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: var(--wo-font-serif);
     font-size: 13px;
     font-style: italic;
     color: var(--wo-muted);
     letter-spacing: 0.05em;
   }
   .wo-canvas__close-mark {
-    font-family: 'Space Mono', 'Courier New', monospace;
+    font-family: var(--wo-font-mono);
     font-size: 9px;
     letter-spacing: 0.4em;
     text-transform: uppercase;
-    color: rgba(245,244,239,0.2);
+    color: rgba(242,243,238,0.2);
   }
 
   /* Vertical rule accent */
