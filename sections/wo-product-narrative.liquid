@@ -4,6 +4,30 @@
   Sits below the main Dawn product section.
 {% endcomment %}
 
+{% style %}
+  /* Signal Voice accent — Register C (Wound) per Brand Bible Audit v3.
+     Intentionally minimal; inherits .wo-narrative spacing from global layout. */
+  .wo-narrative__signal {
+    font-family: var(--wo-font-signal);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--wo-white, #F2F3EE);
+    margin: 1.75rem 0 2rem;
+    padding: 0;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    opacity: 0.92;
+  }
+  /* On light backgrounds (e.g. parchment sections), invert the color. */
+  .color-scheme-1 .wo-narrative__signal,
+  .color-background-1 .wo-narrative__signal {
+    color: var(--wo-black, #1A1A18);
+  }
+  @media (min-width: 750px) {
+    .wo-narrative__signal { font-size: 1.75rem; }
+  }
+{% endstyle %}
+
 <div class="wo-narrative">
 
   {% if section.settings.drop_label != blank or section.settings.drop_number != blank %}
@@ -24,6 +48,16 @@
 
   {% if section.settings.concept_body != blank %}
   <div class="wo-narrative__body">{{ section.settings.concept_body }}</div>
+  {% endif %}
+
+  {% comment %}
+    Signal Voice accent — the pain-side/wound register from the Brand Bible.
+    Rare by design. Leave blank on most products. Renders in Nothing You Could Do,
+    lowercase only. See Brand Bible "Register C — Signal Voice (Wound)" and
+    Design System v2.1 Part IV for usage rules.
+  {% endcomment %}
+  {% if section.settings.signal_accent != blank %}
+  <p class="wo-narrative__signal">{{ section.settings.signal_accent | downcase }}</p>
   {% endif %}
 
   <div class="wo-narrative__trust">
@@ -61,6 +95,7 @@
     { "type": "text",     "id": "drop_label",        "label": "Drop name",          "default": "Standard Issue" },
     { "type": "text",     "id": "concept_heading",   "label": "Concept heading",    "default": "Engineered with intention." },
     { "type": "richtext", "id": "concept_body",      "label": "Concept body copy",  "default": "<p>Not a statement. A standard. Something you reach for when the noise gets loud and you still have to show up.</p>" },
+    { "type": "text",     "id": "signal_accent",     "label": "Signal accent line (handwritten, lowercase — leave blank on most products)", "info": "Rare by design. The pain-side / Register C voice. Used sparingly per Brand Bible. Leave blank unless this product specifically needs a wound-register interjection." },
     { "type": "text",     "id": "trust_1",           "label": "Trust line 1",       "default": "Limited run. No restocks." },
     { "type": "text",     "id": "trust_2",           "label": "Trust line 2",       "default": "Ships within 5 business days." },
     { "type": "text",     "id": "trust_3",           "label": "Trust line 3",       "default": "Printed in the USA. Built to last." },
