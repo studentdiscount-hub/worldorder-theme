@@ -1,0 +1,362 @@
+/* =============================================================
+   WORLD ORDER — wo-primitives.css
+   Layer 2 system primitives. Load AFTER wo-theme.css, BEFORE wo-fixes.css.
+
+   Reference: docs/plans/2026-04-20-pinterest-alignment-design.md
+   Source-of-truth spec: Notion SoT v2.2 → Part III-C.
+
+   Four primitives:
+     1. Blur-as-signature        .wo-figure, .wo-figure--person|motion|product
+     2. Fig. grammar             .wo-fig, .wo-fig__label, .wo-fig__caption, .wo-fig__rule
+     3. Zine visual treatment    .wo-zine, .wo-zine__fragment, .wo-zine__tape, .wo-zine--torn
+     4. Post-punk grid typo      .wo-grid-plate (+ __word, __meta, __rule, __serial)
+
+   Guardrails are enforced in CSS where possible (see inline notes).
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   TOKENS
+   Names mirror SoT Part III-C exactly. Do not rename without
+   updating the SoT and all Layer 3 section CSS.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Palette extensions (referenced by Fig. + grid-plate primitives) */
+  --wo-sage:             #778176;
+  --wo-stone:            #837C6C;
+  --wo-bone:             #F4F0E6;   /* Paper, not cream — hero + editorial surface */
+
+  /* Primitive 1 — Blur-as-signature */
+  --wo-blur-face:        blur(8px);
+  --wo-blur-face-hover:  blur(5px);
+  --wo-blur-motion:      blur(14px);
+  --wo-blur-opacity:     0.92;
+  --wo-grayscale-face:   grayscale(100%) contrast(1.08);
+
+  /* Primitive 2 — Fig. grammar */
+  --wo-fig-label-font:     'Space Mono', 'Courier New', monospace;
+  --wo-fig-label-size:     11px;
+  --wo-fig-label-tracking: 0.2em;
+  --wo-fig-label-color:    var(--wo-sage);
+  --wo-fig-caption-font:   'EB Garamond', Georgia, serif;
+  --wo-fig-caption-size:   clamp(14px, 1.6vw, 18px);
+  --wo-fig-caption-color:  var(--wo-stone);        /* #837C6C, 88% opacity applied via rgba below */
+  --wo-fig-rule-color:     rgba(119, 129, 118, 0.25);
+
+  /* Primitive 3 — Zine */
+  --wo-zine-paper:         #F2F3EE;
+  --wo-zine-ink:           #1A1A18;
+  --wo-zine-misreg:        translate(1.5px, -1px);
+  --wo-zine-misreg-color:  rgba(95, 24, 4, 0.35);
+  --wo-zine-grain-url:     url('/assets/wo-grain-photocopy.png');
+  --wo-zine-grain-blend:   multiply;
+  --wo-zine-grain-opacity: 0.18;               /* hard ceiling; see guardrail below */
+  --wo-zine-grain-opacity-max: 0.2;            /* enforcement reference — any override above this is a brand violation */
+  --wo-zine-tape-color:    rgba(230, 208, 172, 0.55);
+  --wo-zine-staple-size:   8px;
+
+  /* Primitive 4 — Post-punk grid typography */
+  --wo-grid-word-font:     'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif;
+  --wo-grid-word-weight:   900;
+  --wo-grid-word-size:     clamp(72px, 9vw, 140px);
+  --wo-grid-word-tracking: -0.02em;
+  --wo-grid-meta-font:     'Space Mono', 'Courier New', monospace;
+  --wo-grid-meta-size:     11px;
+  --wo-grid-meta-tracking: 0.2em;
+  --wo-grid-meta-color:    var(--wo-sage);
+  --wo-grid-rule:          1px solid rgba(242, 243, 238, 0.3);
+  --wo-grid-column-gap:    clamp(24px, 4vw, 64px);
+}
+
+/* =============================================================
+   PRIMITIVE 1 — BLUR-AS-SIGNATURE
+   Enforces Obscured Identity rule at the CSS layer.
+   Applied to any <img> carrying human identity; never to type,
+   logo, or product-only stills.
+   ============================================================= */
+
+.wo-figure {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: filter 0.6s ease, opacity 0.6s ease;
+}
+
+/* PERSON — the signature treatment.
+   Guardrail: requires data-wo-subject="person" to apply.
+   Prevents accidental blur on product/environment shots that
+   get misclassified upstream. */
+.wo-figure--person[data-wo-subject="person"],
+img.wo-figure--person[data-wo-subject="person"] {
+  filter: var(--wo-grayscale-face) var(--wo-blur-face);
+  opacity: var(--wo-blur-opacity);
+}
+
+.wo-figure--person[data-wo-subject="person"]:hover,
+img.wo-figure--person[data-wo-subject="person"]:hover {
+  filter: var(--wo-grayscale-face) var(--wo-blur-face-hover);
+  /* Never below blur(5px). Guardrail reference. */
+}
+
+/* MOTION — already blurred in-camera. Do not stack additional blur.
+   Grayscale lift only. */
+.wo-figure--motion {
+  filter: var(--wo-grayscale-face);
+  opacity: var(--wo-blur-opacity);
+}
+
+/* PRODUCT — product-detail/flat-lay. Full grayscale pass, no blur. */
+.wo-figure--product {
+  filter: var(--wo-grayscale-face);
+}
+
+/* Dev-only violation hint — inert unless an ancestor has data-wo-dev-outlines="true".
+   A .wo-figure--person missing the data-wo-subject attribute → red outline.
+   Toggle on the demo section or on <body> (via theme setting) to activate. */
+[data-wo-dev-outlines="true"] .wo-figure--person:not([data-wo-subject="person"]) {
+  outline: 2px solid #E43B2C;
+  outline-offset: 2px;
+}
+
+/* =============================================================
+   PRIMITIVE 2 — FIG. GRAMMAR SYSTEM
+   Sitewide numbering + caption convention.
+   Reserved numbers live in the Brand Bible (Pillar 2) registry.
+   ============================================================= */
+
+.wo-fig {
+  display: block;
+  margin: 0;
+  /* Let the caller control rhythm with margin utilities or section spacing. */
+}
+
+.wo-fig__rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: var(--wo-fig-rule-color);
+  margin: 0 0 16px 0;
+}
+
+.wo-fig__label {
+  display: block;
+  font-family: var(--wo-fig-label-font);
+  font-size: var(--wo-fig-label-size);
+  letter-spacing: var(--wo-fig-label-tracking);
+  text-transform: uppercase;       /* enforced — Fig. grammar cannot drift to sentence case */
+  color: var(--wo-fig-label-color);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.wo-fig__caption {
+  display: block;
+  margin: 6px 0 0 0;
+  font-family: var(--wo-fig-caption-font);
+  font-style: italic;
+  font-size: var(--wo-fig-caption-size);
+  line-height: 1.5;
+  color: var(--wo-fig-caption-color);
+  opacity: 0.88;                   /* matches SoT #837C6C @ 88% */
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Modifier: pre-order. Replaces the standalone .wo-preorder-badge idea.
+   Same visual treatment as a Fig. label; the "number" slot holds N° and the
+   word slot holds PRE-ORDER · SHIPS 14–21 DAYS. */
+.wo-fig__label--preorder {
+  color: var(--wo-burgundy);
+}
+
+/* =============================================================
+   PRIMITIVE 3 — ZINE VISUAL TREATMENT
+   The confrontational counter-voice, visual form.
+   BUDGET: max 2 pages at any time + email-capture confirmation.
+   Guardrail enforcement is editorial, not CSS — track in
+   docs/plans/zine-placement.md when Layer 3 begins.
+   ============================================================= */
+
+.wo-zine {
+  position: relative;
+  background-color: var(--wo-zine-paper);
+  color: var(--wo-zine-ink);
+  padding: clamp(32px, 5vw, 72px) clamp(24px, 4vw, 56px);
+  overflow: hidden;                /* clips torn-edge mask + tape overhangs */
+  isolation: isolate;              /* creates its own stacking context for blend modes */
+}
+
+/* Photocopy grain overlay. Opacity clamped at --wo-zine-grain-opacity-max (0.2). */
+.wo-zine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--wo-zine-grain-url);
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  mix-blend-mode: var(--wo-zine-grain-blend);
+  opacity: min(var(--wo-zine-grain-opacity), var(--wo-zine-grain-opacity-max));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* All zine children sit above the grain overlay. */
+.wo-zine > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Fragment: caps-lock text with mis-registered burgundy ghost beneath the ink.
+   The ghost is produced with a text-shadow offset. Never apply to images. */
+.wo-zine__fragment {
+  display: block;
+  font-family: var(--wo-font-serif, 'EB Garamond', Georgia, serif);
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  font-size: clamp(40px, 7vw, 96px);
+  color: var(--wo-zine-ink);
+  /* Burgundy ghost offset — translate(1.5px, -1px) rendered as a colored text-shadow */
+  text-shadow: 1.5px -1px 0 var(--wo-zine-misreg-color);
+  margin: 0;
+}
+
+/* Tape element — decorative parchment tape.
+   Positioned absolutely by caller; this sets visual only. */
+.wo-zine__tape {
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: clamp(24px, 6vw, 96px);
+  width: clamp(64px, 10vw, 120px);
+  height: 28px;
+  background-color: var(--wo-zine-tape-color);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(26, 26, 24, 0.08);
+  z-index: 3;
+}
+
+/* Torn-edge modifier — ragged bottom via SVG mask.
+   Inline the path here so no additional asset request is required. */
+.wo-zine--torn {
+  /* Reserve extra bottom padding so the torn edge doesn't clip content */
+  padding-bottom: calc(clamp(32px, 5vw, 72px) + 18px);
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 400 400'><path d='M0,0 H400 V388 L388,395 L376,389 L362,396 L348,390 L332,397 L318,391 L302,398 L286,390 L270,397 L254,391 L238,398 L220,389 L204,396 L188,390 L172,397 L156,391 L140,398 L124,390 L108,397 L92,391 L76,398 L60,390 L44,397 L28,391 L14,398 L0,390 Z' fill='black'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 400 400'><path d='M0,0 H400 V388 L388,395 L376,389 L362,396 L348,390 L332,397 L318,391 L302,398 L286,390 L270,397 L254,391 L238,398 L220,389 L204,396 L188,390 L172,397 L156,391 L140,398 L124,390 L108,397 L92,391 L76,398 L60,390 L44,397 L28,391 L14,398 L0,390 Z' fill='black'/></svg>");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+/* =============================================================
+   PRIMITIVE 4 — POST-PUNK GRID TYPOGRAPHY
+   Saville-lineage plate: one serif display word + mono metadata.
+   60% negative-space budget is structural; caller's padding
+   preserves it by using the max-w + centered column pattern.
+   ============================================================= */
+
+.wo-grid-plate {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(16px, 2vw, 32px);
+  column-gap: var(--wo-grid-column-gap);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 140px) clamp(24px, 5vw, 64px);
+  /* 60% whitespace reserve: the inner 40% is reserved for content at large sizes.
+     Enforced at md+ via 2fr 3fr ratio (content-left, whitespace-right). */
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .wo-grid-plate {
+    grid-template-columns: 2fr 3fr;
+    align-items: start;
+  }
+}
+
+.wo-grid-plate__word {
+  display: block;
+  font-family: var(--wo-grid-word-font);
+  font-weight: var(--wo-grid-word-weight);
+  font-size: var(--wo-grid-word-size);
+  letter-spacing: var(--wo-grid-word-tracking);
+  line-height: 0.92;
+  text-transform: uppercase;
+  color: var(--wo-off-white);
+  margin: 0;
+  grid-column: 1 / -1;             /* word spans both columns */
+}
+
+.wo-grid-plate__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  font-family: var(--wo-grid-meta-font);
+  font-size: var(--wo-grid-meta-size);
+  letter-spacing: var(--wo-grid-meta-tracking);
+  text-transform: uppercase;
+  color: var(--wo-grid-meta-color);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  grid-column: 1 / 2;
+}
+
+.wo-grid-plate__meta > * {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wo-grid-plate__rule {
+  grid-column: 1 / -1;
+  border: 0;
+  border-top: var(--wo-grid-rule);
+  margin: 0;
+}
+
+.wo-grid-plate__serial {
+  grid-column: 2 / 3;
+  justify-self: end;
+  align-self: start;
+  font-family: var(--wo-grid-meta-font);
+  font-size: var(--wo-grid-meta-size);
+  letter-spacing: var(--wo-grid-meta-tracking);
+  text-transform: uppercase;
+  color: var(--wo-grid-meta-color);
+  opacity: 0.8;
+}
+
+/* Dev-only violation hint: a .wo-grid-plate missing aria-label gets a red outline.
+   Toggled via any ancestor with data-wo-dev-outlines="true" — off in production. */
+[data-wo-dev-outlines="true"] .wo-grid-plate:not([aria-label]) {
+  outline: 2px solid #E43B2C;
+  outline-offset: 4px;
+}
+
+/* =============================================================
+   PRINT-SAFE DEFAULTS
+   The blur and grain treatments make no sense in print; strip them
+   so collectors printing a radio/canvas page get legible type.
+   ============================================================= */
+
+@media print {
+  .wo-figure--person,
+  .wo-figure--motion,
+  .wo-figure--product {
+    filter: none !important;
+    opacity: 1 !important;
+  }
+  .wo-zine::before {
+    display: none;
+  }
+  .wo-zine__fragment {
+    text-shadow: none;
+  }
+}

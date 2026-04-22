@@ -1,104 +1,121 @@
 {% comment %}
-  WORLD ORDER -- wo-hero.liquid
-  Homepage Hero System v2.0
-  Typography-forward. Dark field. Grain. Entrance animation.
-  Big Shoulders Display Bold = Statement voice wordmark.
+  WORLD ORDER — wo-hero.liquid
+  Section: Homepage hero — archival photograph + Fig. grammar caption.
+  Replaces the earlier dark-gradient / decorative-script treatment.
+
+  Visual grammar:
+    - Full-bleed B&W archival photo using .wo-figure--person blur primitive
+      (Obscured Identity rule enforced at CSS layer).
+    - Fig. grammar block beneath: FIG. NN — WORD, with italic caption +
+      mono meta line (date · issue).
+    - Single CTA; no burgundy accent inside the headline slot.
+    - Bone-white paper background (not cream); Space Mono label,
+      EB Garamond italic caption, wo-zine-ink body color.
+
+  All styling hooks live on .wo-hero.wo-hero--archival; this keeps the
+  existing .wo-hero cascade intact while we transition.
 {% endcomment %}
 
-<section class="wo-hero" id="wo-hero">
-
-  {%- if section.settings.hero_image != blank -%}
-    <div class="wo-hero__image-wrap">
+<section class="wo-section wo-hero wo-hero--archival" aria-label="World Order — current issue">
+  <div class="wo-hero__photo-wrap">
+    {% if section.settings.photo != blank %}
       <img
-        src="{{ section.settings.hero_image | image_url: width: 2000 }}"
-        srcset="{{ section.settings.hero_image | image_url: width: 800 }} 800w,
-                {{ section.settings.hero_image | image_url: width: 1400 }} 1400w,
-                {{ section.settings.hero_image | image_url: width: 2000 }} 2000w"
+        class="wo-figure wo-figure--person wo-hero__photo"
+        data-wo-subject="person"
+        src="{{ section.settings.photo | image_url: width: 2200 }}"
+        srcset="
+          {{ section.settings.photo | image_url: width: 800 }} 800w,
+          {{ section.settings.photo | image_url: width: 1200 }} 1200w,
+          {{ section.settings.photo | image_url: width: 1600 }} 1600w,
+          {{ section.settings.photo | image_url: width: 2200 }} 2200w"
         sizes="100vw"
-        alt="{{ section.settings.hero_image.alt | default: 'World Order' }}"
-        class="wo-hero__img"
+        width="{{ section.settings.photo.width }}"
+        height="{{ section.settings.photo.height }}"
+        alt="{{ section.settings.photo.alt | default: 'World Order archival portrait' | escape }}"
         loading="eager"
-        fetchpriority="high"
-      >
-      <div class="wo-hero__overlay"></div>
-    </div>
-  {%- else -%}
-    <div class="wo-hero__placeholder"></div>
-  {%- endif -%}
-
-  <div class="wo-hero__content">
-    <h1 class="wo-hero__wordmark" aria-label="World Order">
-      {%- if section.settings.wordmark_line1 != blank -%}
-        {{ section.settings.wordmark_line1 }}
-      {%- else -%}
-        WORLD ORDER
-      {%- endif -%}
-    </h1>
-
-    <div class="wo-hero__rule" aria-hidden="true"></div>
-
-    <div class="wo-hero__meta">
-      <span class="wo-hero__subline">
-        {%- if section.settings.subline != blank -%}
-          {{ section.settings.subline }}
-        {%- else -%}
-          Uniforms for the individual. Engineered with intention.
-        {%- endif -%}
-      </span>
-
-      {%- if section.settings.drop_label != blank -%}
-        <span class="wo-hero__drop-label">{{ section.settings.drop_label }}</span>
-      {%- endif -%}
-    </div>
-
-    {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
-      <a href="{{ section.settings.cta_url }}" class="wo-hero__cta">
-        {{ section.settings.cta_label }}
-      </a>
-    {%- endif -%}
+        fetchpriority="high">
+    {% else %}
+      <div class="wo-hero__photo wo-hero__photo--placeholder" aria-hidden="true"></div>
+    {% endif %}
   </div>
 
-  <span class="wo-hero__scroll" aria-hidden="true">Scroll</span>
+  <div class="wo-hero__figcaption">
+    {% render 'wo-figure',
+       tag: 'div',
+       number: section.settings.fig_number,
+       word: section.settings.fig_word,
+       caption: section.settings.fig_caption %}
 
+    {% if section.settings.meta_line != blank %}
+      <p class="wo-hero__meta">{{ section.settings.meta_line }}</p>
+    {% endif %}
+
+    {% if section.settings.cta_label != blank %}
+      <a href="{{ section.settings.cta_url | default: '/collections/frontpage' }}" class="wo-hero__cta">
+        {{ section.settings.cta_label }}<span aria-hidden="true">&nbsp;&rarr;</span>
+      </a>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}
 {
   "name": "WO Hero",
+  "tag": "div",
   "settings": [
     {
+      "type": "header",
+      "content": "Archival photograph"
+    },
+    {
       "type": "image_picker",
-      "id": "hero_image",
-      "label": "Background image (optional -- dark field is default)"
+      "id": "photo",
+      "label": "Hero photograph (B&W archival)",
+      "info": "Person/portrait. The .wo-figure--person blur is applied automatically."
+    },
+    {
+      "type": "header",
+      "content": "Fig. grammar"
     },
     {
       "type": "text",
-      "id": "wordmark_line1",
-      "label": "Wordmark",
-      "default": "WORLD ORDER"
+      "id": "fig_number",
+      "label": "Fig. number",
+      "default": "01",
+      "info": "Two-digit, leading zero. Reserved in the Brand Bible registry."
     },
     {
       "type": "text",
-      "id": "subline",
-      "label": "Subline",
-      "default": "Uniforms for the individual. Engineered with intention."
+      "id": "fig_word",
+      "label": "Fig. word (all-caps label)",
+      "default": "I WOULDN'T HAVE IT ANY OTHER WAY."
     },
     {
       "type": "text",
-      "id": "drop_label",
-      "label": "Drop label (right side)",
-      "default": "Standard Issue #001"
+      "id": "fig_caption",
+      "label": "Italic caption (optional, 2–8 words, lowercase)",
+      "default": "uniforms for the individual · engineered with intention."
+    },
+    {
+      "type": "text",
+      "id": "meta_line",
+      "label": "Meta line (mono, all-caps)",
+      "default": "— 2026 · ISSUE II"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "CTA label",
-      "default": "Shop the Drop"
+      "default": "Enter the catalog"
     },
     {
       "type": "url",
       "id": "cta_url",
-      "label": "CTA link"
+      "label": "CTA URL"
     }
   ],
   "presets": [{ "name": "WO Hero" }]
