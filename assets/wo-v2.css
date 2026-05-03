@@ -583,7 +583,12 @@ a:hover { opacity: 0.7; }
 
 .wo-email-capture {
   background-color: var(--wo-parchment);
-  padding: var(--wo-space-xl) var(--wo-space-md);
+  /* Task 2: removed oversized 120px vertical padding; switched to rem-based responsive units. */
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .wo-email-capture__eyebrow {
@@ -663,7 +668,7 @@ a:hover { opacity: 0.7; }
 }
 
 @media (max-width: 600px) {
-  .wo-email-capture { padding: var(--wo-space-lg) 20px; }
+  .wo-email-capture { padding: 3rem 1.25rem; }
   .wo-email-capture__form { flex-direction: column; }
   .wo-email-capture__input { border-right: 1px solid rgba(26, 26, 24, 0.3); border-bottom: none; }
 }

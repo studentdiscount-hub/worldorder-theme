@@ -674,12 +674,13 @@ a { color: inherit; }
 .wo-manifesto-lines__item {
   display: grid;
   grid-template-columns: 32px 1fr;
-  gap: 16px;
-  padding: 24px 0;
+  gap: 1rem;
+  padding: 1.5rem 0;
   border-bottom: 1px solid var(--wo-divider);
   font-family: var(--wo-font-mono);
-  font-size: 11px;
-  line-height: 1.9;
+  /* Task 3: lifted body text 11px -> 16px (minimum), tightened line-height for legibility. */
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--wo-muted);
 }
 
@@ -730,8 +731,9 @@ a { color: inherit; }
 
 .wo-framework__desc {
   font-family: var(--wo-font-mono);
-  font-size: 11px;
-  line-height: 1.9;
+  /* Task 3: lifted body text 11px -> 16px (minimum). */
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--wo-muted);
   margin: 0;
 }
@@ -1786,3 +1788,34 @@ a.wo-track-row:hover {
 }
 /* CI test */
 /* CI test */
+
+/* Task 3 — About + Canvas mobile typography cleanup.
+   Scoped to .wo-about-hero / .wo-about-close / .wo-canvas to avoid global bleed. */
+@media (max-width: 768px) {
+  .wo-about-hero { padding: 3rem 1.25rem 2rem; }
+  .wo-about-hero__headline {
+    font-size: clamp(40px, 9vw, 72px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 2rem !important;
+  }
+  .wo-about-hero__coords {
+    font-size: 12px;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .wo-manifesto-lines { margin: 0 0 2rem; }
+  .wo-manifesto-lines__item {
+    grid-template-columns: 28px 1fr;
+    padding: 1.25rem 0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .wo-framework { margin: 2rem 0; }
+  .wo-framework__cell { padding: 1.5rem 1rem 1.5rem 0; }
+  .wo-framework__word { font-size: 22px; }
+  .wo-framework__desc { font-size: 16px; line-height: 1.6; }
+  .wo-never-numb { font-size: clamp(22px, 6vw, 36px); }
+  .wo-about-close { padding: 3rem 1.25rem; }
+  .wo-about-close__line { font-size: clamp(18px, 4.5vw, 24px); margin-bottom: 1.5rem; }
+}
