@@ -40,11 +40,19 @@
   </div>
 
   <div class="wo-hero__figcaption">
-    {% render 'wo-figure',
-       tag: 'div',
-       number: section.settings.fig_number,
-       word: section.settings.fig_word,
-       caption: section.settings.fig_caption %}
+    {%- comment -%}
+      Inlined wo-figure snippet (P0 fix 2026-05-03 — Shopify GitHub
+      integration was not syncing newly-added snippet files, causing a
+      visible Liquid error. Inlined to keep the rule self-contained until
+      the snippet sync is resolved or wo-primitives.css is loaded.)
+    {%- endcomment -%}
+    <div class="wo-fig">
+      <hr class="wo-fig__rule" />
+      <span class="wo-fig__label">FIG. {{ section.settings.fig_number }} &mdash; {{ section.settings.fig_word }}</span>
+      {%- if section.settings.fig_caption != blank -%}
+        <p class="wo-fig__caption">{{ section.settings.fig_caption }}</p>
+      {%- endif -%}
+    </div>
 
     {% if section.settings.meta_line != blank %}
       <p class="wo-hero__meta">{{ section.settings.meta_line }}</p>
