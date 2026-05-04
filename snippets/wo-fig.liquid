@@ -1,0 +1,45 @@
+{% comment %}
+  WORLD ORDER — wo-fig.liquid
+  Fig. block primitive (Layer 2). The brand's editorial grammar.
+
+  USAGE:
+    {% render 'wo-fig',
+       number: '04',
+       word: 'AXIS',
+       caption: 'archives as source material',
+       variant: 'on-dark' %}      // optional: 'on-dark' | 'signal' | (default light)
+
+  PARAMS:
+    number   — Fig. number (string, two-digit, leading zero). Reserved
+               in the Brand Bible Fig. registry. Required.
+    word     — All-caps label that follows "FIG. NN —". Required.
+    caption  — Optional italic, lowercase, observational caption.
+               2–8 words. Never persuasive (Bible Pillar 5).
+    variant  — Optional. 'on-dark' for dark-field placements,
+               'signal' for the rare red-rule signal Fig. (canvas
+               header), or omit for default light.
+
+  RULES (per Site Bible Part I & Bible Pillar 2):
+    - Fig. grammar is editorial only. Never on nav, footer, legal,
+      cart, checkout.
+    - Captions are observational, never persuasive.
+    - No more than 12 active Fig. numbers site-wide.
+{% endcomment %}
+
+{%- liquid
+  assign fig_class = 'wo-fig'
+  case variant
+    when 'on-dark'
+      assign fig_class = 'wo-fig wo-fig--on-dark'
+    when 'signal'
+      assign fig_class = 'wo-fig wo-fig--signal'
+  endcase
+-%}
+
+<div class="{{ fig_class }}">
+  <hr class="wo-fig__rule" />
+  <span class="wo-fig__label">FIG. {{ number }} &mdash; {{ word }}</span>
+  {%- if caption != blank -%}
+    <p class="wo-fig__caption">{{ caption }}</p>
+  {%- endif -%}
+</div>

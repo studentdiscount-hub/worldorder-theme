@@ -1119,6 +1119,366 @@ a:hover { opacity: 0.7; }
 .footer__background { background-color: var(--wo-black) !important; }
 
 /* ============================================================
+   LAYER 2 — SYSTEM PRIMITIVES
+   Per Source of Truth | Design System v2.2 Part III-C.
+   These four classes are the foundation every wo-* section
+   composes from. Documented since April 2026 but only
+   implemented in code on May 4, 2026 (per repo audit).
+   ============================================================ */
+
+/* --- .wo-fig — the Fig. block primitive ------------------- */
+/* The brand's editorial grammar. Composed as: hairline rule + */
+/* mono all-caps label (FIG. NN — WORD) + optional italic     */
+/* lowercase caption. Used in hero, fig-grid cells, catalog   */
+/* header, 404. Never on nav/footer/cart/checkout.            */
+
+.wo-fig {
+  display: block;
+  text-align: left;
+  color: inherit;
+}
+.wo-fig__rule {
+  border: 0;
+  border-top: 1px solid currentColor;
+  margin: 0 0 12px;
+  width: 28px;
+  opacity: 0.65;
+}
+.wo-fig__label {
+  display: block;
+  font-family: var(--wo-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.4;
+  color: inherit;
+}
+.wo-fig__caption {
+  margin: 6px 0 0;
+  font-family: var(--wo-font-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: inherit;
+  opacity: 0.85;
+  text-transform: lowercase;
+}
+
+/* Dark-field variant: rule and label dim slightly to match  */
+/* the post-punk grid plate's restraint on dark backgrounds. */
+.wo-fig.wo-fig--on-dark .wo-fig__rule { opacity: 0.45; }
+.wo-fig.wo-fig--on-dark .wo-fig__label { opacity: 0.92; }
+
+/* Red-rule variant: signal Fig. (e.g. canvas header).       */
+/* Used sparingly per "one viewport carrying blood-red" rule. */
+.wo-fig.wo-fig--signal .wo-fig__rule {
+  border-top-color: var(--wo-red);
+  opacity: 1;
+}
+.wo-fig.wo-fig--signal .wo-fig__label { color: var(--wo-red); }
+
+@media (max-width: 600px) {
+  .wo-fig__label { font-size: 9px; letter-spacing: 0.28em; }
+  .wo-fig__caption { font-size: 13px; }
+}
+
+
+/* --- .wo-figure — image primitive with Obscured Identity -- */
+/* Wraps every image on the site. The --person variant       */
+/* enforces the brand-non-negotiable Obscured Identity rule  */
+/* (Bible Pillar 1) via blur. The --product variant is flat  */
+/* for garment flat-lays. The --archive variant adds a       */
+/* slight grayscale + grain treatment for editorial photos.  */
+
+.wo-figure {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  /* Reset img defaults */
+  vertical-align: middle;
+  border: 0;
+}
+
+/* --person — Obscured Identity. Non-negotiable per Pillar 1. */
+/* Uses a soft blur (8px) plus reduced contrast so portraits */
+/* read as archival/editorial rather than a missing image.   */
+/* The blur is intentional and brand-defining; do not remove. */
+.wo-figure--person {
+  filter: blur(8px) grayscale(100%) contrast(0.95) brightness(0.92);
+  -webkit-filter: blur(8px) grayscale(100%) contrast(0.95) brightness(0.92);
+  /* Mask the blur edges so the figure still has hard borders */
+  /* even though the content is soft.                         */
+  transform: scale(1.04); /* hides the blurred soft edge */
+  transform-origin: center;
+}
+
+/* --product — flat-lay, no blur. Garments only. */
+.wo-figure--product {
+  filter: grayscale(0) contrast(1) brightness(1);
+  -webkit-filter: none;
+}
+
+/* --archive — for editorial archival photography that is    */
+/* NOT a portrait (rooms, objects, still-life). Adds the     */
+/* grayscale + light grain feel without obscuring identity.  */
+.wo-figure--archive {
+  filter: grayscale(100%) contrast(1.02) brightness(0.96);
+  -webkit-filter: grayscale(100%) contrast(1.02) brightness(0.96);
+}
+
+
+/* --- .wo-grid-plate — post-punk grid composition primitive */
+/* The compositional grammar of the brand. Composes:         */
+/*   - 60% whitespace ratio (load-bearing per Bible)         */
+/*   - one serif-display word (or wordmark)                  */
+/*   - mono metadata rows (typically 1 or 2)                 */
+/*   - serial line (e.g. SERIAL · 2026 / I · 01)             */
+/*   - optional caption (italic, signal-voice)               */
+/* Used by: hero, catalog header, canvas header, 404, About  */
+/* coordinates header. Dark or light field via modifier.     */
+
+.wo-grid-plate {
+  position: relative;
+  padding: clamp(48px, 8vw, 120px) clamp(24px, 5vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  background: var(--wo-white);
+  color: var(--wo-black);
+  min-height: 60vh;
+  overflow: hidden;
+}
+
+.wo-grid-plate--dark {
+  background: var(--wo-black);
+  color: var(--wo-white);
+}
+
+.wo-grid-plate--full {
+  min-height: 100vh;
+}
+
+/* Inner content sits on a 12-col grid with content in       */
+/* roughly 5-7 columns to enforce the 60% whitespace rule.   */
+.wo-grid-plate__inner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: end;
+  width: 100%;
+  height: 100%;
+}
+
+.wo-grid-plate__content {
+  grid-column: 1 / span 7;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.wo-grid-plate__meta {
+  grid-column: 9 / span 4;
+  font-family: var(--wo-font-mono);
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  text-align: right;
+  opacity: 0.7;
+  align-self: end;
+}
+.wo-grid-plate__meta span {
+  display: block;
+}
+
+.wo-grid-plate__word {
+  font-family: var(--wo-font-display);
+  font-weight: 900;
+  font-size: clamp(56px, 11vw, 168px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  color: inherit;
+}
+
+.wo-grid-plate__serial {
+  font-family: var(--wo-font-data);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+.wo-grid-plate__caption {
+  font-family: var(--wo-font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.6vw, 19px);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  text-transform: lowercase;
+  opacity: 0.85;
+  max-width: 38ch;
+  margin: 0;
+}
+
+/* Optional photo layer behind the grid plate content. */
+.wo-grid-plate__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  /* Use --person blur via wo-figure modifier when present */
+}
+
+.wo-grid-plate__photo + .wo-grid-plate__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* When a photo is present, dark variant gets a vignette so  */
+/* type stays readable. */
+.wo-grid-plate--dark .wo-grid-plate__photo + .wo-grid-plate__inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 24, 0.35) 0%,
+    rgba(26, 26, 24, 0.55) 60%,
+    rgba(26, 26, 24, 0.75) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .wo-grid-plate__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .wo-grid-plate__content { grid-column: 1; }
+  .wo-grid-plate__meta {
+    grid-column: 1;
+    text-align: left;
+    align-self: start;
+  }
+  .wo-grid-plate__word {
+    font-size: clamp(48px, 14vw, 88px);
+  }
+}
+
+
+/* --- .wo-zine — Cut-Up rupture primitive ------------------ */
+/* The seam in the brand's calm. Photocopy treatment,        */
+/* parchment-tape mark, mis-registration, Register B voice.  */
+/* Used for: About manifesto rupture, email capture          */
+/* confirmation. BUDGET: max 2 page deployments + email      */
+/* confirmation per Refusal #14. Above that the seam becomes */
+/* the surface and the rupture stops working.                */
+
+.wo-zine {
+  position: relative;
+  padding: clamp(40px, 6vw, 88px) clamp(24px, 5vw, 64px);
+  background: var(--wo-white);
+  color: var(--wo-black);
+  /* Photocopy texture: high-contrast grain via SVG noise. */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.10 0 0 0 0 0.10 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>"),
+    linear-gradient(180deg, var(--wo-white) 0%, #ECECE5 100%);
+  background-size: 300px 300px, 100% 100%;
+  /* Slight rotation in nested fragments creates mis-registration. */
+  overflow: hidden;
+}
+
+.wo-zine--dark {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.93 0 0 0 0 0.88 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.20'/></svg>"),
+    linear-gradient(180deg, #131311 0%, var(--wo-black) 100%);
+  background-size: 300px 300px, 100% 100%;
+  color: var(--wo-white);
+}
+
+/* Parchment-tape mark — the brand's recurring zine motif.   */
+/* Sits at the top-left of every wo-zine block, slightly     */
+/* rotated, with a soft shadow so it reads as a real piece   */
+/* of tape stuck on top of the photocopy.                    */
+.wo-zine::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: clamp(24px, 6vw, 96px);
+  width: clamp(80px, 12vw, 140px);
+  height: 22px;
+  background: var(--wo-parchment);
+  opacity: 0.78;
+  transform: rotate(-2.5deg);
+  box-shadow: 0 2px 6px rgba(26, 26, 24, 0.25);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wo-zine__fragment {
+  font-family: var(--wo-font-display);
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 72px);
+  line-height: 1.0;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  /* Ransom-note feel: each line slightly off-baseline.      */
+  /* Nested spans inside the fragment can override.          */
+  color: inherit;
+}
+
+/* Inline span variants the editor can apply for ransom-note */
+/* effect (small lowercase break, all-caps shout, italic).   */
+.wo-zine__fragment .wo-zine__shout {
+  display: inline-block;
+  background: var(--wo-black);
+  color: var(--wo-white);
+  padding: 0 0.15em;
+  transform: rotate(-1.5deg) translateY(-2px);
+}
+.wo-zine--dark .wo-zine__fragment .wo-zine__shout {
+  background: var(--wo-white);
+  color: var(--wo-black);
+}
+.wo-zine__fragment .wo-zine__cut {
+  display: inline-block;
+  text-transform: lowercase;
+  font-family: var(--wo-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: 0.62em;
+  transform: translateY(-0.18em) rotate(0.8deg);
+  opacity: 0.9;
+}
+
+.wo-zine__attribution {
+  display: block;
+  font-family: var(--wo-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .wo-zine__fragment { font-size: clamp(30px, 9vw, 48px); }
+}
+
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 
@@ -1134,4 +1494,8 @@ a:hover { opacity: 0.7; }
   }
   .wo-repeat-strip { animation: none; transform: translateY(0) !important; }
   .wo-appear-word { opacity: 1 !important; transition: none !important; letter-spacing: 0 !important; }
+  /* Layer 2 primitives — kill any rotation/transform */
+  .wo-zine::before { transform: none !important; }
+  .wo-zine__fragment .wo-zine__shout,
+  .wo-zine__fragment .wo-zine__cut { transform: none !important; }
 }
